@@ -392,6 +392,134 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}.reveal{opacity:1;transform:none}
 }
+
+/* =========================================================
+   CINEMATIC 3D ENVIRONMENT — generated from Luka Tech Lab visual
+   ========================================================= */
+.hero{isolation:isolate;background:#02060b}
+.hero-photo-world{position:absolute;inset:0;z-index:-4;overflow:hidden;pointer-events:none}
+.hero-photo-bg{
+  position:absolute;inset:-7%;
+  background-image:url('assets/luka-tech-lab-futuristic-bg.png');
+  background-size:cover;background-position:58% 50%;
+  filter:saturate(1.2) contrast(1.06) brightness(.58);
+  transform:translate3d(var(--world-x,0px),var(--world-y,0px),0) scale(1.09);
+  transition:transform .18s ease-out;
+  animation:worldBreath 13s ease-in-out infinite alternate;
+  will-change:transform
+}
+@keyframes worldBreath{0%{filter:saturate(1.12) contrast(1.04) brightness(.54)}100%{filter:saturate(1.28) contrast(1.08) brightness(.62)}}
+.hero-photo-world::before{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:
+    linear-gradient(90deg,rgba(2,6,11,.98) 0%,rgba(2,6,11,.90) 24%,rgba(2,6,11,.68) 45%,rgba(2,6,11,.26) 69%,rgba(2,6,11,.54) 100%),
+    linear-gradient(180deg,rgba(2,6,11,.34),rgba(2,6,11,.06) 45%,rgba(2,6,11,.82) 100%)
+}
+.hero-photo-world::after{
+  content:"";position:absolute;inset:-10%;z-index:3;mix-blend-mode:screen;opacity:.6;
+  background:
+    radial-gradient(circle at 73% 30%,rgba(82,236,255,.15),transparent 16%),
+    radial-gradient(circle at 84% 72%,rgba(101,118,255,.13),transparent 20%),
+    radial-gradient(circle at 56% 62%,rgba(183,92,255,.09),transparent 18%);
+  animation:lightDrift 9s ease-in-out infinite alternate
+}
+@keyframes lightDrift{0%{transform:translate3d(-1%,1%,0) scale(1)}100%{transform:translate3d(2%,-1%,0) scale(1.05)}}
+.energy-network{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.86;filter:drop-shadow(0 0 7px rgba(82,236,255,.34))}
+.energy-path{fill:none;stroke:url(#energyGrad);stroke-width:1.25;stroke-linecap:round;opacity:.35}
+.energy-flow{fill:none;stroke:url(#energyHot);stroke-width:2.3;stroke-linecap:round;stroke-dasharray:18 260;animation:energyTravel 7.4s linear infinite;filter:url(#glow)}
+.energy-flow.f2{animation-duration:10.2s;animation-direction:reverse;animation-delay:-4s;stroke-dasharray:10 320}
+.energy-flow.f3{animation-duration:5.9s;animation-delay:-2.4s;stroke-dasharray:24 380}
+.energy-flow.f4{animation-duration:12.5s;animation-direction:reverse;animation-delay:-7s;stroke-dasharray:14 420}
+@keyframes energyTravel{to{stroke-dashoffset:-900}}
+.hero-light-beam{position:absolute;z-index:0;pointer-events:none;opacity:.42;mix-blend-mode:screen}
+.beam-a{width:2px;height:66%;left:72%;top:-8%;background:linear-gradient(transparent,#c9fbff 38%,var(--cyan) 48%,transparent);box-shadow:0 0 18px var(--cyan);transform:rotate(13deg);animation:beamShift 7s ease-in-out infinite alternate}
+.beam-b{height:2px;width:48%;right:-6%;top:68%;background:linear-gradient(90deg,transparent,#fff,var(--violet),transparent);box-shadow:0 0 22px rgba(183,92,255,.7);animation:beamShiftB 9s ease-in-out infinite alternate}
+@keyframes beamShift{to{transform:rotate(9deg) translateX(46px);opacity:.18}}
+@keyframes beamShiftB{to{transform:translateX(-76px);opacity:.2}}
+
+/* right-side control room becomes a translucent 3D cockpit */
+.tech-room{
+  background:linear-gradient(160deg,rgba(2,9,17,.27),rgba(4,10,18,.46))!important;
+  border-color:rgba(104,229,255,.22)!important;
+  box-shadow:0 38px 120px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.07),inset 0 0 65px rgba(65,177,255,.035)!important;
+  backdrop-filter:blur(3px) saturate(1.15)
+}
+.tech-room .room-top{background:linear-gradient(90deg,rgba(4,12,21,.76),rgba(8,17,29,.38));backdrop-filter:blur(10px)}
+#heroSystem{opacity:.74;mix-blend-mode:screen}
+.future-depth{position:absolute;pointer-events:none;transform-style:preserve-3d;will-change:transform}
+.depth-screen{
+  right:8%;top:12%;width:36%;height:27%;border:1px solid rgba(82,236,255,.19);border-radius:18px;
+  background-image:linear-gradient(rgba(3,10,18,.18),rgba(3,10,18,.38)),url('assets/luka-tech-lab-futuristic-bg.png');
+  background-size:270%;background-position:91% 19%;opacity:.45;filter:saturate(1.45) contrast(1.08);
+  box-shadow:0 18px 55px rgba(0,0,0,.28),inset 0 0 25px rgba(82,236,255,.04);
+  animation:depthFloatA 7.8s ease-in-out infinite
+}
+.depth-screen::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 28%,rgba(82,236,255,.10),transparent 68%);animation:glassScan 5.5s ease-in-out infinite}
+.depth-console{
+  left:8%;bottom:11%;width:42%;height:25%;border:1px solid rgba(118,124,255,.18);border-radius:16px;
+  background-image:linear-gradient(rgba(2,8,14,.22),rgba(2,8,14,.46)),url('assets/luka-tech-lab-futuristic-bg.png');
+  background-size:250%;background-position:52% 80%;opacity:.34;filter:saturate(1.3);
+  box-shadow:0 22px 60px rgba(0,0,0,.30);animation:depthFloatB 9.5s ease-in-out infinite
+}
+@keyframes depthFloatA{0%,100%{transform:translate3d(0,0,28px) rotateY(-6deg)}50%{transform:translate3d(-9px,-10px,40px) rotateY(-2deg)}}
+@keyframes depthFloatB{0%,100%{transform:translate3d(0,0,20px) rotateY(7deg)}50%{transform:translate3d(10px,8px,34px) rotateY(3deg)}}
+@keyframes glassScan{0%,100%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
+
+.holo-cloud{position:absolute;right:26%;top:10%;z-index:4;width:118px;height:62px;filter:drop-shadow(0 0 16px rgba(82,236,255,.36));animation:holoDrift 5.7s ease-in-out infinite}
+.holo-cloud span{position:absolute;border:1px solid rgba(157,244,255,.72);background:radial-gradient(circle at 35% 30%,rgba(220,255,255,.32),rgba(82,236,255,.06) 55%,transparent);box-shadow:inset 0 0 18px rgba(82,236,255,.08);border-radius:50%}
+.holo-cloud span:nth-child(1){width:56px;height:56px;left:24px;top:0}.holo-cloud span:nth-child(2){width:44px;height:44px;left:3px;top:17px}.holo-cloud span:nth-child(3){width:48px;height:48px;right:2px;top:14px}.holo-cloud::after{content:"";position:absolute;left:18px;right:18px;top:39px;height:22px;border:1px solid rgba(82,236,255,.55);border-top:0;border-radius:0 0 28px 28px;background:linear-gradient(180deg,rgba(82,236,255,.10),transparent)}
+.cloud-streams{position:absolute;left:17%;right:17%;top:58px;height:105px;background:repeating-linear-gradient(90deg,transparent 0 8px,rgba(82,236,255,.34) 9px,rgba(82,236,255,.08) 10px,transparent 11px 15px);mask-image:linear-gradient(#000,transparent);animation:cloudRain 1.8s linear infinite}
+@keyframes cloudRain{to{background-position-y:48px}}
+@keyframes holoDrift{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+
+.holo-ai{position:absolute;right:5%;top:31%;z-index:4;width:115px;height:115px;border-radius:50%;border:1px solid rgba(82,236,255,.42);box-shadow:0 0 42px rgba(82,236,255,.13),inset 0 0 35px rgba(82,236,255,.06);display:grid;place-items:center;animation:aiOrbit 8s linear infinite}
+.holo-ai::before,.holo-ai::after{content:"";position:absolute;border-radius:50%;border:1px dashed rgba(135,132,255,.35)}
+.holo-ai::before{inset:12px;animation:spinR 8s linear infinite}.holo-ai::after{inset:27px;border-color:rgba(183,92,255,.36);animation:spinR 5s linear infinite reverse}
+.holo-ai b{font-size:24px;letter-spacing:.08em;color:#d9fcff;text-shadow:0 0 16px rgba(82,236,255,.8)}
+@keyframes aiOrbit{50%{box-shadow:0 0 58px rgba(82,236,255,.23),inset 0 0 42px rgba(183,92,255,.09)}}
+@keyframes spinR{to{transform:rotate(360deg)}}
+
+.future-data-stack{position:absolute;left:6%;top:39%;z-index:5;display:grid;gap:7px;width:142px}
+.future-data-stack i{height:7px;border-radius:999px;background:linear-gradient(90deg,var(--cyan),rgba(89,124,255,.56),transparent);box-shadow:0 0 13px rgba(82,236,255,.18);transform-origin:left;animation:dataStack 3.8s ease-in-out infinite}
+.future-data-stack i:nth-child(2){width:76%;animation-delay:-.8s}.future-data-stack i:nth-child(3){width:88%;animation-delay:-1.5s}.future-data-stack i:nth-child(4){width:56%;animation-delay:-2.2s}
+@keyframes dataStack{0%,100%{opacity:.25;transform:scaleX(.55)}45%{opacity:1;transform:scaleX(1)}}
+
+.future-dock{position:absolute;left:7%;right:7%;bottom:6%;z-index:6;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;perspective:900px}
+.future-module{position:relative;min-height:74px;padding:10px;border:1px solid rgba(82,236,255,.16);border-radius:13px;background:linear-gradient(160deg,rgba(5,14,24,.62),rgba(7,15,26,.34));backdrop-filter:blur(10px);box-shadow:0 12px 34px rgba(0,0,0,.22);transform:rotateX(5deg);animation:moduleFloat 6.5s ease-in-out infinite}
+.future-module:nth-child(2){animation-delay:-1.4s}.future-module:nth-child(3){animation-delay:-2.8s}.future-module:nth-child(4){animation-delay:-4.2s}
+.future-module::before{content:"";position:absolute;left:12px;right:12px;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 12px rgba(82,236,255,.6)}
+.future-module b{display:block;font-size:10px;margin-bottom:4px}.future-module span{font-size:8px;color:#8196a8}
+@keyframes moduleFloat{0%,100%{transform:translateY(0) rotateX(5deg)}50%{transform:translateY(-5px) rotateX(1deg)}}
+
+/* Different photographic echoes through the page, so the visual language changes by section */
+#diagnosi,#servizi,#sistema,#riservatezza{overflow:hidden}
+#diagnosi::before,#servizi::before,#sistema::before,#riservatezza::before{
+  content:"";position:absolute;pointer-events:none;z-index:-1;background-image:url('assets/luka-tech-lab-futuristic-bg.png');background-repeat:no-repeat;background-size:1500px auto;opacity:.075;filter:saturate(1.35) contrast(1.12);mix-blend-mode:screen;mask-image:radial-gradient(circle,#000 0%,rgba(0,0,0,.8) 28%,transparent 70%)
+}
+#diagnosi::before{width:760px;height:620px;right:-250px;top:20px;background-position:92% 18%;animation:sectionDriftA 13s ease-in-out infinite alternate}
+#servizi::before{width:820px;height:670px;left:-300px;top:180px;background-position:8% 76%;animation:sectionDriftB 17s ease-in-out infinite alternate}
+#sistema::before{width:850px;height:680px;right:-320px;top:100px;background-position:72% 62%;animation:sectionDriftA 16s ease-in-out infinite alternate-reverse}
+#riservatezza::before{width:720px;height:620px;left:-250px;top:0;background-position:30% 35%;animation:sectionDriftB 15s ease-in-out infinite alternate}
+@keyframes sectionDriftA{to{transform:translate3d(-28px,20px,0) scale(1.04)}}
+@keyframes sectionDriftB{to{transform:translate3d(32px,-18px,0) scale(1.06)}}
+
+/* Replace dot-like global style with luminous traces */
+#globalCircuit{opacity:.62;mix-blend-mode:screen}
+.scanlines{opacity:.075}
+
+@media(max-width:1040px){
+  .hero-photo-bg{background-position:62% 50%}
+  .future-depth,.holo-cloud,.holo-ai,.future-data-stack{opacity:.72}
+}
+@media(max-width:680px){
+  .hero-photo-world::before{background:linear-gradient(180deg,rgba(2,6,11,.80),rgba(2,6,11,.65) 48%,rgba(2,6,11,.88) 100%)}
+  .hero-photo-bg{background-position:64% center;filter:saturate(1.16) brightness(.42)}
+  .future-depth,.holo-cloud,.holo-ai,.future-data-stack{display:none}
+  .future-dock{left:5%;right:5%;bottom:5%;grid-template-columns:1fr 1fr}
+  .future-module{min-height:58px}
+  .energy-network{opacity:.46}
+}
+
 </style>
 </head>
 <body>
@@ -427,6 +555,36 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
 
 <main id="home">
   <section class="hero">
+
+    <div class="hero-photo-world" aria-hidden="true">
+      <div class="hero-photo-bg" id="heroPhotoBg"></div>
+      <div class="hero-light-beam beam-a"></div>
+      <div class="hero-light-beam beam-b"></div>
+    </div>
+    <svg class="energy-network" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="energyGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#52ecff" stop-opacity=".05"/>
+          <stop offset=".48" stop-color="#52ecff" stop-opacity=".7"/>
+          <stop offset="1" stop-color="#b75cff" stop-opacity=".12"/>
+        </linearGradient>
+        <linearGradient id="energyHot" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#52ecff" stop-opacity="0"/>
+          <stop offset=".48" stop-color="#eaffff" stop-opacity="1"/>
+          <stop offset=".7" stop-color="#52ecff" stop-opacity=".95"/>
+          <stop offset="1" stop-color="#b75cff" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <path class="energy-path" d="M-40 188 H288 Q330 188 330 230 V300 H550 Q590 300 590 340 V450 H850"/>
+      <path class="energy-flow" d="M-40 188 H288 Q330 188 330 230 V300 H550 Q590 300 590 340 V450 H850"/>
+      <path class="energy-path" d="M1650 128 H1360 Q1312 128 1312 176 V274 H1120 Q1070 274 1070 330 V454 H930"/>
+      <path class="energy-flow f2" d="M1650 128 H1360 Q1312 128 1312 176 V274 H1120 Q1070 274 1070 330 V454 H930"/>
+      <path class="energy-path" d="M1590 690 H1390 Q1346 690 1346 646 V588 H1190 Q1145 588 1145 546 V504 H970"/>
+      <path class="energy-flow f3" d="M1590 690 H1390 Q1346 690 1346 646 V588 H1190 Q1145 588 1145 546 V504 H970"/>
+      <path class="energy-path" d="M80 820 H390 Q432 820 432 770 V710 H624 Q668 710 668 658 V590 H830"/>
+      <path class="energy-flow f4" d="M80 820 H390 Q432 820 432 770 V710 H624 Q668 710 668 658 V590 H830"/>
+    </svg>
     <div class="container hero-grid">
       <div class="hero-copy reveal">
         <div class="promo-chip"><i></i> Prima analisi digitale gratuita</div>
@@ -458,11 +616,23 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
             LUKA TECH LAB / SYSTEM CORE
             <span>LIVE NETWORK</span>
           </div>
+          <div class="future-depth depth-screen"></div>
+          <div class="future-depth depth-console"></div>
+          <div class="holo-cloud" aria-hidden="true"><span></span><span></span><span></span><div class="cloud-streams"></div></div>
+          <div class="holo-ai" aria-hidden="true"><b>AI</b></div>
+          <div class="future-data-stack" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
           <canvas id="heroSystem"></canvas>
           <div class="hero-panel hp1"><b>WEB SYSTEM</b>frontend + area cliente</div>
           <div class="hero-panel hp2"><b>AI LAYER</b>assistenti + analisi</div>
           <div class="hero-panel hp3"><b>AUTOMATION</b>bot + workflow</div>
           <div class="hero-panel hp4"><b>TRADING DEV</b>Pine + MQL5</div>
+          <div class="future-dock" aria-hidden="true">
+            <div class="future-module"><b>WEB SYSTEM</b><span>UX • dashboard • portali</span></div>
+            <div class="future-module"><b>AUTOMATION</b><span>API • bot • workflow</span></div>
+            <div class="future-module"><b>AI LAYER</b><span>assistenti • analisi</span></div>
+            <div class="future-module"><b>TRADING DEV</b><span>Pine • MQL5 • MT5</span></div>
+          </div>
         </div>
         <div class="hero-side-rail"><i></i><i></i><i></i><i></i></div>
         <div class="stage-badge">
@@ -906,6 +1076,26 @@ techRoom.addEventListener('pointermove',e=>{
 });
 techRoom.addEventListener('pointerleave',()=>techRoom.style.transform='');
 
+/* CINEMATIC PHOTO PARALLAX */
+const heroPhotoBg=$('#heroPhotoBg');
+let worldTX=0,worldTY=0,worldX=0,worldY=0;
+function updateWorldPointer(e){
+  const nx=(e.clientX/innerWidth-.5),ny=(e.clientY/innerHeight-.5);
+  worldTX=nx*-22;worldTY=ny*-14;
+}
+addEventListener('pointermove',updateWorldPointer,{passive:true});
+function animateWorld(){
+  worldX+=(worldTX-worldX)*.045;worldY+=(worldTY-worldY)*.045;
+  if(heroPhotoBg){
+    const scrollShift=Math.min(scrollY*.035,32);
+    heroPhotoBg.style.setProperty('--world-x',`${worldX}px`);
+    heroPhotoBg.style.setProperty('--world-y',`${worldY-scrollShift}px`);
+  }
+  requestAnimationFrame(animateWorld);
+}
+animateWorld();
+
+
 /* builder */
 $$('.builder-option').forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -993,12 +1183,17 @@ function drawGlobal(){
   });
   pulses.forEach(pl=>{
     pl.t+=pl.speed;if(pl.t>1){pl.t=0;pl.path=(pl.path+7)%circuits.length}
-    const p=pathPoint(circuits[pl.path],pl.t);
+    const poly=circuits[pl.path];
     const col=pl.hue==='violet'?'183,92,255':'82,236,255';
-    const grd=gctx.createRadialGradient(p.x,p.y,0,p.x,p.y,18);
-    grd.addColorStop(0,`rgba(${col},.95)`);grd.addColorStop(.25,`rgba(${col},.45)`);grd.addColorStop(1,`rgba(${col},0)`);
-    gctx.fillStyle=grd;gctx.beginPath();gctx.arc(p.x,p.y,18,0,Math.PI*2);gctx.fill();
-    gctx.fillStyle='#eaffff';gctx.beginPath();gctx.arc(p.x,p.y,pl.size,0,Math.PI*2);gctx.fill();
+    for(let k=0;k<9;k++){
+      const tt=Math.max(0,pl.t-k*.012);
+      const a=pathPoint(poly,tt),b=pathPoint(poly,Math.max(0,tt-.01));
+      gctx.strokeStyle=`rgba(${col},${.62*(1-k/9)})`;
+      gctx.lineWidth=Math.max(.45,2.6-k*.22);
+      gctx.shadowBlur=11-k;gctx.shadowColor=`rgba(${col},.55)`;
+      gctx.beginPath();gctx.moveTo(b.x,b.y);gctx.lineTo(a.x,a.y);gctx.stroke();
+    }
+    gctx.shadowBlur=0;
   });
   requestAnimationFrame(drawGlobal);
 }
