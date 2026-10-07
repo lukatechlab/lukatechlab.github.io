@@ -1669,267 +1669,480 @@ body::before{
 }
 
 /* =========================================================
-   SERVICE EXPERIENCE V5 — INTERACTIVE COMMERCIAL CARDS
+   V6 — DIAGNOSIS 3D EXPLODED VISUALS
+   Six cards = six distinct animated scenes in the large panel.
    ========================================================= */
-.service-card{
-  cursor:pointer;
+.diagnosis-wrap{
+  grid-template-columns:.82fr 1.18fr !important;
+  gap:20px !important;
 }
-.service-card .service-cta{
-  border:0;
-  background:none;
-  padding:0;
-  cursor:pointer;
-  font:inherit;
+.diagnosis-console{
+  min-height:585px !important;
+  padding:22px !important;
+  background:
+    radial-gradient(480px 320px at 83% 46%,rgba(82,236,255,.075),transparent 68%),
+    linear-gradient(155deg,rgba(7,20,33,.94),rgba(3,9,16,.91)) !important;
+  border-color:rgba(82,236,255,.20) !important;
+  box-shadow:0 34px 105px rgba(0,0,0,.38),0 0 55px rgba(82,236,255,.045),inset 0 1px rgba(255,255,255,.045) !important;
 }
-.service-card::before{
-  opacity:.22 !important;
+.diag-head{
+  position:relative;z-index:8;
 }
-.service-card:hover::before{opacity:1 !important}
-.service-card .card-action-row{
-  position:relative;z-index:4;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-top:20px;
+.diag-head b{
+  display:flex;align-items:center;gap:7px;
 }
-.service-card .card-action-row small{
-  color:#6f8495;font-size:8px;letter-spacing:.11em;text-transform:uppercase;
+.diag-live-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 15px rgba(107,241,185,.72);
+  animation:diagLive 1.7s ease-in-out infinite
 }
-.service-card .card-action-row small::before{
-  content:"";
-  display:inline-block;width:6px;height:6px;border-radius:50%;
-  margin-right:7px;background:var(--green);box-shadow:0 0 14px rgba(107,241,185,.5)
+@keyframes diagLive{0%,100%{opacity:.35;scale:.7}50%{opacity:1;scale:1.15}}
+
+.diag-showcase{
+  position:relative;z-index:5;
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:22px;
+  align-items:stretch;
+  min-height:500px;
+  padding-top:21px;
+}
+.diag-copy{
+  display:flex;flex-direction:column;
+  min-width:0;
+  padding:7px 0 3px;
+}
+.diag-copy h3{
+  font-size:clamp(28px,2.3vw,39px) !important;
+  margin:10px 0 12px !important;
+}
+.diag-copy > p{
+  color:#91a5b7;font-size:12px;line-height:1.58;
+}
+.diag-copy .diag-points{
+  margin:18px 0 20px;
+}
+.diag-copy .diag-points div{
+  font-size:10px;
+}
+.diag-copy .diag-actions{
+  margin-top:auto;
+}
+.diag-copy .btn{
+  min-height:42px;padding:0 13px;font-size:10px;
 }
 
-/* modal */
-.service-modal{
-  position:fixed;inset:0;z-index:150;
-  display:grid;place-items:center;
-  padding:22px;
-  opacity:0;pointer-events:none;
-  transition:opacity .28s ease;
+/* visual container */
+.diag-visual-wrap{
+  --scene-accent:82,236,255;
+  --scene-accent2:101,121,255;
+  position:relative;
+  min-height:450px;
+  overflow:hidden;
+  border:1px solid rgba(var(--scene-accent),.19);
+  border-radius:23px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.025),transparent 14%),
+    radial-gradient(circle at 52% 48%,rgba(var(--scene-accent),.075),transparent 42%),
+    linear-gradient(150deg,rgba(4,14,23,.78),rgba(2,8,14,.72));
+  box-shadow:
+    0 28px 85px rgba(0,0,0,.32),
+    inset 0 1px rgba(255,255,255,.045),
+    inset 0 0 65px rgba(var(--scene-accent),.025);
+  perspective:1000px;
 }
-.service-modal.open{opacity:1;pointer-events:auto}
-.service-modal-backdrop{
+.diag-visual-wrap::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:
+    linear-gradient(rgba(var(--scene-accent),.032) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--scene-accent),.028) 1px,transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 85%,transparent);
+}
+.diag-visual-wrap::after{
+  content:"";position:absolute;left:-35%;right:-35%;top:-8%;height:18%;z-index:7;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(var(--scene-accent),.11),rgba(255,255,255,.08),transparent);
+  filter:blur(4px);
+  animation:diagScanGlobal 5.8s linear infinite;
+}
+@keyframes diagScanGlobal{to{transform:translateY(620px)}}
+
+.diag-visual-top,.diag-visual-foot{
+  position:absolute;z-index:12;left:15px;right:15px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  pointer-events:none;
+}
+.diag-visual-top{
+  top:14px;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.055);
+}
+.diag-visual-foot{
+  bottom:12px;padding-top:8px;border-top:1px solid rgba(255,255,255,.045);
+}
+.diag-visual-top span,.diag-visual-foot span{
+  color:#657d90;font-size:7px;letter-spacing:.13em;text-transform:uppercase;
+}
+.diag-visual-top b{
+  color:rgba(var(--scene-accent),.92);font-size:7px;letter-spacing:.12em;
+}
+.diag-visual{
+  --vrx:0deg;--vry:0deg;
+  position:absolute;inset:44px 9px 37px;
+  z-index:5;
+  transform-style:preserve-3d;
+  transform:rotateX(var(--vrx)) rotateY(var(--vry));
+  transition:transform .16s ease-out,opacity .18s ease,filter .18s ease;
+}
+.diag-visual.switching{
+  opacity:.05;
+  filter:blur(10px);
+  transform:scale(.965) rotateX(var(--vrx)) rotateY(var(--vry));
+}
+.diag-scene{
   position:absolute;inset:0;
-  background:rgba(1,4,8,.78);
-  backdrop-filter:blur(18px) saturate(1.2);
+  transform-style:preserve-3d;
+  animation:diagSceneIn .52s cubic-bezier(.2,.85,.2,1) both;
 }
-.service-modal-shell{
-  --modal-accent:82,236,255;
-  --modal-accent2:111,124,255;
-  position:relative;z-index:2;
-  width:min(1160px,calc(100vw - 36px));
-  max-height:min(880px,calc(100vh - 40px));
-  overflow:auto;
-  border:1px solid rgba(var(--modal-accent),.24);
-  border-radius:30px;
+@keyframes diagSceneIn{
+  from{opacity:0;transform:translateY(12px) scale(.96)}
+  to{opacity:1;transform:none}
+}
+.scene-glow{
+  position:absolute;left:50%;top:50%;width:72%;aspect-ratio:1;transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(var(--scene-accent),.13),rgba(var(--scene-accent2),.055) 36%,transparent 68%);
+  filter:blur(5px);
+  animation:sceneGlow 4.8s ease-in-out infinite;
+}
+@keyframes sceneGlow{0%,100%{opacity:.52;scale:.90}50%{opacity:1;scale:1.06}}
+.scene-floor{
+  position:absolute;left:-8%;right:-8%;bottom:-25%;height:55%;
   background:
-    radial-gradient(680px 360px at 84% 8%,rgba(var(--modal-accent),.11),transparent 62%),
-    linear-gradient(155deg,rgba(8,22,35,.98),rgba(3,9,16,.98));
-  box-shadow:0 45px 150px rgba(0,0,0,.66),0 0 70px rgba(var(--modal-accent),.08),inset 0 1px rgba(255,255,255,.05);
-  transform:translateY(24px) scale(.975);
-  transition:transform .34s cubic-bezier(.2,.8,.2,1);
+    linear-gradient(rgba(var(--scene-accent),.11) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--scene-accent),.10) 1px,transparent 1px);
+  background-size:28px 28px;
+  transform:perspective(430px) rotateX(66deg);
+  transform-origin:center top;
+  opacity:.34;
+  mask-image:linear-gradient(#000,transparent 82%);
+  animation:floorDrift 7s linear infinite;
 }
-.service-modal.open .service-modal-shell{transform:none}
-.service-modal-shell::before{
-  content:"";position:absolute;left:0;right:0;top:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(var(--modal-accent),.7),#fff,rgba(var(--modal-accent2),.65),transparent);
-  box-shadow:0 0 22px rgba(var(--modal-accent),.45)
-}
-.modal-close{
-  position:sticky;top:16px;float:right;z-index:8;
-  margin:16px 16px 0 0;
-  width:44px;height:44px;border-radius:14px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(4,12,20,.72);
-  color:#dffaff;font-size:20px;
-  cursor:pointer;backdrop-filter:blur(14px);
-  transition:.2s ease;
-}
-.modal-close:hover{border-color:rgba(var(--modal-accent),.36);transform:rotate(4deg);box-shadow:0 0 28px rgba(var(--modal-accent),.10)}
+@keyframes floorDrift{to{background-position:0 56px,56px 0}}
 
-.modal-grid{
-  display:grid;grid-template-columns:.92fr 1.08fr;gap:0;
-  min-height:680px;
+/* ---------------- SITE WEB / exploded browser ---------------- */
+.scene-site{--scene-accent:82,236,255;--scene-accent2:101,121,255}
+.site-browser{
+  position:absolute;left:50%;top:49%;
+  width:78%;height:69%;
+  transform:translate(-50%,-50%) rotateY(-9deg) rotateX(4deg);
+  transform-style:preserve-3d;
 }
-.modal-visual{
-  position:relative;overflow:hidden;
-  padding:38px 34px;
-  border-right:1px solid rgba(255,255,255,.06);
-  min-height:680px;
-  display:flex;flex-direction:column;justify-content:space-between;
+.site-browser-frame{
+  position:absolute;inset:0;border-radius:19px;
+  border:1px solid rgba(var(--scene-accent),.38);
+  background:rgba(4,14,23,.62);
+  box-shadow:0 30px 70px rgba(0,0,0,.35),0 0 42px rgba(var(--scene-accent),.09);
 }
-.modal-visual::before{
-  content:"";position:absolute;inset:0;
+.site-browser-frame::before{
+  content:"";position:absolute;left:13px;right:13px;top:15px;height:7px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(var(--scene-accent),.78) 0 18%,rgba(255,255,255,.065) 18% 100%);
+}
+.site-layer{
+  position:absolute;left:10%;right:10%;
+  border:1px solid rgba(var(--scene-accent),.25);
+  border-radius:11px;
+  background:linear-gradient(135deg,rgba(9,32,48,.88),rgba(5,14,25,.78));
+  box-shadow:0 15px 35px rgba(0,0,0,.24),0 0 23px rgba(var(--scene-accent),.055);
+  transform-style:preserve-3d;
+}
+.site-layer::after{
+  content:"";position:absolute;left:10px;top:10px;height:4px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(var(--scene-accent),.8),rgba(var(--scene-accent2),.36),transparent);
+}
+.site-layer.sl1{top:18%;height:18%;animation:siteExplode1 5.4s ease-in-out infinite}
+.site-layer.sl1::after{width:52%}
+.site-layer.sl2{top:40%;height:22%;animation:siteExplode2 5.4s ease-in-out infinite}
+.site-layer.sl2::after{width:70%}
+.site-layer.sl3{top:66%;height:13%;animation:siteExplode3 5.4s ease-in-out infinite}
+.site-layer.sl3::after{width:40%}
+.site-side{
+  position:absolute;right:-9%;top:28%;width:24%;height:44%;
+  border:1px solid rgba(var(--scene-accent2),.28);border-radius:13px;
+  background:rgba(8,15,31,.76);
+  animation:siteSide 5.4s ease-in-out infinite;
+}
+@keyframes siteExplode1{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(-11px,-18px,68px)}}
+@keyframes siteExplode2{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(10px,0,92px)}}
+@keyframes siteExplode3{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(-6px,18px,58px)}}
+@keyframes siteSide{0%,18%,100%{transform:translate3d(0,0,0)}46%,72%{transform:translate3d(26px,-4px,110px) rotateY(-4deg)}}
+.site-scan{
+  position:absolute;left:4%;right:4%;top:10%;height:2px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(var(--scene-accent),.9),transparent);
+  box-shadow:0 0 18px rgba(var(--scene-accent),.7);
+  animation:siteScan 3.7s linear infinite;
+}
+@keyframes siteScan{to{top:88%}}
+.site-tag{
+  position:absolute;padding:5px 7px;border-radius:7px;border:1px solid rgba(var(--scene-accent),.22);
+  background:rgba(3,12,21,.78);color:#c9faff;font-size:7px;font-weight:850;letter-spacing:.08em;
+  animation:tagFloat 4s ease-in-out infinite;
+}
+.site-tag.t1{left:-3%;top:24%}.site-tag.t2{right:-7%;top:47%;animation-delay:-1.3s}.site-tag.t3{left:2%;bottom:7%;animation-delay:-2.4s}
+@keyframes tagFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ---------------- MANUAL -> AUTOMATION ---------------- */
+.scene-manual{--scene-accent:90,239,213;--scene-accent2:82,185,255}
+.auto-stage{
+  position:absolute;inset:7% 3% 4%;transform-style:preserve-3d;
+}
+.auto-line{
+  position:absolute;left:10%;right:10%;top:51%;height:2px;
+  background:linear-gradient(90deg,rgba(var(--scene-accent),.10),rgba(var(--scene-accent),.75),rgba(var(--scene-accent2),.55),rgba(var(--scene-accent),.13));
+  box-shadow:0 0 19px rgba(var(--scene-accent),.28)
+}
+.auto-line::after{
+  content:"";position:absolute;left:-15%;top:-3px;width:74px;height:8px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(var(--scene-accent),.9),transparent);
+  box-shadow:0 0 22px rgba(var(--scene-accent),.72);
+  animation:autoSignal 3.4s linear infinite;
+}
+@keyframes autoSignal{to{left:105%}}
+.auto-core{
+  position:absolute;left:50%;top:51%;width:92px;height:92px;transform:translate(-50%,-50%);
+  border-radius:27px;border:1px solid rgba(var(--scene-accent),.42);
+  background:radial-gradient(circle,rgba(var(--scene-accent),.20),rgba(4,14,23,.90) 66%);
+  display:grid;place-items:center;color:#eafff7;font-size:9px;font-weight:900;letter-spacing:.12em;
+  box-shadow:0 0 58px rgba(var(--scene-accent),.18);
+}
+.auto-core::before,.auto-core::after{
+  content:"";position:absolute;inset:-21px;border:1px dashed rgba(var(--scene-accent),.20);border-radius:50%;animation:autoSpin 8s linear infinite
+}
+.auto-core::after{inset:-42px;border-color:rgba(var(--scene-accent2),.16);animation-duration:13s;animation-direction:reverse}
+@keyframes autoSpin{to{transform:rotate(360deg)}}
+.task-card{
+  position:absolute;width:84px;height:48px;border-radius:11px;
+  border:1px solid rgba(var(--scene-accent),.22);background:rgba(5,16,25,.76);
+  display:grid;place-items:center;color:#bfeee5;font-size:7px;font-weight:800;
+  box-shadow:0 12px 25px rgba(0,0,0,.24);
+}
+.task-card.m1{left:1%;top:18%;animation:manualMess 4.8s ease-in-out infinite}
+.task-card.m2{left:4%;bottom:19%;animation:manualMess 4.8s ease-in-out infinite -1.4s}
+.task-card.m3{left:20%;top:48%;animation:manualMess 4.8s ease-in-out infinite -2.6s}
+.task-card.o1{right:4%;top:17%;animation:outputOrder 4.8s ease-in-out infinite}
+.task-card.o2{right:3%;bottom:17%;animation:outputOrder 4.8s ease-in-out infinite -1.6s}
+@keyframes manualMess{0%,100%{transform:translate(0,0) rotate(-3deg);opacity:.55}48%,70%{transform:translate(18px,0) rotate(0);opacity:1}}
+@keyframes outputOrder{0%,22%,100%{transform:translateX(12px);opacity:.38}52%,78%{transform:translateX(0);opacity:1}}
+.auto-packet{
+  position:absolute;left:17%;top:calc(51% - 5px);width:10px;height:10px;border-radius:4px;
+  background:#eaffff;box-shadow:0 0 18px rgba(var(--scene-accent),.85);
+  animation:packetMove 2.9s linear infinite;
+}
+@keyframes packetMove{to{left:83%}}
+
+/* ---------------- TOOLS / integration hub ---------------- */
+.scene-tools{--scene-accent:82,236,255;--scene-accent2:183,92,255}
+.hub-core{
+  position:absolute;left:50%;top:50%;width:108px;height:108px;transform:translate(-50%,-50%);
+  border-radius:34px;border:1px solid rgba(var(--scene-accent),.43);
+  background:radial-gradient(circle,rgba(var(--scene-accent),.19),rgba(5,14,24,.92) 67%);
+  display:grid;place-items:center;color:#e9fbff;font-size:11px;font-weight:900;letter-spacing:.12em;
+  box-shadow:0 0 75px rgba(var(--scene-accent),.18);
+}
+.hub-orbit{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:72%;aspect-ratio:1;border-radius:50%;
+  border:1px solid rgba(var(--scene-accent),.18);
+  animation:hubSpin 18s linear infinite;
+}
+.hub-orbit.o2{width:52%;border-style:dashed;border-color:rgba(var(--scene-accent2),.21);animation-duration:11s;animation-direction:reverse}
+@keyframes hubSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.tool-node{
+  position:absolute;width:68px;height:38px;border-radius:11px;
+  border:1px solid rgba(var(--scene-accent),.24);
+  background:rgba(4,15,25,.82);display:grid;place-items:center;color:#d5f8ff;font-size:7px;font-weight:900;
+  box-shadow:0 12px 30px rgba(0,0,0,.25),0 0 18px rgba(var(--scene-accent),.05);
+}
+.tool-node.tn1{left:8%;top:17%}.tool-node.tn2{right:7%;top:19%}.tool-node.tn3{left:3%;top:52%}
+.tool-node.tn4{right:2%;top:52%}.tool-node.tn5{left:20%;bottom:7%}.tool-node.tn6{right:18%;bottom:6%}
+.hub-beam{
+  position:absolute;left:50%;top:50%;width:42%;height:1px;transform-origin:left;
+  background:linear-gradient(90deg,rgba(var(--scene-accent),.62),transparent);opacity:.65
+}
+.hub-beam.h1{transform:rotate(-145deg)}.hub-beam.h2{transform:rotate(-38deg)}.hub-beam.h3{transform:rotate(180deg)}
+.hub-beam.h4{transform:rotate(0)}.hub-beam.h5{transform:rotate(132deg)}.hub-beam.h6{transform:rotate(45deg)}
+.hub-beam::after{
+  content:"";position:absolute;left:-10%;top:-2px;width:54px;height:5px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(var(--scene-accent),.9),transparent);
+  box-shadow:0 0 14px rgba(var(--scene-accent),.7);animation:hubPulse 3.2s linear infinite
+}
+@keyframes hubPulse{to{left:105%}}
+
+/* ---------------- CUSTOM SOFTWARE / exploded dashboard ---------------- */
+.scene-custom{--scene-accent:94,207,255;--scene-accent2:111,124,255}
+.software-stack{
+  position:absolute;left:50%;top:50%;width:78%;height:70%;transform:translate(-50%,-50%) rotateY(-11deg) rotateX(5deg);
+  transform-style:preserve-3d;
+}
+.sw-base{
+  position:absolute;inset:0;border-radius:20px;border:1px solid rgba(var(--scene-accent),.36);
+  background:rgba(4,14,24,.73);box-shadow:0 30px 75px rgba(0,0,0,.34),0 0 40px rgba(var(--scene-accent),.08)
+}
+.sw-module{
+  position:absolute;border:1px solid rgba(var(--scene-accent),.25);border-radius:11px;
+  background:linear-gradient(145deg,rgba(9,29,44,.92),rgba(5,14,24,.82));
+  box-shadow:0 14px 34px rgba(0,0,0,.24),0 0 19px rgba(var(--scene-accent),.04);
+  overflow:hidden;
+}
+.sw-module::before{
+  content:"";position:absolute;left:10px;right:10px;top:10px;height:4px;border-radius:999px;
+  background:linear-gradient(90deg,rgba(var(--scene-accent),.82),rgba(var(--scene-accent2),.34),transparent)
+}
+.sw-sidebar{left:5%;top:9%;bottom:8%;width:18%;animation:swPart1 5.8s ease-in-out infinite}
+.sw-header{left:27%;right:5%;top:9%;height:16%;animation:swPart2 5.8s ease-in-out infinite}
+.sw-card1{left:27%;top:30%;width:31%;height:26%;animation:swPart3 5.8s ease-in-out infinite}
+.sw-card2{right:5%;top:30%;width:31%;height:26%;animation:swPart4 5.8s ease-in-out infinite}
+.sw-chart{left:27%;right:5%;bottom:8%;height:29%;animation:swPart5 5.8s ease-in-out infinite}
+@keyframes swPart1{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(-19px,0,90px)}}
+@keyframes swPart2{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(5px,-20px,65px)}}
+@keyframes swPart3{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(-4px,5px,105px)}}
+@keyframes swPart4{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(22px,4px,85px)}}
+@keyframes swPart5{0%,18%,100%{transform:translateZ(0)}46%,72%{transform:translate3d(9px,22px,72px)}}
+.sw-chart::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:12px;height:55%;
   background:
-    linear-gradient(90deg,rgba(3,8,15,.35),transparent 55%),
-    repeating-linear-gradient(180deg,transparent 0 24px,rgba(var(--modal-accent),.022) 25px,transparent 26px);
-}
-.modal-visual::after{
-  content:"";position:absolute;inset:8% -20%;
-  background:radial-gradient(circle at 50% 50%,rgba(var(--modal-accent),.12),transparent 38%);
-  filter:blur(5px);animation:modalBreath 5.4s ease-in-out infinite;
-}
-@keyframes modalBreath{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.06)}}
-.modal-copy-top,.modal-visual-bottom{position:relative;z-index:3}
-.modal-kicker{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:9px;font-weight:850;letter-spacing:.16em;text-transform:uppercase;color:rgba(var(--modal-accent),.9)
-}
-.modal-kicker::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,rgba(var(--modal-accent),.9),transparent)}
-.modal-visual h3{font-size:clamp(34px,4vw,58px);margin:14px 0 13px;max-width:560px}
-.modal-lead{max-width:560px;color:#9eb0bf;font-size:14px}
-.modal-status{
-  display:flex;gap:10px;flex-wrap:wrap;margin-top:18px
-}
-.modal-status span{
-  padding:7px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.025);font-size:9px;color:#b4c4cf
-}
-.modal-status span:first-child{
-  border-color:rgba(107,241,185,.18);background:rgba(107,241,185,.045);color:#c8ffe2
+    linear-gradient(120deg,transparent 0 11%,rgba(var(--scene-accent),.75) 12% 13%,transparent 14% 27%,rgba(var(--scene-accent),.55) 28% 29%,transparent 30% 44%,rgba(var(--scene-accent2),.65) 45% 46%,transparent 47%);
+  opacity:.58
 }
 
-/* animated diagram */
-.modal-diagram{
-  position:relative;z-index:3;
-  height:290px;margin-top:18px;
+/* ---------------- AI / fragments + core ---------------- */
+.scene-ai{--scene-accent:117,230,255;--scene-accent2:183,92,255}
+.ai-core-v6{
+  position:absolute;left:50%;top:50%;width:126px;height:126px;transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:radial-gradient(circle at 42% 35%,#eaffff 0 3%,rgba(var(--scene-accent),.92) 8%,rgba(var(--scene-accent2),.38) 31%,rgba(4,12,22,.86) 70%);
+  box-shadow:0 0 85px rgba(var(--scene-accent),.25),0 0 130px rgba(var(--scene-accent2),.10);
+  animation:aiBreath 3.4s ease-in-out infinite
 }
-.md-core{
-  position:absolute;left:50%;top:50%;
-  width:112px;height:112px;transform:translate(-50%,-50%);
-  border-radius:34px;
-  border:1px solid rgba(var(--modal-accent),.42);
-  background:radial-gradient(circle,rgba(255,255,255,.16),rgba(var(--modal-accent),.12) 34%,rgba(3,11,19,.88) 72%);
-  display:grid;place-items:center;
-  color:#eaffff;font-size:11px;font-weight:900;letter-spacing:.12em;
-  box-shadow:0 0 80px rgba(var(--modal-accent),.18),inset 0 0 30px rgba(var(--modal-accent),.05);
-  animation:mdCore 4.4s ease-in-out infinite;
+@keyframes aiBreath{0%,100%{scale:.93}50%{scale:1.05}}
+.ai-ring{
+  position:absolute;left:50%;top:50%;border-radius:50%;border:1px solid rgba(var(--scene-accent),.27);
+  transform:translate(-50%,-50%);animation:aiRing 10s linear infinite
 }
-@keyframes mdCore{0%,100%{transform:translate(-50%,-50%) scale(.96)}50%{transform:translate(-50%,-50%) scale(1.05)}}
-.md-core::before,.md-core::after{
-  content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  border-radius:50%;border:1px solid rgba(var(--modal-accent),.20)
+.ai-ring.a1{width:190px;height:190px}.ai-ring.a2{width:260px;height:260px;border-style:dashed;border-color:rgba(var(--scene-accent2),.22);animation-duration:15s;animation-direction:reverse}
+@keyframes aiRing{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.ai-shard{
+  position:absolute;left:50%;top:50%;width:48px;height:28px;margin:-14px 0 0 -24px;
+  clip-path:polygon(0 50%,22% 0,100% 18%,82% 100%,18% 82%);
+  border:1px solid rgba(var(--scene-accent),.25);
+  background:linear-gradient(135deg,rgba(var(--scene-accent),.34),rgba(var(--scene-accent2),.12));
+  box-shadow:0 0 18px rgba(var(--scene-accent),.12);
+  transform-origin:0 0;
+  animation:shardFloat 5.5s ease-in-out infinite
 }
-.md-core::before{width:160px;height:160px;animation:mdRing 6s linear infinite}
-.md-core::after{width:214px;height:214px;border-style:dashed;border-color:rgba(var(--modal-accent2),.20);animation:mdRing 10s linear infinite reverse}
-@keyframes mdRing{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.md-node{
-  position:absolute;width:110px;height:58px;border-radius:15px;
-  border:1px solid rgba(var(--modal-accent),.25);
-  background:rgba(5,15,25,.75);
-  display:grid;place-items:center;
-  color:#d8f8ff;font-size:9px;font-weight:850;letter-spacing:.07em;
-  box-shadow:0 15px 35px rgba(0,0,0,.26),0 0 25px rgba(var(--modal-accent),.07);
-  animation:mdNode var(--mns,6s) ease-in-out infinite;
+.ai-shard.s1{transform:translate(-155px,-86px) rotate(12deg);animation-delay:-1s}
+.ai-shard.s2{transform:translate(115px,-99px) rotate(-12deg);animation-delay:-2s}
+.ai-shard.s3{transform:translate(-165px,83px) rotate(-18deg);animation-delay:-3s}
+.ai-shard.s4{transform:translate(122px,91px) rotate(18deg);animation-delay:-4s}
+.ai-shard.s5{transform:translate(-34px,-158px) rotate(35deg);animation-delay:-5s}
+.ai-shard.s6{transform:translate(35px,145px) rotate(-30deg);animation-delay:-2.5s}
+@keyframes shardFloat{0%,100%{filter:brightness(.7);opacity:.52}50%{filter:brightness(1.45);opacity:1}}
+.ai-stream{
+  position:absolute;top:50%;height:1px;width:34%;background:linear-gradient(90deg,transparent,rgba(var(--scene-accent),.72),#fff);
 }
-.md-node.n1{left:4%;top:12%;--mns:6.2s}
-.md-node.n2{right:4%;top:13%;--mns:7.7s;animation-delay:-2.8s}
-.md-node.n3{left:5%;bottom:8%;--mns:8.4s;animation-delay:-4s}
-.md-node.n4{right:4%;bottom:8%;--mns:6.9s;animation-delay:-5s}
-@keyframes mdNode{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-.md-line{
-  position:absolute;left:50%;top:50%;height:1px;width:37%;
-  transform-origin:left center;background:linear-gradient(90deg,rgba(var(--modal-accent),.55),transparent);
-  box-shadow:0 0 12px rgba(var(--modal-accent),.18)
+.ai-stream.in{left:0}.ai-stream.out{right:0;transform:scaleX(-1)}
+.ai-stream::after{
+  content:"";position:absolute;width:62px;height:5px;top:-2px;left:-15%;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(var(--scene-accent2),.7),transparent);box-shadow:0 0 16px rgba(var(--scene-accent),.6);animation:aiStream 2.7s linear infinite
 }
-.md-line.l1{transform:rotate(-145deg)}.md-line.l2{transform:rotate(-35deg)}
-.md-line.l3{transform:rotate(145deg)}.md-line.l4{transform:rotate(35deg)}
-.md-line::after{
-  content:"";position:absolute;left:-15%;top:-2px;width:70px;height:5px;border-radius:999px;
-  background:linear-gradient(90deg,transparent,rgba(var(--modal-accent),.9),#fff,transparent);
-  box-shadow:0 0 18px rgba(var(--modal-accent),.62);
-  animation:mdSignal 3.4s linear infinite
+@keyframes aiStream{to{left:105%}}
+.ai-label{
+  position:absolute;color:#aeefff;font-size:7px;letter-spacing:.12em;font-weight:850
 }
-.md-line.l2::after{animation-delay:-.8s}.md-line.l3::after{animation-delay:-1.6s}.md-line.l4::after{animation-delay:-2.4s}
-@keyframes mdSignal{to{left:115%}}
+.ai-label.al1{left:4%;top:44%}.ai-label.al2{right:2%;top:44%}
 
-.modal-visual-bottom{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding-top:18px;border-top:1px solid rgba(255,255,255,.06);
+/* ---------------- TRADING DEV / chart + code ---------------- */
+.scene-trading{--scene-accent:82,236,255;--scene-accent2:183,92,255}
+.trade-chart{
+  position:absolute;left:4%;top:13%;width:64%;height:72%;border-radius:17px;
+  border:1px solid rgba(var(--scene-accent),.27);
+  background:
+    linear-gradient(rgba(var(--scene-accent),.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--scene-accent),.04) 1px,transparent 1px),
+    rgba(4,13,22,.68);
+  background-size:26px 26px;
+  overflow:hidden;box-shadow:0 22px 55px rgba(0,0,0,.28)
 }
-.modal-visual-bottom small{font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#738899}
-.modal-visual-bottom strong{font-size:12px;color:#dffaff}
+.trade-candles{
+  position:absolute;inset:14% 8% 15%;display:flex;align-items:center;justify-content:space-between;gap:4px
+}
+.candle{position:relative;width:9px;height:var(--ch,50%);background:var(--cc,#52ecff);border-radius:2px;box-shadow:0 0 12px color-mix(in srgb,var(--cc) 45%,transparent);animation:candlePulse 3.2s ease-in-out infinite;animation-delay:var(--cd,0s)}
+.candle::before{content:"";position:absolute;left:50%;top:-15px;bottom:-16px;width:1px;background:var(--cc);transform:translateX(-50%);opacity:.75}
+@keyframes candlePulse{0%,100%{opacity:.48;transform:scaleY(.72)}50%{opacity:1;transform:scaleY(1)}}
+.trade-line{
+  position:absolute;left:5%;right:4%;top:52%;height:2px;background:linear-gradient(90deg,transparent,rgba(var(--scene-accent),.7),rgba(var(--scene-accent2),.75),transparent);
+  transform:rotate(-12deg);box-shadow:0 0 15px rgba(var(--scene-accent),.28)
+}
+.trade-signal{
+  position:absolute;right:17%;top:28%;width:18px;height:18px;border-radius:50%;
+  background:#eaffff;box-shadow:0 0 28px rgba(var(--scene-accent),.95);
+  animation:tradeSignal 2.4s ease-in-out infinite
+}
+@keyframes tradeSignal{0%,100%{scale:.55;opacity:.4}50%{scale:1.12;opacity:1}}
+.code-panel{
+  position:absolute;right:2%;top:24%;width:40%;height:56%;border-radius:16px;
+  border:1px solid rgba(var(--scene-accent2),.28);background:rgba(6,12,24,.91);
+  box-shadow:0 24px 60px rgba(0,0,0,.35),0 0 30px rgba(var(--scene-accent2),.08);
+  transform:translateZ(75px) rotateY(-7deg);overflow:hidden;
+  animation:codeFloat 5.4s ease-in-out infinite
+}
+@keyframes codeFloat{0%,100%{transform:translateZ(75px) rotateY(-7deg) translateY(0)}50%{transform:translateZ(92px) rotateY(-2deg) translateY(-8px)}}
+.code-panel::before{content:"PINE / MQL5";position:absolute;left:12px;right:12px;top:11px;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,.055);color:#bf9cff;font-size:7px;font-weight:850;letter-spacing:.12em}
+.code-lines{position:absolute;left:12px;right:12px;top:42px;display:grid;gap:8px}
+.code-lines i{display:block;height:4px;border-radius:999px;background:linear-gradient(90deg,rgba(var(--scene-accent),.78),rgba(var(--scene-accent2),.42),transparent);width:var(--cw,80%);animation:codeBlink 3s ease-in-out infinite;animation-delay:var(--dd,0s)}
+@keyframes codeBlink{0%,100%{opacity:.32;scale:.82 1;transform-origin:left}50%{opacity:1;scale:1 1}}
 
-/* details side */
-.modal-details{padding:42px 38px 38px}
-.detail-block{
-  padding:20px 0;border-bottom:1px solid rgba(255,255,255,.055)
-}
-.detail-block:first-child{padding-top:0}
-.detail-label{
-  display:block;margin-bottom:10px;
-  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(var(--modal-accent),.88);font-weight:850
-}
-.detail-block h4{font-size:20px;margin:0 0 8px}
-.detail-block p{color:#91a5b7;font-size:12px;margin:0}
-.detail-list{
-  display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-top:12px
-}
-.detail-list div{
-  position:relative;padding:10px 12px 10px 28px;
-  border:1px solid rgba(255,255,255,.055);border-radius:12px;
-  background:rgba(255,255,255,.018);
-  color:#c1d1dc;font-size:10px
-}
-.detail-list div::before{
-  content:"✓";position:absolute;left:10px;top:9px;color:rgb(var(--modal-accent))
-}
-.detail-flow{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px
-}
-.detail-step{
-  position:relative;padding:12px 10px;border-radius:12px;text-align:center;
-  border:1px solid rgba(var(--modal-accent),.13);background:rgba(var(--modal-accent),.025)
-}
-.detail-step small{display:block;color:#718697;font-size:8px;margin-bottom:5px}
-.detail-step strong{display:block;font-size:10px}
-.detail-step:not(:last-child)::after{
-  content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
-  color:rgba(var(--modal-accent),.55);z-index:3
-}
-.detail-meta{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px
-}
-.meta-box{
-  padding:14px;border:1px solid rgba(255,255,255,.06);border-radius:14px;background:rgba(255,255,255,.018)
-}
-.meta-box small{display:block;color:#6f8395;font-size:8px;letter-spacing:.11em;text-transform:uppercase}
-.meta-box strong{display:block;margin-top:5px;font-size:12px}
-.modal-actions{
-  display:flex;gap:10px;flex-wrap:wrap;margin-top:20px
-}
-.modal-note{
-  margin-top:10px;color:#718697;font-size:9px
-}
+/* switching scene theme */
+.diag-visual-wrap[data-theme="manual"]{--scene-accent:90,239,213;--scene-accent2:82,185,255}
+.diag-visual-wrap[data-theme="tools"]{--scene-accent:82,236,255;--scene-accent2:183,92,255}
+.diag-visual-wrap[data-theme="custom"]{--scene-accent:94,207,255;--scene-accent2:111,124,255}
+.diag-visual-wrap[data-theme="ai"]{--scene-accent:117,230,255;--scene-accent2:183,92,255}
+.diag-visual-wrap[data-theme="trading"]{--scene-accent:82,236,255;--scene-accent2:183,92,255}
 
-/* selected service token in form */
-.service-selected{
-  display:none;align-items:center;justify-content:space-between;gap:10px;
-  margin-bottom:12px;padding:10px 12px;border-radius:12px;
-  border:1px solid rgba(82,236,255,.14);background:rgba(82,236,255,.035)
+/* Make selected card feel physically linked to large visual */
+.problem-card.active{
+  border-color:rgba(82,236,255,.43) !important;
+  box-shadow:0 24px 66px rgba(0,0,0,.26),0 0 42px rgba(82,236,255,.10) !important;
 }
-.service-selected.visible{display:flex}
-.service-selected span{font-size:10px;color:#b9d7e4}
-.service-selected b{color:#dffaff}
-.service-selected button{
-  border:0;background:none;color:#6f8395;cursor:pointer;font-size:16px
+.problem-card.active::after{
+  content:"";position:absolute;left:15px;right:15px;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),#fff,var(--blue),transparent);
+  box-shadow:0 0 15px rgba(82,236,255,.56);
+  animation:problemSelected 2.6s ease-in-out infinite
 }
+@keyframes problemSelected{0%,100%{opacity:.25;transform:scaleX(.45)}50%{opacity:1;transform:scaleX(1)}}
 
-@media(max-width:900px){
-  .modal-grid{grid-template-columns:1fr}
-  .modal-visual{min-height:520px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}
-  .modal-details{padding:28px 24px}
+@media(max-width:1180px){
+  .diagnosis-wrap{grid-template-columns:1fr !important}
+  .problem-grid{grid-template-columns:repeat(3,1fr)}
+  .diag-showcase{grid-template-columns:.8fr 1.2fr}
 }
-@media(max-width:620px){
-  .service-modal{padding:9px}
-  .service-modal-shell{width:calc(100vw - 18px);max-height:calc(100vh - 18px);border-radius:22px}
-  .modal-visual{padding:28px 20px;min-height:460px}
-  .modal-diagram{height:235px}
-  .md-node{width:88px;height:48px;font-size:8px}
-  .modal-details{padding:22px 18px}
-  .detail-list,.detail-meta{grid-template-columns:1fr}
-  .detail-flow{grid-template-columns:1fr 1fr}
-  .detail-step:nth-child(2)::after{display:none}
+@media(max-width:800px){
+  .problem-grid{grid-template-columns:1fr 1fr}
+  .diag-showcase{grid-template-columns:1fr}
+  .diag-visual-wrap{min-height:390px;order:-1}
+  .diagnosis-console{min-height:auto!important}
+}
+@media(max-width:560px){
+  .problem-grid{grid-template-columns:1fr}
+  .diag-visual-wrap{min-height:330px}
+  .diag-showcase{gap:14px}
+  .diag-visual-top b,.diag-visual-foot span:last-child{display:none}
+  .site-browser{width:86%}
+  .software-stack{width:88%}
+  .tool-node{width:58px;height:34px;font-size:6px}
+  .task-card{width:70px;height:42px;font-size:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  .diag-visual *{animation:none!important}
 }
 
 </style>
@@ -2108,20 +2321,40 @@ body::before{
           </button>
         </div>
 
-        <div class="diagnosis-console reveal">
-          <div class="diag-head"><span>LUKA TECH LAB / DIGITAL CHECK</span><b>ANALISI INIZIALE GRATUITA</b></div>
-          <div class="diag-content">
-            <div class="diag-label" id="diagLabel">Sito web / UX / conversione</div>
-            <h3 id="diagTitle">Troviamo il punto critico del tuo sito.</h3>
-            <p id="diagText">Analizzo struttura, messaggio, percorso dell'utente, call to action, mobile e punti di attrito. L'obiettivo è capire cosa sta limitando il sito prima di rifarlo.</p>
-            <div class="diag-points" id="diagPoints">
-              <div><i>1</i> Individuazione delle criticità principali</div>
-              <div><i>2</i> Priorità degli interventi</div>
-              <div><i>3</i> Proposta tecnica coerente con l'obiettivo</div>
+        <div class="diagnosis-console reveal" id="diagnosisConsole">
+          <div class="diag-head">
+            <span>LUKA TECH LAB / DIGITAL CHECK</span>
+            <b><i class="diag-live-dot"></i> ANALISI INIZIALE GRATUITA</b>
+          </div>
+
+          <div class="diag-showcase">
+            <div class="diag-copy">
+              <div class="diag-label" id="diagLabel">Sito web / UX / conversione</div>
+              <h3 id="diagTitle">Troviamo il punto critico del tuo sito.</h3>
+              <p id="diagText">Analizzo struttura, messaggio, percorso dell'utente, call to action, mobile e punti di attrito. L'obiettivo è capire cosa sta limitando il sito prima di rifarlo.</p>
+
+              <div class="diag-points" id="diagPoints">
+                <div><i>1</i> Individuazione delle criticità principali</div>
+                <div><i>2</i> Priorità degli interventi</div>
+                <div><i>3</i> Proposta tecnica coerente con l'obiettivo</div>
+              </div>
+
+              <div class="diag-actions">
+                <a class="btn" href="#contatti">Richiedi analisi gratuita</a>
+                <a class="btn secondary" href="#servizi">Vedi le soluzioni</a>
+              </div>
             </div>
-            <div class="diag-actions">
-              <a class="btn" href="#contatti">Richiedi analisi gratuita</a>
-              <a class="btn secondary" href="#servizi">Vedi le soluzioni</a>
+
+            <div class="diag-visual-wrap">
+              <div class="diag-visual-top">
+                <span id="diagVisualLabel">LIVE VISUAL / WEBSITE</span>
+                <b id="diagVisualStatus">SCOMPOSIZIONE STRUTTURA</b>
+              </div>
+              <div class="diag-visual" id="diagVisual" data-scene="site" aria-hidden="true"></div>
+              <div class="diag-visual-foot">
+                <span>INTERACTIVE SYSTEM VIEW</span>
+                <span id="diagVisualFoot">UX • CTA • MOBILE • PERFORMANCE</span>
+              </div>
             </div>
           </div>
         </div>
@@ -2141,52 +2374,52 @@ body::before{
       </div>
 
       <div class="bento">
-        <article class="service-card large reveal tilt-card" data-service="website" tabindex="0" role="button" aria-label="Scopri Website Rescue">
+        <article class="service-card large reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">01 • WEBSITE RESCUE</div>
           <h3>Il tuo sito è bello, ma non lavora davvero?</h3>
           <div class="impact">Analisi + riprogettazione mirata</div>
           <p>Individuo i punti deboli di struttura, UX, mobile, velocità, contenuti e percorso di contatto. Poi intervengo solo dove serve, senza rifare tutto alla cieca.</p>
           <div class="service-list"><span class="chip">UX</span><span class="chip">CTA</span><span class="chip">Mobile</span><span class="chip">Performance</span></div>
-          <div class="card-action-row"><button class="service-cta" type="button">Analizza il mio sito</button><small>Apri dettagli</small></div>
+          <a class="service-cta" href="#contatti">Analizza il mio sito</a>
           <div class="card-graphic"><div class="mini-window"></div><div class="mini-lines"><i></i><i></i><i></i></div></div>
         </article>
 
-        <article class="service-card medium reveal tilt-card" data-service="automation" tabindex="0" role="button" aria-label="Scopri Automazioni">
+        <article class="service-card medium reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">02 • AUTOMATION</div>
           <h3>Stai ancora facendo a mano ciò che può fare un sistema?</h3>
           <div class="impact">Riduzione di passaggi ripetitivi</div>
           <p>Prenotazioni, notifiche, email, Telegram, raccolta dati, aggiornamenti e procedure interne possono essere trasformati in flussi automatici e controllabili.</p>
           <div class="service-list"><span class="chip">Bot</span><span class="chip">Webhook</span><span class="chip">API</span><span class="chip">Workflow</span></div>
-          <div class="card-action-row"><button class="service-cta" type="button">Scopri cosa posso automatizzare</button><small>Apri dettagli</small></div>
+          <a class="service-cta" href="#contatti">Scopri cosa posso automatizzare</a>
         </article>
 
-        <article class="service-card third reveal tilt-card" data-service="software" tabindex="0" role="button" aria-label="Scopri software">
+        <article class="service-card third reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">03 • CUSTOM SOFTWARE</div>
           <h3>Ti serve uno strumento che non esiste?</h3>
           <div class="impact">Software costruito sul tuo flusso</div>
           <p>Dashboard, portali clienti, aree riservate, gestionali, calendari, ruoli e pannelli amministrativi progettati attorno al modo in cui lavori davvero.</p>
-          <div class="card-action-row"><button class="service-cta" type="button">Raccontami l'idea</button><small>Apri dettagli</small></div>
+          <a class="service-cta" href="#contatti">Raccontami l'idea</a>
         </article>
 
-        <article class="service-card third reveal tilt-card" data-service="ai" tabindex="0" role="button" aria-label="Scopri ai">
+        <article class="service-card third reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">04 • AI INTEGRATION</div>
           <h3>Vuoi integrare l'AI senza aggiungere un altro giocattolo?</h3>
           <div class="impact">AI dentro un processo reale</div>
           <p>Assistenti, analisi documentale, classificazione, generazione e automazioni AI inserite dove migliorano davvero il lavoro.</p>
-          <div class="card-action-row"><button class="service-cta" type="button">Valutiamo l'integrazione</button><small>Apri dettagli</small></div>
+          <a class="service-cta" href="#contatti">Valutiamo l'integrazione</a>
         </article>
 
-        <article class="service-card third reveal tilt-card" data-service="trading" tabindex="0" role="button" aria-label="Scopri trading">
+        <article class="service-card third reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">05 • TRADING DEVELOPMENT</div>
           <h3>Hai una logica TradingView o MT5 da trasformare in codice?</h3>
           <div class="impact">Pine Script / MQL5 su specifiche</div>
           <p>Indicatori, alert, pannelli, utility ed Expert Advisor sviluppati a partire da regole definite con te o con il tuo professionista di riferimento.</p>
-          <div class="card-action-row"><button class="service-cta" type="button">Parliamo della logica</button><small>Apri dettagli</small></div>
+          <a class="service-cta" href="#contatti">Parliamo della logica</a>
         </article>
       </div>
       <p class="micro-note reveal">Trading Development = sviluppo software tecnico. Non comprende consulenza finanziaria né indicazioni operative di investimento.</p>
@@ -2408,10 +2641,6 @@ body::before{
           </div>
 
           <form class="contact-card" id="briefForm">
-            <div class="service-selected" id="serviceSelected">
-              <span>Servizio selezionato: <b id="serviceSelectedName"></b></span>
-              <button type="button" id="clearSelectedService" aria-label="Rimuovi selezione">×</button>
-            </div>
             <div class="form-grid">
               <label>Nome<input id="name" type="text" required placeholder="Il tuo nome"></label>
               <label>Email<input id="email" type="email" required placeholder="nome@email.it"></label>
@@ -2438,81 +2667,6 @@ body::before{
       </div>
     </div>
   </section>
-
-  <div class="service-modal" id="serviceModal" aria-hidden="true">
-    <div class="service-modal-backdrop" data-close-modal></div>
-    <div class="service-modal-shell" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" type="button" aria-label="Chiudi" data-close-modal>×</button>
-      <div class="modal-grid">
-        <div class="modal-visual">
-          <div class="modal-copy-top">
-            <div class="modal-kicker" id="modalKicker">SERVIZIO</div>
-            <h3 id="modalTitle">Dettaglio servizio</h3>
-            <p class="modal-lead" id="modalLead"></p>
-            <div class="modal-status">
-              <span>Prima analisi gratuita</span>
-              <span>Progetto su misura</span>
-              <span>Scope definito prima dello sviluppo</span>
-            </div>
-          </div>
-
-          <div class="modal-diagram">
-            <div class="md-line l1"></div><div class="md-line l2"></div><div class="md-line l3"></div><div class="md-line l4"></div>
-            <div class="md-node n1" id="modalNode1">INPUT</div>
-            <div class="md-node n2" id="modalNode2">ANALISI</div>
-            <div class="md-node n3" id="modalNode3">BUILD</div>
-            <div class="md-node n4" id="modalNode4">OUTPUT</div>
-            <div class="md-core" id="modalCore">CORE</div>
-          </div>
-
-          <div class="modal-visual-bottom">
-            <small>LUKA TECH LAB / PROJECT SYSTEM</small>
-            <strong id="modalVisualStatus">READY TO ANALYZE</strong>
-          </div>
-        </div>
-
-        <div class="modal-details">
-          <div class="detail-block">
-            <span class="detail-label">Il problema che risolvo</span>
-            <h4 id="modalProblemTitle"></h4>
-            <p id="modalProblemText"></p>
-          </div>
-
-          <div class="detail-block">
-            <span class="detail-label">Cosa posso fare</span>
-            <div class="detail-list" id="modalDeliverables"></div>
-          </div>
-
-          <div class="detail-block">
-            <span class="detail-label">Come lavoro</span>
-            <div class="detail-flow">
-              <div class="detail-step"><small>01</small><strong>Analisi</strong></div>
-              <div class="detail-step"><small>02</small><strong>Scope</strong></div>
-              <div class="detail-step"><small>03</small><strong>Sviluppo</strong></div>
-              <div class="detail-step"><small>04</small><strong>Test & rilascio</strong></div>
-            </div>
-          </div>
-
-          <div class="detail-block">
-            <span class="detail-label">Impostazione progetto</span>
-            <div class="detail-meta">
-              <div class="meta-box"><small>Preventivo</small><strong>Su perimetro definito</strong></div>
-              <div class="meta-box"><small>Avvio</small><strong>Solo dopo approvazione</strong></div>
-              <div class="meta-box"><small>Riservatezza</small><strong>Materiale non pubblico</strong></div>
-              <div class="meta-box"><small>Pagamento</small><strong>Acconto / saldo configurabile</strong></div>
-            </div>
-          </div>
-
-          <div class="modal-actions">
-            <button class="btn" id="modalContactBtn" type="button">Richiedi il check-up gratuito</button>
-            <button class="btn secondary" type="button" data-close-modal>Continua a esplorare</button>
-          </div>
-          <div class="modal-note" id="modalNote"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </main>
 
 <footer>
@@ -2763,61 +2917,171 @@ function drawHero(){
 resizeHero();drawHero();addEventListener('resize',resizeHero);
 
 
-/* DIAGNOSI INTERATTIVA */
+/* DIAGNOSI INTERATTIVA — V6 3D VISUALS */
 const diagnosisData={
   site:{
     label:'Sito web / UX / conversione',
     title:'Troviamo il punto critico del tuo sito.',
     text:"Analizzo struttura, messaggio, percorso dell'utente, call to action, mobile e punti di attrito. L'obiettivo è capire cosa sta limitando il sito prima di rifarlo.",
-    points:['Individuazione delle criticità principali','Priorità degli interventi','Proposta tecnica coerente con l’obiettivo']
+    points:['Individuazione delle criticità principali','Priorità degli interventi','Proposta tecnica coerente con l’obiettivo'],
+    visualLabel:'LIVE VISUAL / WEBSITE',
+    visualStatus:'SCOMPOSIZIONE STRUTTURA',
+    visualFoot:'UX • CTA • MOBILE • PERFORMANCE'
   },
   manual:{
     label:'Automazione / processi',
     title:'Trasformiamo attività ripetitive in un flusso automatico.',
     text:'Ricostruiamo il processo attuale e individuiamo i passaggi che possono essere automatizzati senza perdere controllo.',
-    points:['Mappatura del flusso attuale','Individuazione dei passaggi automatizzabili','Progettazione di bot, webhook, API o workflow']
+    points:['Mappatura del flusso attuale','Individuazione dei passaggi automatizzabili','Progettazione di bot, webhook, API o workflow'],
+    visualLabel:'LIVE VISUAL / AUTOMATION',
+    visualStatus:'DA MANUALE A AUTOMATICO',
+    visualFoot:'TASK • RULES • ENGINE • OUTPUT'
   },
   tools:{
     label:'Integrazioni / sistemi',
     title:'Facciamo comunicare strumenti che oggi lavorano separati.',
     text:'Sito, calendario, bot, database, API e servizi esterni possono essere collegati in un unico flusso più ordinato.',
-    points:['Analisi degli strumenti esistenti','Definizione dei dati da scambiare','Integrazione e controllo degli errori']
+    points:['Analisi degli strumenti esistenti','Definizione dei dati da scambiare','Integrazione e controllo degli errori'],
+    visualLabel:'LIVE VISUAL / INTEGRATIONS',
+    visualStatus:'CONNESSIONE MODULI',
+    visualFoot:'WEB • API • BOT • DB • CAL • MAIL'
   },
   custom:{
     label:'Software su misura',
     title:'Costruiamo la funzione che oggi ti manca.',
     text:'Se i software standard non seguono il tuo processo, progetto uno strumento dedicato: web app, dashboard, portale, area riservata o gestionale.',
-    points:['Funzioni necessarie e priorità','Ruoli, dati e flussi','Prototipo, sviluppo e test']
+    points:['Funzioni necessarie e priorità','Ruoli, dati e flussi','Prototipo, sviluppo e test'],
+    visualLabel:'LIVE VISUAL / CUSTOM SOFTWARE',
+    visualStatus:'ASSEMBLAGGIO MODULARE',
+    visualFoot:'ADMIN • DASHBOARD • DATA • ROLES'
   },
   ai:{
     label:'AI integration',
     title:'Inseriamo l’AI dove può davvero produrre valore.',
     text:'Valuto dove l’AI può ridurre tempi, classificare richieste, analizzare documenti o supportare un workflow esistente.',
-    points:['Scelta del caso d’uso','Definizione dei dati e dei limiti','Integrazione nel processo reale']
+    points:['Scelta del caso d’uso','Definizione dei dati e dei limiti','Integrazione nel processo reale'],
+    visualLabel:'LIVE VISUAL / AI CORE',
+    visualStatus:'INPUT → INTELLIGENCE → ACTION',
+    visualFoot:'DATA • AI • RULES • AUTOMATION'
   },
   trading:{
     label:'Trading development',
     title:'Trasformiamo una logica definita in Pine Script o MQL5.',
     text:'Sviluppo indicatori, alert, utility, pannelli o Expert Advisor a partire da specifiche tecniche concordate.',
-    points:['Formalizzazione delle regole','Sviluppo e gestione dei casi limite','Test tecnico e consegna del codice']
+    points:['Formalizzazione delle regole','Sviluppo e gestione dei casi limite','Test tecnico e consegna del codice'],
+    visualLabel:'LIVE VISUAL / TRADING DEV',
+    visualStatus:'LOGICA → CODICE → OUTPUT',
+    visualFoot:'CHART • PINE • MQL5 • ALERT'
   }
 };
+
+function diagnosisScene(key){
+  const common='<div class="scene-glow"></div><div class="scene-floor"></div>';
+  if(key==='site')return `<div class="diag-scene scene-site">${common}
+    <div class="site-browser">
+      <div class="site-browser-frame"></div>
+      <div class="site-layer sl1"></div><div class="site-layer sl2"></div><div class="site-layer sl3"></div>
+      <div class="site-side"></div><div class="site-scan"></div>
+      <div class="site-tag t1">UX</div><div class="site-tag t2">CTA</div><div class="site-tag t3">MOBILE</div>
+    </div>
+  </div>`;
+
+  if(key==='manual')return `<div class="diag-scene scene-manual">${common}
+    <div class="auto-stage">
+      <div class="auto-line"></div><div class="auto-packet"></div>
+      <div class="task-card m1">COPIA / INCOLLA</div><div class="task-card m2">EMAIL MANUALE</div><div class="task-card m3">DATI SPARSI</div>
+      <div class="auto-core">AUTOMATION</div>
+      <div class="task-card o1">NOTIFICA</div><div class="task-card o2">DATABASE</div>
+    </div>
+  </div>`;
+
+  if(key==='tools')return `<div class="diag-scene scene-tools">${common}
+    <div class="hub-orbit"></div><div class="hub-orbit o2"></div>
+    <div class="hub-beam h1"></div><div class="hub-beam h2"></div><div class="hub-beam h3"></div>
+    <div class="hub-beam h4"></div><div class="hub-beam h5"></div><div class="hub-beam h6"></div>
+    <div class="hub-core">SYSTEM HUB</div>
+    <div class="tool-node tn1">WEB</div><div class="tool-node tn2">API</div><div class="tool-node tn3">BOT</div>
+    <div class="tool-node tn4">DB</div><div class="tool-node tn5">CAL</div><div class="tool-node tn6">MAIL</div>
+  </div>`;
+
+  if(key==='custom')return `<div class="diag-scene scene-custom">${common}
+    <div class="software-stack">
+      <div class="sw-base"></div>
+      <div class="sw-module sw-sidebar"></div><div class="sw-module sw-header"></div>
+      <div class="sw-module sw-card1"></div><div class="sw-module sw-card2"></div><div class="sw-module sw-chart"></div>
+    </div>
+  </div>`;
+
+  if(key==='ai')return `<div class="diag-scene scene-ai">${common}
+    <div class="ai-stream in"></div><div class="ai-stream out"></div>
+    <div class="ai-ring a1"></div><div class="ai-ring a2"></div><div class="ai-core-v6"></div>
+    <div class="ai-shard s1"></div><div class="ai-shard s2"></div><div class="ai-shard s3"></div>
+    <div class="ai-shard s4"></div><div class="ai-shard s5"></div><div class="ai-shard s6"></div>
+    <div class="ai-label al1">INPUT DATA</div><div class="ai-label al2">ACTION</div>
+  </div>`;
+
+  const candles=[38,62,46,78,55,88,64,42,72,51,84,59,76,48]
+    .map((h,i)=>`<i class="candle" style="--ch:${h}%;--cc:${i%3===0?'#b75cff':'#52ecff'};--cd:-${(i*.19).toFixed(2)}s"></i>`).join('');
+  const code=[88,61,74,48,82,56,68].map((w,i)=>`<i style="--cw:${w}%;--dd:-${(i*.27).toFixed(2)}s"></i>`).join('');
+  return `<div class="diag-scene scene-trading">${common}
+    <div class="trade-chart"><div class="trade-candles">${candles}</div><div class="trade-line"></div><div class="trade-signal"></div></div>
+    <div class="code-panel"><div class="code-lines">${code}</div></div>
+  </div>`;
+}
+
+const diagVisual=$('#diagVisual');
+const diagVisualWrap=diagVisual?.closest('.diag-visual-wrap');
+
+function setDiagnosis(key,animate=true){
+  const d=diagnosisData[key];
+  if(!d)return;
+
+  $$('.problem-card').forEach(c=>c.classList.toggle('active',c.dataset.key===key));
+  $('#diagLabel').textContent=d.label;
+  $('#diagTitle').textContent=d.title;
+  $('#diagText').textContent=d.text;
+  $('#diagPoints').innerHTML=d.points.map((p,i)=>`<div><i>${i+1}</i>${p}</div>`).join('');
+  $('#diagVisualLabel').textContent=d.visualLabel;
+  $('#diagVisualStatus').textContent=d.visualStatus;
+  $('#diagVisualFoot').textContent=d.visualFoot;
+  if(diagVisualWrap)diagVisualWrap.dataset.theme=key;
+
+  const paint=()=>{
+    if(diagVisual){
+      diagVisual.dataset.scene=key;
+      diagVisual.innerHTML=diagnosisScene(key);
+      diagVisual.classList.remove('switching');
+    }
+  };
+  if(animate&&diagVisual){
+    diagVisual.classList.add('switching');
+    setTimeout(paint,170);
+  }else paint();
+}
+
 $$('.problem-card').forEach(card=>{
   card.addEventListener('pointermove',e=>{
     const r=card.getBoundingClientRect();
     card.style.setProperty('--px',`${((e.clientX-r.left)/r.width)*100}%`);
     card.style.setProperty('--py',`${((e.clientY-r.top)/r.height)*100}%`);
   });
-  card.addEventListener('click',()=>{
-    $$('.problem-card').forEach(c=>c.classList.remove('active'));
-    card.classList.add('active');
-    const d=diagnosisData[card.dataset.key];
-    $('#diagLabel').textContent=d.label;
-    $('#diagTitle').textContent=d.title;
-    $('#diagText').textContent=d.text;
-    $('#diagPoints').innerHTML=d.points.map((p,i)=>`<div><i>${i+1}</i>${p}</div>`).join('');
-  });
+  card.addEventListener('click',()=>setDiagnosis(card.dataset.key,true));
 });
+
+/* subtle 3D parallax only inside the large live visual */
+diagVisualWrap?.addEventListener('pointermove',e=>{
+  const r=diagVisualWrap.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-.5;
+  const y=(e.clientY-r.top)/r.height-.5;
+  diagVisual?.style.setProperty('--vry',`${x*4.5}deg`);
+  diagVisual?.style.setProperty('--vrx',`${y*-3.5}deg`);
+});
+diagVisualWrap?.addEventListener('pointerleave',()=>{
+  diagVisual?.style.setProperty('--vry','0deg');
+  diagVisual?.style.setProperty('--vrx','0deg');
+});
+
+setDiagnosis('site',false);
 
 /* briefing */
 $('#briefForm').addEventListener('submit',async e=>{
@@ -3002,177 +3266,6 @@ addEventListener('pointermove',requestImpact,{passive:true});
 addEventListener('scroll',requestImpact,{passive:true});
 addEventListener('resize',requestImpact,{passive:true});
 requestImpact();
-
-/* =========================================================
-   SERVICE EXPERIENCE V5
-   ========================================================= */
-const serviceData={
-  website:{
-    kicker:'01 / WEBSITE RESCUE',
-    title:'Il tuo sito è online. Ma sta lavorando davvero per te?',
-    lead:'Analizzo ciò che oggi crea attrito e intervengo in modo mirato su UX, struttura, mobile, performance, CTA e flusso di contatto.',
-    problemTitle:'Un sito può essere “bello” e comunque perdere opportunità.',
-    problemText:'Navigazione confusa, messaggio poco chiaro, mobile debole, tempi di caricamento, moduli poco efficaci o percorsi troppo lunghi possono ridurre la qualità delle richieste.',
-    deliverables:['Audit UX e struttura','Analisi mobile e responsive','CTA e percorso di conversione','Performance e priorità tecniche','Rework sezioni critiche','Automazioni collegate al sito'],
-    nodes:['UX','MOBILE','CTA','PERF'],
-    core:'WEB',
-    status:'WEBSITE DIAGNOSTIC ACTIVE',
-    form:'Il mio sito non è efficace',
-    name:'Website Rescue',
-    accent:'82,236,255',
-    accent2:'111,124,255',
-    note:'La prima analisi serve a capire se conviene ottimizzare l’esistente o riprogettare solo alcune parti.'
-  },
-  automation:{
-    kicker:'02 / AUTOMATION',
-    title:'Quanto lavoro stai facendo manualmente senza motivo?',
-    lead:'Ricostruisco il processo e individuo quali passaggi possono diventare automatici senza toglierti controllo.',
-    problemTitle:'Il costo nascosto spesso non è il software: è il tempo perso.',
-    problemText:'Copia-incolla, notifiche manuali, aggiornamenti ripetuti, gestione prenotazioni e passaggi tra strumenti separati possono essere collegati in un unico flusso.',
-    deliverables:['Mappatura del processo attuale','Webhook e API','Bot Telegram / notifiche','Email e calendario','Database e raccolta dati','Controlli ed error handling'],
-    nodes:['INPUT','RULES','API','OUTPUT'],
-    core:'AUTO',
-    status:'WORKFLOW ENGINE READY',
-    form:'Voglio automatizzare un processo',
-    name:'Automazioni',
-    accent:'82,236,255',
-    accent2:'183,92,255',
-    note:'L’automazione viene progettata solo dopo aver capito cosa deve succedere, quando e con quali eccezioni.'
-  },
-  software:{
-    kicker:'03 / CUSTOM SOFTWARE',
-    title:'Se il software standard non segue il tuo lavoro, costruiamo quello giusto.',
-    lead:'Dashboard, gestionali, aree clienti, calendari, ruoli, admin e strumenti interni sviluppati attorno al processo reale.',
-    problemTitle:'Non sempre esiste già il programma che serve.',
-    problemText:'Quando Excel, WhatsApp, plugin e strumenti separati iniziano a diventare un sistema fragile, può avere senso costruire un software dedicato.',
-    deliverables:['Dashboard e pannelli admin','Area riservata / portale clienti','Gestione ruoli e permessi','Calendari e prenotazioni','Database e workflow','Integrazioni esterne'],
-    nodes:['USER','DATA','ADMIN','APP'],
-    core:'APP',
-    status:'CUSTOM SYSTEM BLUEPRINT',
-    form:'Mi serve un software / web app su misura',
-    name:'Software su misura',
-    accent:'89,205,255',
-    accent2:'111,124,255',
-    note:'Il progetto parte da funzioni e priorità, non da un template predefinito.'
-  },
-  ai:{
-    kicker:'04 / AI INTEGRATION',
-    title:'L’AI deve lavorare dentro il processo, non essere solo una scritta sul sito.',
-    lead:'Valuto dove può davvero ridurre tempi, organizzare dati, assistere utenti o supportare attività ripetitive.',
-    problemTitle:'“Mettere l’AI” non è un obiettivo. Risolvere un problema sì.',
-    problemText:'L’integrazione parte da un caso d’uso concreto: documenti, richieste clienti, classificazione, generazione, estrazione dati o supporto operativo.',
-    deliverables:['Analisi del caso d’uso','Assistenti e workflow AI','Analisi documentale','Classificazione e routing','Generazione controllata','Collegamento API e database'],
-    nodes:['INPUT','AI','RULES','ACTION'],
-    core:'AI',
-    status:'AI WORKFLOW ONLINE',
-    form:"Voglio integrare l'AI",
-    name:'Integrazione AI',
-    accent:'82,236,255',
-    accent2:'183,92,255',
-    note:'L’AI viene integrata solo quando produce un vantaggio concreto e misurabile nel flusso.'
-  },
-  trading:{
-    kicker:'05 / TRADING DEVELOPMENT',
-    title:'Hai una logica TradingView o MT5 da trasformare in software?',
-    lead:'Traduco regole tecniche definite in indicatori, alert, utility, pannelli o Expert Advisor.',
-    problemTitle:'Una strategia descritta a parole non è ancora una specifica software.',
-    problemText:'Prima formalizziamo condizioni, input, output, gestione degli stati e casi limite; poi passiamo allo sviluppo Pine Script o MQL5.',
-    deliverables:['Indicatori Pine Script','Alert e condizioni personalizzate','Dashboard TradingView','Expert Advisor MQL5','Utility MT5','Test tecnico e debug'],
-    nodes:['RULES','SIGNAL','CODE','TEST'],
-    core:'DEV',
-    status:'TRADING DEV SPEC READY',
-    form:'Mi serve Pine Script / MQL5',
-    name:'Pine Script / MQL5',
-    accent:'82,236,255',
-    accent2:'183,92,255',
-    note:'Sviluppo software tecnico su specifiche. Non comprende consulenza finanziaria, segnali o indicazioni operative.'
-  }
-};
-
-const serviceModal=$('#serviceModal');
-const modalShell=serviceModal?.querySelector('.service-modal-shell');
-let activeService=null;
-
-function openServiceModal(key){
-  const d=serviceData[key];
-  if(!d||!serviceModal)return;
-  activeService=key;
-  modalShell.style.setProperty('--modal-accent',d.accent);
-  modalShell.style.setProperty('--modal-accent2',d.accent2);
-  $('#modalKicker').textContent=d.kicker;
-  $('#modalTitle').textContent=d.title;
-  $('#modalLead').textContent=d.lead;
-  $('#modalProblemTitle').textContent=d.problemTitle;
-  $('#modalProblemText').textContent=d.problemText;
-  $('#modalDeliverables').innerHTML=d.deliverables.map(x=>`<div>${x}</div>`).join('');
-  d.nodes.forEach((x,i)=>$('#modalNode'+(i+1)).textContent=x);
-  $('#modalCore').textContent=d.core;
-  $('#modalVisualStatus').textContent=d.status;
-  $('#modalNote').textContent=d.note;
-  serviceModal.classList.add('open');
-  serviceModal.setAttribute('aria-hidden','false');
-  document.body.style.overflow='hidden';
-  setTimeout(()=>serviceModal.querySelector('.modal-close')?.focus(),100);
-}
-function closeServiceModal(){
-  if(!serviceModal)return;
-  serviceModal.classList.remove('open');
-  serviceModal.setAttribute('aria-hidden','true');
-  document.body.style.overflow='';
-}
-$$('[data-close-modal]').forEach(el=>el.addEventListener('click',closeServiceModal));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&serviceModal?.classList.contains('open'))closeServiceModal()});
-
-$$('.service-card[data-service]').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(e.target.closest('a'))return;
-    openServiceModal(card.dataset.service);
-  });
-  card.addEventListener('keydown',e=>{
-    if(e.key==='Enter'||e.key===' '){e.preventDefault();openServiceModal(card.dataset.service)}
-  });
-});
-
-const serviceSelected=$('#serviceSelected');
-const serviceSelectedName=$('#serviceSelectedName');
-const clearSelectedService=$('#clearSelectedService');
-
-function selectServiceForContact(key){
-  const d=serviceData[key];
-  if(!d)return;
-  const sel=$('#type');
-  if(sel){
-    [...sel.options].forEach(o=>{if(o.textContent.trim()===d.form)o.selected=true});
-  }
-  if(serviceSelected&&serviceSelectedName){
-    serviceSelectedName.textContent=d.name;
-    serviceSelected.classList.add('visible');
-  }
-  closeServiceModal();
-  setTimeout(()=>{
-    document.querySelector('#contatti')?.scrollIntoView({behavior:'smooth',block:'start'});
-    setTimeout(()=>$('#message')?.focus(),700);
-  },60);
-}
-$('#modalContactBtn')?.addEventListener('click',()=>activeService&&selectServiceForContact(activeService));
-clearSelectedService?.addEventListener('click',()=>{
-  serviceSelected?.classList.remove('visible');
-  if($('#type'))$('#type').selectedIndex=0;
-});
-
-/* enrich contact brief with selected service context */
-const originalBriefHandler=$('#briefForm');
-if(originalBriefHandler){
-  originalBriefHandler.addEventListener('submit',()=>{
-    if(activeService&&serviceSelected?.classList.contains('visible')){
-      const d=serviceData[activeService];
-      const msg=$('#message');
-      if(msg && !msg.dataset.servicePrefill){
-        msg.dataset.servicePrefill='1';
-      }
-    }
-  },{capture:true});
-}
 
 </script>
 </body>
