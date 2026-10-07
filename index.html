@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Luka Tech Lab — software su misura, web app, automazioni, integrazioni AI, bot, API, Pine Script e MQL5.">
+<title>Luka Tech Lab — Software su misura & automazioni</title>
+<style>
+:root{
+  --bg:#050607;
+  --bg-soft:#0a0c0f;
+  --panel:#0d1014;
+  --panel-2:#11151a;
+  --line:#1d242d;
+  --line-strong:#2b3642;
+  --text:#f4f7fa;
+  --muted:#9aa6b2;
+  --cyan:#5be2ff;
+  --blue:#6f8cff;
+  --green:#72e7bd;
+  --white:#fff;
+  --radius:24px;
+  --shadow:0 28px 90px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(800px 500px at 72% -10%, rgba(91,226,255,.09), transparent 70%),
+    radial-gradient(700px 500px at 8% 14%, rgba(111,140,255,.07), transparent 70%),
+    var(--bg);
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+body:before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.18;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:40px 40px;
+  mask-image:linear-gradient(to bottom, black 0%, transparent 72%);
+}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+.container{width:min(1180px, calc(100% - 40px));margin:auto}
+.navbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(5,6,7,.76);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:26px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}
+.brand-symbol{
+  width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
+  border:1px solid rgba(91,226,255,.28);
+  background:linear-gradient(145deg,rgba(91,226,255,.11),rgba(111,140,255,.06));
+  color:var(--cyan);font-weight:900;font-size:13px;letter-spacing:-.05em;
+}
+.brand-copy{line-height:1}
+.brand-copy b{font-size:14px}
+.brand-copy span{display:block;color:#708090;font-size:9px;letter-spacing:.17em;margin-top:5px}
+.navlinks{display:flex;gap:28px;color:#b9c2ca;font-size:13px}
+.navlinks a:hover{color:white}
+.btn{
+  border:1px solid rgba(91,226,255,.28);
+  background:linear-gradient(135deg,#72ebff,#7ba5ff);
+  color:#041018;
+  padding:13px 17px;border-radius:12px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:.2s ease; cursor:pointer;
+}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.btn.ghost{background:transparent;color:white;border-color:rgba(255,255,255,.12)}
+.btn.small{padding:10px 14px;font-size:12px}
+.menu{display:none;background:none;color:white;border:0;font-size:24px}
+
+/* HERO */
+.hero{padding:102px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#9beeff;display:flex;align-items:center;gap:10px}
+.kicker:before{content:"";width:30px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+h1,h2,h3{margin:0;line-height:1.03}
+h1{font-size:clamp(52px,6vw,86px);letter-spacing:-.055em;margin-top:18px}
+h1 .grad,h2 .grad{
+  background:linear-gradient(90deg,#fff 0%,#d8f8ff 38%,#64def9 73%,#7f95ff 100%);
+  -webkit-background-clip:text;color:transparent;
+}
+.hero p{font-size:18px;color:var(--muted);max-width:700px;margin:26px 0 28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-meta{margin-top:29px;display:flex;gap:22px;flex-wrap:wrap;color:#afbbc6;font-size:12px}
+.hero-meta span{display:flex;align-items:center;gap:8px}
+.hero-meta i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 18px rgba(114,231,189,.5)}
+
+.hero-visual{position:relative;min-height:570px}
+.orbit-glow{
+  position:absolute; inset:8% 0 4% 8%;
+  background:radial-gradient(circle,rgba(91,226,255,.13),transparent 63%);
+  filter:blur(18px)
+}
+.arch{
+  position:absolute;inset:25px 0 45px 30px;
+  border-radius:30px;border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(160deg,rgba(14,19,25,.97),rgba(8,11,15,.93));
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.arch-head{
+  height:56px;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;padding:0 20px;color:#71808d;font-size:10px;letter-spacing:.14em
+}
+.arch-head span{margin-left:auto}
+.arch-head:before{content:"";width:44px;height:6px;border-radius:999px;background:linear-gradient(90deg,var(--cyan),rgba(111,140,255,.4))}
+.system-map{position:relative;height:calc(100% - 56px);padding:25px}
+.line{
+  position:absolute;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.5;transform-origin:left center
+}
+.l1{left:26%;top:28%;width:42%;transform:rotate(12deg)}
+.l2{left:25%;top:69%;width:41%;transform:rotate(-17deg)}
+.l3{left:49%;top:49%;width:31%;transform:rotate(-30deg)}
+.l4{left:51%;top:52%;width:31%;transform:rotate(32deg)}
+.l5{left:33%;top:51%;width:30%;transform:rotate(90deg)}
+.mod{
+  position:absolute;min-width:126px;padding:13px 15px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035);
+  box-shadow:inset 0 1px rgba(255,255,255,.03);font-size:11px;color:#9fb1c1
+}
+.mod b{display:block;color:white;font-size:13px;margin-bottom:3px}
+.m-web{left:7%;top:14%}.m-ai{right:7%;top:12%}.m-api{left:36%;top:40%}.m-bot{left:7%;bottom:13%}.m-trade{right:7%;bottom:13%}
+.core{
+  position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);
+  width:95px;height:95px;border-radius:28px;display:grid;place-items:center;
+  background:linear-gradient(145deg,#8ff0ff,#49c9f4 45%,#6678ff 100%);
+  color:#031016;font-weight:950;letter-spacing:-.06em;box-shadow:0 0 58px rgba(91,226,255,.22)
+}
+.micro-card{
+  position:absolute;right:-20px;bottom:10px;width:248px;padding:18px;border-radius:18px;
+  border:1px solid rgba(91,226,255,.23);background:rgba(8,11,15,.94);box-shadow:var(--shadow)
+}
+.micro-card small{font-size:10px;color:#758595;letter-spacing:.14em}.micro-card b{display:block;font-size:15px;margin:6px 0}.micro-card p{font-size:11px!important;margin:0!important;color:#91a2b1!important}
+
+/* STRIP */
+.proof{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.015)}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.proof-item{padding:21px 22px;border-right:1px solid rgba(255,255,255,.055)}
+.proof-item:last-child{border-right:0}
+.proof-item b{display:block;font-size:13px;margin-bottom:3px}
+.proof-item span{color:#8795a3;font-size:11px}
+
+/* GENERIC */
+.section{padding:96px 0}
+.section.alt{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,0))}
+.section-head{display:grid;grid-template-columns:1fr .7fr;gap:50px;align-items:end;margin-bottom:38px}
+.section-head h2{font-size:clamp(40px,4.5vw,62px);letter-spacing:-.045em;margin-top:16px}
+.section-head p{color:var(--muted);margin:0 0 5px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{border:1px solid rgba(255,255,255,.075);background:linear-gradient(160deg,rgba(14,18,24,.92),rgba(9,12,16,.88));border-radius:var(--radius);box-shadow:inset 0 1px rgba(255,255,255,.03)}
+.service{padding:26px;position:relative;overflow:hidden}
+.service:after{content:"";position:absolute;right:-80px;top:-80px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(91,226,255,.09),transparent 68%)}
+.service .num{font-size:10px;font-weight:850;letter-spacing:.17em;color:#69dff7}
+.service h3{font-size:26px;margin:14px 0 10px}
+.service p{color:var(--muted);margin:0 0 18px}
+.service ul{list-style:none;padding:0;margin:0;display:grid;gap:7px;color:#c4cfd9;font-size:12px}
+.service li:before{content:"—";color:var(--cyan);margin-right:9px}
+
+/* VALUE */
+.value-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.value-list{display:grid;gap:12px}
+.value-row{padding:18px 20px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.022);border-radius:15px;display:flex;gap:15px}
+.value-row .icon{width:34px;height:34px;flex:none;border-radius:10px;border:1px solid rgba(91,226,255,.16);display:grid;place-items:center;color:var(--cyan);background:rgba(91,226,255,.04)}
+.value-row b{display:block;margin-bottom:3px}.value-row span{color:var(--muted);font-size:12px}
+.quote{padding:30px;display:flex;flex-direction:column;justify-content:space-between}
+.quote h3{font-size:34px;letter-spacing:-.035em;line-height:1.12}
+.quote p{color:var(--muted)}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);padding:7px 10px;border-radius:999px;color:#aebdca;font-size:10px}
+
+/* PRIVATE */
+.private{display:grid;grid-template-columns:.95fr 1.05fr;gap:22px}
+.private h2{font-size:clamp(40px,4.5vw,62px);letter-spacing:-.045em;margin:16px 0}
+.private p{color:var(--muted);font-size:16px}
+.private-panel{padding:28px}
+.private-panel h3{font-size:25px;margin:8px 0 9px}
+.private-panel p{font-size:13px}
+.checks{display:grid;gap:10px;margin:20px 0 24px}
+.checks div{display:flex;gap:9px;font-size:13px;color:#cbd6df}
+.checks i{width:19px;height:19px;border-radius:50%;display:grid;place-items:center;background:rgba(114,231,189,.09);color:var(--green);font-style:normal;font-size:10px;flex:none}
+
+/* TECH */
+.stack{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stack .card{padding:20px}
+.stack h3{font-size:16px;margin-bottom:8px}.stack p{font-size:12px;color:var(--muted);margin:0}
+
+/* PROCESS */
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.step{padding:20px;border-top:1px solid rgba(91,226,255,.32);background:linear-gradient(180deg,rgba(255,255,255,.025),transparent)}
+.step small{font-size:9px;font-weight:850;color:var(--cyan);letter-spacing:.14em}.step h3{font-size:18px;margin:11px 0 7px}.step p{font-size:11px;color:var(--muted);margin:0}
+
+/* WORK MODE */
+.engage{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.engage .card{padding:24px}
+.engage small{font-size:9px;color:#77dff5;letter-spacing:.14em}.engage h3{font-size:22px;margin:11px 0 8px}.engage p{font-size:12px;color:var(--muted)}
+.engage .price{margin-top:17px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-size:11px;color:#b9c5d0}
+
+/* FAQ & CONTACT */
+.faq{display:grid;gap:9px}
+.faq details{border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);border-radius:14px;padding:17px 19px}
+.faq summary{cursor:pointer;font-weight:750;font-size:13px}.faq p{color:var(--muted);font-size:12px;margin:9px 0 0}
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}
+.contact h2{font-size:clamp(40px,4.5vw,62px);letter-spacing:-.045em;margin:16px 0}
+.contact p{color:var(--muted)}
+.form{padding:24px;display:grid;gap:13px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:grid;gap:6px;color:#bdc9d4;font-size:11px;font-weight:750}
+input,select,textarea{width:100%;background:#080b0f;border:1px solid rgba(255,255,255,.09);color:white;border-radius:11px;padding:13px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:rgba(91,226,255,.4);box-shadow:0 0 0 3px rgba(91,226,255,.05)}
+textarea{resize:vertical}
+.note{font-size:10px;color:#6f7e8d}
+footer{border-top:1px solid rgba(255,255,255,.06);padding:32px 0;color:#7f8d9a;font-size:11px}
+.footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.demo-badge{position:fixed;right:14px;bottom:14px;z-index:70;padding:7px 10px;border-radius:999px;background:rgba(7,10,13,.93);border:1px solid rgba(91,226,255,.18);color:#a8edff;font-size:9px;letter-spacing:.13em;font-weight:850}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.68);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal.open{display:flex}
+.modal-card{width:min(560px,100%);padding:28px;position:relative}
+.close{position:absolute;right:16px;top:14px;background:none;border:0;color:#9ca9b5;font-size:24px;cursor:pointer}
+.modal-card h3{font-size:28px;margin:10px 0}.modal-card p{color:var(--muted);font-size:13px}
+.modal-list{display:grid;gap:9px;margin:18px 0 22px}
+.modal-list div{font-size:12px;color:#c5d1da}
+
+@media(max-width:980px){
+  .navlinks,.nav .btn.small{display:none}.menu{display:block}
+  .hero-grid,.section-head,.value-grid,.private,.contact{grid-template-columns:1fr}
+  .hero-visual{min-height:490px}
+  .proof-grid,.stack{grid-template-columns:repeat(2,1fr)}
+  .process{grid-template-columns:repeat(2,1fr)}
+  .engage{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .container{width:min(100% - 24px,1180px)}
+  .hero{padding:68px 0 54px}
+  h1{font-size:46px}
+  .hero p{font-size:16px}
+  .hero-visual{min-height:420px}
+  .arch{inset:18px 0 48px 0}
+  .micro-card{right:8px;width:215px}
+  .proof-grid,.stack,.process,.cards,.form-grid{grid-template-columns:1fr}
+  .proof-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.05)}
+  .section{padding:74px 0}
+}
+</style>
+</head>
+<body>
+<div class="demo-badge">DEMO • BRAND IN SVILUPPO</div>
+
+<header class="navbar">
+  <nav class="container nav">
+    <a class="brand" href="#home">
+      <span class="brand-symbol">LTL</span>
+      <span class="brand-copy"><b>LUKA TECH LAB</b><span>SOFTWARE • AUTOMATION • AI</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#servizi">Servizi</a>
+      <a href="#soluzioni">Soluzioni</a>
+      <a href="#riservatezza">Riservatezza</a>
+      <a href="#metodo">Metodo</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+    <a class="btn small" href="#contatti">Parliamo del progetto</a>
+    <button class="menu" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">Software su misura per aziende e professionisti</div>
+        <h1>Dal problema operativo a un <span class="grad">sistema digitale che funziona.</span></h1>
+        <p>
+          Progetto web app, software personalizzato, automazioni, bot e integrazioni AI.
+          Quando serve, sviluppo anche soluzioni tecniche in Pine Script e MQL5 per TradingView e MetaTrader 5.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#contatti">Richiedi una valutazione</a>
+          <a class="btn ghost" href="#soluzioni">Cosa posso realizzare</a>
+        </div>
+        <div class="hero-meta">
+          <span><i></i> Soluzioni su misura</span>
+          <span><i></i> Materiale cliente riservato</span>
+          <span><i></i> Supporto post-lancio</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit-glow"></div>
+        <div class="arch">
+          <div class="arch-head">ARCHITETTURA DI SISTEMA <span>LIVE CONCEPT</span></div>
+          <div class="system-map">
+            <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div>
+            <div class="mod m-web"><b>WEB APP</b>frontend + area cliente</div>
+            <div class="mod m-ai"><b>AI</b>assistenti + analisi</div>
+            <div class="mod m-api"><b>API</b>servizi collegati</div>
+            <div class="mod m-bot"><b>AUTOMATION</b>bot + workflow</div>
+            <div class="mod m-trade"><b>TRADING DEV</b>Pine + MQL5</div>
+            <div class="core">LTL</div>
+          </div>
+        </div>
+        <div class="micro-card">
+          <small>PRINCIPIO</small>
+          <b>Meno lavoro manuale. Più controllo.</b>
+          <p>Il software deve semplificare il processo, non aggiungere complessità.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="container proof-grid">
+      <div class="proof-item"><b>Web app & portali</b><span>Dashboard, aree riservate, booking, database.</span></div>
+      <div class="proof-item"><b>Automazioni & bot</b><span>Workflow, notifiche, API, Telegram, webhook.</span></div>
+      <div class="proof-item"><b>AI integrata</b><span>Assistenti, documenti, classificazione, processi.</span></div>
+      <div class="proof-item"><b>Trading development</b><span>Pine Script, MQL5, utility e integrazioni.</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="servizi">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Cosa costruisco</div>
+          <h2>Non vendo tecnologia generica. <span class="grad">Costruisco ciò che serve.</span></h2>
+        </div>
+        <p>Ogni progetto parte dal problema reale: utenti, passaggi, dati, strumenti già utilizzati e risultato da ottenere.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card service">
+          <div class="num">01 • WEB SYSTEMS</div>
+          <h3>Web app, portali e aree riservate</h3>
+          <p>Progetti completi con autenticazione, ruoli, dashboard, prenotazioni, contenuti, database e pannelli amministrativi.</p>
+          <ul><li>Siti professionali evoluti</li><li>Aree cliente e dashboard</li><li>Pannelli admin</li><li>Sistemi di prenotazione</li></ul>
+        </article>
+
+        <article class="card service">
+          <div class="num">02 • AUTOMATION</div>
+          <h3>Automazioni, bot e integrazioni</h3>
+          <p>Procedure ripetitive trasformate in workflow digitali con bot, API, webhook, server e logiche backend.</p>
+          <ul><li>Bot Telegram</li><li>API e webhook</li><li>Workflow automatizzati</li><li>Notifiche e sincronizzazioni</li></ul>
+        </article>
+
+        <article class="card service">
+          <div class="num">03 • AI INTEGRATION</div>
+          <h3>AI dentro il flusso di lavoro</h3>
+          <p>Integro modelli AI in processi reali: documenti, assistenza, classificazione, ricerca, elaborazione dati e operazioni ripetitive.</p>
+          <ul><li>Assistenti AI</li><li>Automazione documentale</li><li>AI API integrate nel software</li><li>Flussi intelligenti</li></ul>
+        </article>
+
+        <article class="card service">
+          <div class="num">04 • TRADING DEVELOPMENT</div>
+          <h3>Pine Script & MQL5</h3>
+          <p>Sviluppo tecnico per TradingView e MetaTrader 5: indicatori, Expert Advisor, utility, alert e integrazioni software.</p>
+          <ul><li>Pine Script v6</li><li>MQL5 / MetaTrader 5</li><li>EA e utility</li><li>Integrazioni tecniche</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="soluzioni">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Dove creo valore</div>
+          <h2>Il punto non è “fare un sito”. <span class="grad">È far funzionare meglio il processo.</span></h2>
+        </div>
+        <p>Il software ha valore quando riduce passaggi, errori, dispersione di dati e attività manuali.</p>
+      </div>
+
+      <div class="value-grid">
+        <div class="value-list">
+          <div class="value-row">
+            <div class="icon">01</div>
+            <div><b>Centralizzare</b><span>Portare richieste, utenti, dati e operazioni dentro un unico ambiente controllabile.</span></div>
+          </div>
+          <div class="value-row">
+            <div class="icon">02</div>
+            <div><b>Automatizzare</b><span>Eliminare passaggi manuali con notifiche, verifiche, API, bot e workflow.</span></div>
+          </div>
+          <div class="value-row">
+            <div class="icon">03</div>
+            <div><b>Integrare</b><span>Far comunicare sito, database, strumenti esterni, AI e servizi già utilizzati.</span></div>
+          </div>
+          <div class="value-row">
+            <div class="icon">04</div>
+            <div><b>Rendere scalabile</b><span>Costruire un sistema che possa crescere senza rifare tutto da zero.</span></div>
+          </div>
+        </div>
+
+        <aside class="card quote">
+          <div>
+            <div class="kicker">Approccio</div>
+            <h3>“Tu descrivi il problema. Io progetto il sistema che deve risolverlo.”</h3>
+            <p>La tecnologia viene scelta dopo, in base a ciò che serve davvero.</p>
+          </div>
+          <div class="pills">
+            <span class="pill">Analisi</span><span class="pill">Architettura</span><span class="pill">Sviluppo</span><span class="pill">Test</span><span class="pill">Deploy</span><span class="pill">Supporto</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="riservatezza">
+    <div class="container private">
+      <div>
+        <div class="kicker">Riservatezza come standard</div>
+        <h2>I progetti cliente non diventano <span class="grad">contenuto pubblico.</span></h2>
+        <p>
+          Niente screenshot, nomi, codice, credenziali, logiche proprietarie o dettagli operativi pubblicati senza autorizzazione.
+          Il sito dimostra competenza senza esporre materiale sensibile.
+        </p>
+      </div>
+
+      <div class="card private-panel">
+        <div class="kicker">Portfolio privato</div>
+        <h3>Dimostrazione tecnica solo quando ha senso.</h3>
+        <p>Dopo un primo confronto posso utilizzare demo dedicate, prototipi, repository dimostrativi o case study anonimizzati, quando la condivisione è consentita.</p>
+        <div class="checks">
+          <div><i>✓</i> Nessuna credenziale o database reale pubblicato.</div>
+          <div><i>✓</i> Nessun progetto cliente esposto senza autorizzazione.</div>
+          <div><i>✓</i> Demo commerciali separate dai sistemi operativi.</div>
+          <div><i>✓</i> Condivisione selettiva dopo il primo contatto.</div>
+        </div>
+        <button class="btn ghost" onclick="openModal()">Come funziona il portfolio privato</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="competenze">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Stack e competenze</div>
+          <h2>Più componenti, <span class="grad">un unico sistema.</span></h2>
+        </div>
+        <p>Frontend, backend, database, automazioni, API, AI e sviluppo tecnico trading possono convivere nello stesso progetto.</p>
+      </div>
+
+      <div class="stack">
+        <div class="card"><h3>Frontend</h3><p>HTML, CSS, JavaScript, responsive UI e interfacce personalizzate.</p></div>
+        <div class="card"><h3>Backend & dati</h3><p>PHP, SQL, autenticazione, ruoli, logiche server e database.</p></div>
+        <div class="card"><h3>Automation</h3><p>Python, API, webhook, bot, VPS, parsing e processi.</p></div>
+        <div class="card"><h3>Trading dev</h3><p>Pine Script v6, MQL5, MetaTrader 5 e integrazioni tecniche.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="metodo">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Metodo di lavoro</div>
+          <h2>Un progetto serio parte <span class="grad">prima del codice.</span></h2>
+        </div>
+        <p>Obiettivo, funzioni, rischi e confini vengono definiti prima dello sviluppo per ridurre errori e revisioni inutili.</p>
+      </div>
+
+      <div class="process">
+        <div class="step"><small>01</small><h3>Analisi</h3><p>Problema, utenti, processo attuale e obiettivo.</p></div>
+        <div class="step"><small>02</small><h3>Scope</h3><p>Funzioni incluse, escluse, tempi e priorità.</p></div>
+        <div class="step"><small>03</small><h3>Architettura</h3><p>Struttura tecnica, dati e integrazioni.</p></div>
+        <div class="step"><small>04</small><h3>Sviluppo</h3><p>Milestone, demo, test e correzioni.</p></div>
+        <div class="step"><small>05</small><h3>Consegna</h3><p>Collaudo, rilascio e supporto post-lancio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Modalità di collaborazione</div>
+          <h2>Tre modi per <span class="grad">iniziare.</span></h2>
+        </div>
+        <p>La forma di collaborazione dipende da quanto è già definito il progetto e da quanto supporto serve dopo il rilascio.</p>
+      </div>
+
+      <div class="engage">
+        <div class="card">
+          <small>01 • ANALISI</small>
+          <h3>Valutazione tecnica</h3>
+          <p>Per capire fattibilità, architettura, priorità e punti critici prima di investire nello sviluppo.</p>
+          <div class="price">Ideale per idee ancora da strutturare.</div>
+        </div>
+        <div class="card">
+          <small>02 • BUILD</small>
+          <h3>Sviluppo completo</h3>
+          <p>Dalla definizione dello scope alla versione funzionante, con milestone e verifiche intermedie.</p>
+          <div class="price">Per web app, automazioni, bot, AI e software custom.</div>
+        </div>
+        <div class="card">
+          <small>03 • CONTINUITÀ</small>
+          <h3>Manutenzione & supporto</h3>
+          <p>Controlli, aggiornamenti, modifiche, monitoraggio e supporto continuativo dopo la consegna.</p>
+          <div class="price">Per sistemi che devono restare operativi nel tempo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">FAQ</div>
+          <h2>Prima di partire, <span class="grad">chiarezza.</span></h2>
+        </div>
+        <p>Le condizioni precise dipendono dal progetto, ma queste sono le domande più frequenti.</p>
+      </div>
+
+      <div class="faq">
+        <details><summary>Quanto costa un progetto?</summary><p>Il prezzo dipende da funzioni, integrazioni, tempi, rischio tecnico e supporto richiesto. Dopo l'analisi viene definito un perimetro chiaro e un preventivo.</p></details>
+        <details><summary>Posso richiedere solo una singola funzione?</summary><p>Sì. È possibile sviluppare una singola automazione, un bot, una dashboard, una API, un indicatore Pine o un modulo MQL5 senza creare un sistema completo.</p></details>
+        <details><summary>Posso vedere lavori precedenti?</summary><p>Il materiale riservato non viene pubblicato. Quando consentito, dopo il primo contatto posso mostrare demo, prototipi o materiale anonimizzato.</p></details>
+        <details><summary>Lo sviluppo trading comprende consulenza finanziaria?</summary><p>No. La parte Trading Development riguarda sviluppo software tecnico: Pine Script, MQL5, Expert Advisor, utility e integrazioni. Non viene presentata come consulenza finanziaria personalizzata o promessa di rendimento.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="contatti">
+    <div class="container contact">
+      <div>
+        <div class="kicker">Parliamo del progetto</div>
+        <h2>Descrivimi il problema. <span class="grad">Partiamo da quello.</span></h2>
+        <p>Non serve conoscere già la soluzione tecnica. Basta spiegare cosa vuoi ottenere, come lavori oggi e dove senti che il processo è lento, manuale o frammentato.</p>
+        <div class="pills" style="margin-top:22px">
+          <span class="pill">Web app</span><span class="pill">Software custom</span><span class="pill">Automazioni</span><span class="pill">AI</span><span class="pill">Bot</span><span class="pill">Pine / MQL5</span>
+        </div>
+      </div>
+
+      <form class="card form" onsubmit="event.preventDefault(); document.getElementById('demoMsg').style.display='block';">
+        <div class="form-grid">
+          <label>Nome
+            <input type="text" required placeholder="Il tuo nome">
+          </label>
+          <label>Email
+            <input type="email" required placeholder="nome@email.it">
+          </label>
+        </div>
+        <label>Tipo di progetto
+          <select>
+            <option>Web app / sito evoluto</option>
+            <option>Software su misura</option>
+            <option>Automazione / bot</option>
+            <option>Integrazione AI</option>
+            <option>Pine Script / MQL5</option>
+            <option>Valutazione tecnica</option>
+            <option>Altro</option>
+          </select>
+        </label>
+        <label>Problema o obiettivo
+          <textarea rows="6" placeholder="Esempio: oggi gestiamo tutto manualmente via WhatsApp e vorremmo centralizzare il processo..."></textarea>
+        </label>
+        <button class="btn" type="submit">Richiedi una prima valutazione</button>
+        <div id="demoMsg" class="note" style="display:none;color:#9be7c9">Demo: il modulo verrà collegato a email/CRM nella versione pubblicata.</div>
+        <div class="note">Demo locale: nessun dato viene inviato.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer">
+    <div><b style="color:white">LUKA TECH LAB</b> — Software & Automation</div>
+    <div>Soluzioni digitali su misura • Italia / remoto</div>
+    <div>© 2026 Luka Tech Lab</div>
+  </div>
+</footer>
+
+<div class="modal" id="privateModal" onclick="if(event.target===this) closeModal()">
+  <div class="card modal-card">
+    <button class="close" onclick="closeModal()">×</button>
+    <div class="kicker">Portfolio privato</div>
+    <h3>Come mostro le capacità senza esporre clienti.</h3>
+    <p>La dimostrazione tecnica viene preparata separatamente dal sito pubblico e solo con materiale condivisibile.</p>
+    <div class="modal-list">
+      <div>• Demo costruite appositamente per mostrare una funzione.</div>
+      <div>• Case study anonimizzati quando consentito.</div>
+      <div>• Repository dimostrativi senza codice proprietario.</div>
+      <div>• Presentazioni private dopo il primo confronto.</div>
+    </div>
+    <a class="btn" href="#contatti" onclick="closeModal()">Richiedi una presentazione</a>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('privateModal').classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('privateModal').classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
+</script>
+</body>
+</html>
