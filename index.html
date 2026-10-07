@@ -520,6 +520,548 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
   .energy-network{opacity:.46}
 }
 
+/* =========================================================
+   MULTI-SCENE CINEMATIC SYSTEM
+   Every main section receives a different animated environment.
+   ========================================================= */
+.section.fx-section{
+  isolation:isolate;
+  overflow:hidden;
+  background-color:#03080f;
+}
+.section.fx-section > .container{
+  position:relative;
+  z-index:4;
+}
+.section.fx-section > .section-rule{
+  z-index:6;
+}
+.fx-scene{
+  --fx-x:0px;
+  --fx-y:0px;
+  --fx-scroll:0px;
+  --accent:82,236,255;
+  --accent2:111,124,255;
+  --photo-pos:70% 40%;
+  --photo-opacity:.15;
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:.98;
+  contain:paint;
+}
+.fx-scene::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:10;
+  background:
+    linear-gradient(90deg,rgba(3,8,15,.94) 0%,rgba(3,8,15,.70) 27%,rgba(3,8,15,.32) 58%,rgba(3,8,15,.74) 100%),
+    linear-gradient(180deg,rgba(3,8,15,.64),rgba(3,8,15,.18) 46%,rgba(3,8,15,.78));
+}
+.fx-photo{
+  position:absolute;
+  inset:-12%;
+  z-index:0;
+  background-image:url('assets/luka-tech-lab-futuristic-bg.png');
+  background-size:cover;
+  background-position:var(--photo-pos);
+  opacity:var(--photo-opacity);
+  filter:saturate(1.55) contrast(1.12) brightness(.74);
+  mix-blend-mode:screen;
+  transform:translate3d(var(--fx-x),calc(var(--fx-y) + var(--fx-scroll)),0) scale(1.10);
+  transition:transform .18s ease-out;
+  animation:fxPhotoBreath 12s ease-in-out infinite alternate;
+  will-change:transform,filter;
+}
+@keyframes fxPhotoBreath{
+  0%{filter:saturate(1.34) contrast(1.08) brightness(.64)}
+  100%{filter:saturate(1.75) contrast(1.16) brightness(.82)}
+}
+.fx-glow{
+  position:absolute;
+  inset:-18%;
+  z-index:1;
+  background:
+    radial-gradient(circle at 72% 28%,rgba(var(--accent),.16),transparent 18%),
+    radial-gradient(circle at 34% 76%,rgba(var(--accent2),.11),transparent 22%),
+    conic-gradient(from 130deg at 68% 52%,transparent 0 22%,rgba(var(--accent),.04) 29%,transparent 38% 64%,rgba(var(--accent2),.035) 72%,transparent 82%);
+  filter:blur(14px);
+  mix-blend-mode:screen;
+  animation:fxGlowDrift 9s ease-in-out infinite alternate;
+}
+@keyframes fxGlowDrift{
+  from{transform:translate3d(-2%,1%,0) rotate(-1deg) scale(1)}
+  to{transform:translate3d(2%,-1.5%,0) rotate(1.5deg) scale(1.05)}
+}
+.fx-grid{
+  position:absolute;
+  z-index:2;
+  left:-16%;
+  right:-16%;
+  bottom:-34%;
+  height:66%;
+  opacity:.22;
+  background:
+    linear-gradient(rgba(var(--accent),.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--accent),.12) 1px,transparent 1px);
+  background-size:52px 52px;
+  transform:perspective(620px) rotateX(67deg) translateY(var(--fx-scroll));
+  transform-origin:center top;
+  mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 70%,transparent);
+  animation:fxGridDrive 7s linear infinite;
+}
+@keyframes fxGridDrive{to{background-position:0 104px,104px 0}}
+
+.fx-beam{
+  position:absolute;
+  z-index:3;
+  opacity:.42;
+  mix-blend-mode:screen;
+  filter:drop-shadow(0 0 12px rgba(var(--accent),.55));
+}
+.fx-beam.b1{
+  width:2px;
+  height:76%;
+  right:21%;
+  top:-18%;
+  background:linear-gradient(transparent,rgba(255,255,255,.92) 42%,rgba(var(--accent),.92) 50%,transparent 74%);
+  transform:rotate(17deg);
+  animation:fxBeamA 8.5s ease-in-out infinite alternate;
+}
+.fx-beam.b2{
+  height:2px;
+  width:62%;
+  right:-18%;
+  top:61%;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent2),.7),#fff,rgba(var(--accent),.78),transparent);
+  animation:fxBeamB 10s ease-in-out infinite alternate;
+}
+@keyframes fxBeamA{to{transform:rotate(10deg) translateX(-65px);opacity:.16}}
+@keyframes fxBeamB{to{transform:translateX(-115px);opacity:.13}}
+
+.fx-rail{
+  position:absolute;
+  z-index:4;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.10),rgba(var(--accent),.30),transparent);
+}
+.fx-rail::before{
+  content:"";
+  position:absolute;
+  top:-2px;
+  width:92px;
+  height:5px;
+  border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.85),#fff,rgba(var(--accent2),.85),transparent);
+  box-shadow:0 0 20px rgba(var(--accent),.5);
+  animation:fxRailPulse var(--speed,6s) linear infinite;
+  animation-delay:var(--delay,0s);
+}
+.fx-rail.r1{left:3%;right:12%;top:23%;--speed:7.1s}
+.fx-rail.r2{left:28%;right:-8%;top:49%;--speed:9.4s;--delay:-4s}
+.fx-rail.r3{left:-12%;right:31%;top:78%;--speed:11.5s;--delay:-7s}
+@keyframes fxRailPulse{from{left:-120px}to{left:calc(100% + 120px)}}
+
+.fx-vrail{
+  position:absolute;
+  z-index:4;
+  top:8%;
+  bottom:9%;
+  width:1px;
+  background:linear-gradient(transparent,rgba(var(--accent),.18),transparent);
+}
+.fx-vrail::after{
+  content:"";
+  position:absolute;
+  left:-2px;
+  top:-70px;
+  width:5px;
+  height:80px;
+  border-radius:999px;
+  background:linear-gradient(transparent,#fff,rgba(var(--accent),.85),transparent);
+  box-shadow:0 0 18px rgba(var(--accent),.48);
+  animation:fxVerticalPulse var(--vspeed,6s) linear infinite;
+  animation-delay:var(--vdelay,0s);
+}
+.fx-vrail.v1{right:13%;--vspeed:7.6s}
+.fx-vrail.v2{right:31%;--vspeed:10.3s;--vdelay:-5s;opacity:.66}
+@keyframes fxVerticalPulse{to{top:calc(100% + 70px)}}
+
+.fx-hud{
+  position:absolute;
+  z-index:5;
+  width:210px;
+  min-height:116px;
+  padding:15px 16px;
+  border:1px solid rgba(var(--accent),.16);
+  border-radius:16px;
+  background:linear-gradient(150deg,rgba(5,15,25,.42),rgba(4,10,18,.16));
+  box-shadow:0 20px 65px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.04);
+  backdrop-filter:blur(5px);
+  opacity:.70;
+  transform-style:preserve-3d;
+  animation:fxHudFloat var(--float-speed,7s) ease-in-out infinite;
+}
+.fx-hud::before{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.92),transparent);
+  box-shadow:0 0 14px rgba(var(--accent),.55);
+}
+.fx-hud::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.055),transparent 62%);
+  transform:translateX(-120%);
+  animation:fxGlassScan 5.8s ease-in-out infinite;
+}
+.fx-hud.h1{right:7%;top:16%;--float-speed:7.8s}
+.fx-hud.h2{right:24%;bottom:14%;width:170px;min-height:96px;--float-speed:10.2s;animation-delay:-4s}
+.fx-hud .hud-kicker{
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.16em;
+  color:rgba(var(--accent),.85);
+}
+.fx-hud b{display:block;font-size:13px;margin:7px 0 4px;color:#eafcff}
+.fx-hud span{display:block;font-size:9px;line-height:1.55;color:#7890a3}
+.fx-hud i{
+  display:block;
+  margin-top:10px;
+  height:4px;
+  width:var(--w,72%);
+  border-radius:999px;
+  background:linear-gradient(90deg,rgba(var(--accent),.85),rgba(var(--accent2),.5),transparent);
+  box-shadow:0 0 11px rgba(var(--accent),.18);
+  animation:fxHudMeter 3.4s ease-in-out infinite;
+}
+@keyframes fxHudFloat{0%,100%{transform:translateY(0) rotateY(-4deg)}50%{transform:translateY(-10px) rotateY(1deg)}}
+@keyframes fxGlassScan{0%,58%{transform:translateX(-125%)}88%,100%{transform:translateX(125%)}}
+@keyframes fxHudMeter{0%,100%{opacity:.30;transform:scaleX(.65);transform-origin:left}50%{opacity:1;transform:scaleX(1)}}
+
+.fx-radar{
+  position:absolute;
+  z-index:5;
+  right:10%;
+  top:29%;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  border:1px solid rgba(var(--accent),.22);
+  opacity:.62;
+  box-shadow:0 0 45px rgba(var(--accent),.08),inset 0 0 45px rgba(var(--accent),.04);
+}
+.fx-radar::before,.fx-radar::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px dashed rgba(var(--accent2),.20);
+}
+.fx-radar::before{inset:18px;animation:fxSpin 11s linear infinite}
+.fx-radar::after{inset:47px;border-color:rgba(var(--accent),.28);animation:fxSpin 7s linear infinite reverse}
+.fx-radar .sweep{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:50%;
+  height:2px;
+  transform-origin:left center;
+  background:linear-gradient(90deg,rgba(var(--accent),.7),transparent);
+  filter:drop-shadow(0 0 8px rgba(var(--accent),.8));
+  animation:fxSpin 4.8s linear infinite;
+}
+.fx-radar .core{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:13px;
+  height:13px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:#eaffff;
+  box-shadow:0 0 28px rgba(var(--accent),.9);
+}
+@keyframes fxSpin{to{transform:rotate(360deg)}}
+
+.fx-orbit{
+  position:absolute;
+  z-index:5;
+  right:6%;
+  top:18%;
+  width:290px;
+  height:290px;
+  border:1px solid rgba(var(--accent),.15);
+  border-radius:50%;
+  opacity:.66;
+  animation:fxSpin 18s linear infinite;
+}
+.fx-orbit::before,.fx-orbit::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(var(--accent2),.12);
+}
+.fx-orbit::before{inset:34px;animation:fxSpin 13s linear infinite reverse}
+.fx-orbit::after{inset:78px;border-style:dashed;border-color:rgba(var(--accent),.24);animation:fxSpin 8s linear infinite}
+.fx-orbit .sat{
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-radius:4px;
+  background:rgba(var(--accent),.8);
+  box-shadow:0 0 24px rgba(var(--accent),.7);
+}
+.fx-orbit .s1{left:50%;top:-6px}.fx-orbit .s2{right:15px;bottom:48px}.fx-orbit .s3{left:18px;bottom:50px}
+
+.fx-core{
+  position:absolute;
+  z-index:5;
+  right:12%;
+  top:27%;
+  width:168px;
+  height:168px;
+  border-radius:42px;
+  border:1px solid rgba(var(--accent),.26);
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.16),rgba(var(--accent),.11) 18%,rgba(var(--accent2),.055) 45%,transparent 68%);
+  box-shadow:0 0 90px rgba(var(--accent),.12),inset 0 0 35px rgba(var(--accent),.05);
+  animation:fxCoreFloat 6.5s ease-in-out infinite;
+}
+.fx-core::before,.fx-core::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(var(--accent),.20);
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+}
+.fx-core::before{width:112px;height:112px;animation:fxCoreRing 4.8s ease-in-out infinite}
+.fx-core::after{width:66px;height:66px;border-color:rgba(var(--accent2),.26);animation:fxCoreRing 3.6s ease-in-out infinite reverse}
+@keyframes fxCoreFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+@keyframes fxCoreRing{0%,100%{opacity:.35;scale:.88}50%{opacity:1;scale:1.08}}
+
+.fx-bars{
+  position:absolute;
+  z-index:5;
+  right:7%;
+  bottom:13%;
+  width:270px;
+  height:130px;
+  display:flex;
+  align-items:end;
+  gap:9px;
+  opacity:.62;
+}
+.fx-bars i{
+  flex:1;
+  height:var(--h,45%);
+  border-radius:5px 5px 1px 1px;
+  border:1px solid rgba(var(--accent),.14);
+  background:linear-gradient(180deg,rgba(var(--accent),.60),rgba(var(--accent2),.12));
+  box-shadow:0 0 18px rgba(var(--accent),.08);
+  transform-origin:bottom;
+  animation:fxBarDance var(--bs,4s) ease-in-out infinite;
+  animation-delay:var(--bd,0s);
+}
+@keyframes fxBarDance{0%,100%{transform:scaleY(.48);opacity:.25}50%{transform:scaleY(1);opacity:.85}}
+
+.fx-stream{
+  position:absolute;
+  z-index:4;
+  top:7%;
+  bottom:7%;
+  right:9%;
+  width:130px;
+  opacity:.38;
+  background:
+    repeating-linear-gradient(180deg,transparent 0 8px,rgba(var(--accent),.22) 9px,transparent 10px 15px),
+    repeating-linear-gradient(90deg,transparent 0 15px,rgba(var(--accent2),.12) 16px,transparent 17px 23px);
+  mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);
+  animation:fxDataStream 2.2s linear infinite;
+}
+@keyframes fxDataStream{to{background-position:0 60px,46px 0}}
+
+.fx-pipeline{
+  position:absolute;
+  z-index:5;
+  left:8%;
+  right:7%;
+  top:54%;
+  height:3px;
+  opacity:.76;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.34),rgba(var(--accent2),.42),rgba(var(--accent),.28),transparent);
+  box-shadow:0 0 15px rgba(var(--accent),.18);
+}
+.fx-pipeline::before{
+  content:"";
+  position:absolute;
+  left:-100px;
+  top:-3px;
+  width:100px;
+  height:9px;
+  border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(var(--accent),.8),#fff,rgba(var(--accent2),.8),transparent);
+  box-shadow:0 0 24px rgba(var(--accent),.55);
+  animation:fxPipelineMove 5.2s linear infinite;
+}
+.fx-pipeline .pn{
+  position:absolute;
+  top:50%;
+  width:18px;
+  height:18px;
+  margin-top:-9px;
+  border-radius:5px;
+  border:1px solid rgba(var(--accent),.48);
+  background:#06111c;
+  box-shadow:0 0 20px rgba(var(--accent),.14);
+}
+.fx-pipeline .pn:nth-child(1){left:8%}.fx-pipeline .pn:nth-child(2){left:31%}.fx-pipeline .pn:nth-child(3){left:54%}.fx-pipeline .pn:nth-child(4){left:77%}
+@keyframes fxPipelineMove{to{left:calc(100% + 100px)}}
+
+.fx-tunnel{
+  position:absolute;
+  z-index:2;
+  inset:8% 4% 5% 42%;
+  opacity:.36;
+  background:
+    repeating-radial-gradient(ellipse at center,transparent 0 45px,rgba(var(--accent),.10) 46px 47px,transparent 48px 82px);
+  transform:perspective(700px) rotateY(-11deg);
+  mask-image:radial-gradient(ellipse,#000 0 47%,transparent 72%);
+  animation:fxTunnelPulse 5.5s ease-in-out infinite;
+}
+@keyframes fxTunnelPulse{0%,100%{scale:.92;opacity:.20}50%{scale:1.05;opacity:.44}}
+
+.fx-wave{
+  position:absolute;
+  z-index:5;
+  right:5%;
+  top:36%;
+  width:420px;
+  height:110px;
+  opacity:.55;
+  background:
+    linear-gradient(transparent 49%,rgba(var(--accent),.12) 50%,transparent 51%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='120' viewBox='0 0 500 120'%3E%3Cpath d='M0 60 C35 60 35 18 70 18 S105 102 140 102 175 42 210 42 245 78 280 78 315 22 350 22 385 92 420 92 455 60 500 60' fill='none' stroke='%2352ecff' stroke-opacity='.7' stroke-width='2'/%3E%3C/svg%3E") repeat-x center/500px 120px;
+  filter:drop-shadow(0 0 9px rgba(var(--accent),.45));
+  animation:fxWaveMove 4.2s linear infinite;
+}
+@keyframes fxWaveMove{to{background-position:0 center,500px center}}
+
+.fx-converge{
+  position:absolute;
+  z-index:5;
+  right:10%;
+  top:20%;
+  width:300px;
+  height:300px;
+  opacity:.58;
+}
+.fx-converge i{
+  position:absolute;
+  left:50%;top:50%;
+  width:170px;
+  height:1px;
+  transform-origin:left center;
+  background:linear-gradient(90deg,rgba(var(--accent),.58),transparent);
+  box-shadow:0 0 11px rgba(var(--accent),.22);
+}
+.fx-converge i:nth-child(1){transform:rotate(0deg)}
+.fx-converge i:nth-child(2){transform:rotate(45deg)}
+.fx-converge i:nth-child(3){transform:rotate(90deg)}
+.fx-converge i:nth-child(4){transform:rotate(135deg)}
+.fx-converge i:nth-child(5){transform:rotate(180deg)}
+.fx-converge i:nth-child(6){transform:rotate(225deg)}
+.fx-converge i:nth-child(7){transform:rotate(270deg)}
+.fx-converge i:nth-child(8){transform:rotate(315deg)}
+.fx-converge::before{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  width:68px;height:68px;
+  transform:translate(-50%,-50%);
+  border-radius:22px;
+  border:1px solid rgba(var(--accent),.34);
+  background:radial-gradient(circle,rgba(var(--accent),.16),rgba(5,14,24,.72) 62%);
+  box-shadow:0 0 55px rgba(var(--accent),.20);
+  animation:fxHubPulse 2.8s ease-in-out infinite;
+}
+@keyframes fxHubPulse{0%,100%{scale:.88;opacity:.56}50%{scale:1.08;opacity:1}}
+
+/* Per-section visual identities */
+.fx-diagnosis{--photo-pos:80% 18%;--photo-opacity:.16;--accent:82,236,255;--accent2:96,128,255}
+.fx-diagnosis .fx-radar{display:block}.fx-diagnosis .fx-hud.h1{right:6%;top:14%}
+.fx-diagnosis .fx-hud.h2{right:30%;bottom:9%}
+
+.fx-services{--photo-pos:22% 73%;--photo-opacity:.13;--accent:75,221,255;--accent2:183,92,255}
+.fx-services .fx-radar{display:none}.fx-services .fx-orbit{right:2%;top:12%}
+.fx-services .fx-hud.h1{right:12%;top:20%}.fx-services .fx-hud.h2{right:3%;bottom:12%}
+
+.fx-offer{--photo-pos:74% 30%;--photo-opacity:.17;--accent:107,241,185;--accent2:82,236,255}
+.fx-offer .fx-photo{filter:saturate(1.35) contrast(1.08) brightness(.70)}
+.fx-offer .fx-core{right:8%;top:22%}.fx-offer .fx-radar,.fx-offer .fx-orbit{display:none}
+
+.fx-system{--photo-pos:72% 60%;--photo-opacity:.14;--accent:82,236,255;--accent2:183,92,255}
+.fx-system .fx-orbit{right:10%;top:10%}.fx-system .fx-hud.h1{right:4%;top:52%}
+.fx-system .fx-hud.h2{display:none}
+
+.fx-architecture{--photo-pos:55% 46%;--photo-opacity:.10;--accent:82,236,255;--accent2:111,124,255}
+.fx-architecture .fx-pipeline{display:block}.fx-architecture .fx-radar,.fx-architecture .fx-orbit,.fx-architecture .fx-hud{display:none}
+
+.fx-results{--photo-pos:94% 70%;--photo-opacity:.16;--accent:82,236,255;--accent2:111,124,255}
+.fx-results .fx-bars{display:flex}.fx-results .fx-radar{right:5%;top:12%;width:150px;height:150px}
+.fx-results .fx-hud{display:none}
+
+.fx-vaultscene{--photo-pos:35% 34%;--photo-opacity:.10;--accent:98,225,255;--accent2:132,102,255}
+.fx-vaultscene .fx-stream{display:block}.fx-vaultscene .fx-orbit{right:4%;top:9%;width:330px;height:330px}
+.fx-vaultscene .fx-hud,.fx-vaultscene .fx-radar{display:none}
+
+.fx-method{--photo-pos:48% 82%;--photo-opacity:.11;--accent:82,236,255;--accent2:183,92,255}
+.fx-method .fx-tunnel{display:block}.fx-method .fx-hud,.fx-method .fx-radar,.fx-method .fx-orbit{display:none}
+
+.fx-faq{--photo-pos:84% 32%;--photo-opacity:.09;--accent:116,228,255;--accent2:151,105,255}
+.fx-faq .fx-wave{display:block}.fx-faq .fx-hud.h1{right:5%;top:15%;width:175px;min-height:86px}
+.fx-faq .fx-hud.h2,.fx-faq .fx-radar,.fx-faq .fx-orbit{display:none}
+
+.fx-contact{--photo-pos:72% 58%;--photo-opacity:.18;--accent:82,236,255;--accent2:183,92,255}
+.fx-contact .fx-converge{display:block}.fx-contact .fx-hud.h1{right:6%;top:15%}
+.fx-contact .fx-hud.h2{right:4%;bottom:13%}.fx-contact .fx-radar,.fx-contact .fx-orbit{display:none}
+
+/* Elements are opt-in: hidden unless the scene enables them */
+.fx-radar,.fx-orbit,.fx-core,.fx-bars,.fx-stream,.fx-pipeline,.fx-tunnel,.fx-wave,.fx-converge{display:none}
+
+/* activate richer light once section is actually on screen */
+.fx-scene:not(.fx-live){opacity:.54}
+.fx-scene.fx-live .fx-photo{animation-play-state:running}
+.fx-scene.fx-live .fx-rail::before,
+.fx-scene.fx-live .fx-vrail::after{animation-play-state:running}
+
+@media(max-width:1040px){
+  .fx-photo{opacity:calc(var(--photo-opacity) * .82)}
+  .fx-hud{opacity:.48}
+  .fx-radar,.fx-orbit,.fx-core,.fx-bars,.fx-wave,.fx-converge{scale:.78;transform-origin:center}
+}
+@media(max-width:680px){
+  .fx-scene::after{
+    background:linear-gradient(180deg,rgba(3,8,15,.87),rgba(3,8,15,.58) 45%,rgba(3,8,15,.88));
+  }
+  .fx-photo{opacity:.10;background-position:center}
+  .fx-hud,.fx-radar,.fx-orbit,.fx-core,.fx-bars,.fx-stream,.fx-wave,.fx-converge{display:none!important}
+  .fx-grid{opacity:.13}
+  .fx-rail{opacity:.55}
+}
+@media(prefers-reduced-motion:reduce){
+  .fx-scene *,.fx-scene::before,.fx-scene::after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -1342,6 +1884,104 @@ ${$('#message').value}`;
   try{await navigator.clipboard.writeText(text)}catch(_){}
   $('#successBox').style.display='block';
 });
+/* =========================================================
+   MULTI-SCENE CINEMATIC CONTROLLER
+   ========================================================= */
+const fxSceneConfigs=[
+  {el:document.querySelector('#diagnosi'),type:'diagnosis',a:'ANALYZE / UX',b:'LIVE DIAGNOSTIC'},
+  {el:document.querySelector('#servizi'),type:'services',a:'SYSTEM MODULES',b:'BUILD / CONNECT'},
+  {el:document.querySelector('#servizi')?.nextElementSibling,type:'offer',a:'FREE CHECK-UP',b:'PRIORITY SCAN'},
+  {el:document.querySelector('#sistema'),type:'system',a:'SYSTEM MAP',b:'CONNECTED LAYERS'},
+  {el:document.querySelector('#architettura'),type:'architecture',a:'DATA PIPELINE',b:'FLOW ACTIVE'},
+  {el:document.querySelector('#architettura')?.nextElementSibling,type:'results',a:'OUTPUT METRICS',b:'REAL-TIME'},
+  {el:document.querySelector('#riservatezza'),type:'vaultscene',a:'SECURE LAYER',b:'ENCRYPTED'},
+  {el:document.querySelector('#metodo'),type:'method',a:'DELIVERY PATH',b:'STEP ENGINE'},
+  {el:document.querySelector('#metodo')?.nextElementSibling,type:'faq',a:'KNOWLEDGE SIGNAL',b:'QUERY MATRIX'},
+  {el:document.querySelector('#contatti'),type:'contact',a:'COMMS HUB',b:'CHANNEL READY'}
+].filter(x=>x.el && x.el.classList.contains('section'));
+
+function fxSceneMarkup(cfg){
+  const bars=[34,62,48,82,56,91,68,44,76,58,88,51]
+    .map((h,i)=>`<i style="--h:${h}%;--bs:${3.2+(i%5)*.55}s;--bd:-${i*.31}s"></i>`).join('');
+  return `
+    <div class="fx-scene fx-${cfg.type}" aria-hidden="true">
+      <div class="fx-photo"></div>
+      <div class="fx-glow"></div>
+      <div class="fx-grid"></div>
+      <div class="fx-beam b1"></div><div class="fx-beam b2"></div>
+      <div class="fx-rail r1"></div><div class="fx-rail r2"></div><div class="fx-rail r3"></div>
+      <div class="fx-vrail v1"></div><div class="fx-vrail v2"></div>
+
+      <div class="fx-hud h1">
+        <span class="hud-kicker">${cfg.a}</span>
+        <b>${cfg.b}</b>
+        <span>signal synchronized / system responsive</span>
+        <i style="--w:84%"></i><i style="--w:61%"></i>
+      </div>
+      <div class="fx-hud h2">
+        <span class="hud-kicker">LTL NODE</span>
+        <b>ACTIVE LINK</b>
+        <span>data / automation / interface</span>
+        <i style="--w:73%"></i>
+      </div>
+
+      <div class="fx-radar"><i class="sweep"></i><i class="core"></i></div>
+      <div class="fx-orbit"><i class="sat s1"></i><i class="sat s2"></i><i class="sat s3"></i></div>
+      <div class="fx-core"></div>
+      <div class="fx-bars">${bars}</div>
+      <div class="fx-stream"></div>
+      <div class="fx-pipeline"><i class="pn"></i><i class="pn"></i><i class="pn"></i><i class="pn"></i></div>
+      <div class="fx-tunnel"></div>
+      <div class="fx-wave"></div>
+      <div class="fx-converge">${'<i></i>'.repeat(8)}</div>
+    </div>`;
+}
+fxSceneConfigs.forEach(cfg=>{
+  cfg.el.classList.add('fx-section');
+  cfg.el.insertAdjacentHTML('afterbegin',fxSceneMarkup(cfg));
+});
+
+const fxIO=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const scene=entry.target.querySelector('.fx-scene');
+    if(scene)scene.classList.toggle('fx-live',entry.isIntersecting);
+    entry.target.classList.toggle('fx-inview',entry.isIntersecting);
+  });
+},{rootMargin:'18% 0px 18% 0px',threshold:.04});
+fxSceneConfigs.forEach(cfg=>fxIO.observe(cfg.el));
+
+let fxPointerX=0,fxPointerY=0;
+addEventListener('pointermove',e=>{
+  fxPointerX=(e.clientX/innerWidth-.5);
+  fxPointerY=(e.clientY/innerHeight-.5);
+},{passive:true});
+
+let fxTicking=false;
+function updateSectionScenes(){
+  document.querySelectorAll('.fx-section.fx-inview').forEach(sec=>{
+    const rect=sec.getBoundingClientRect();
+    const center=rect.top+rect.height/2;
+    const viewportCenter=innerHeight/2;
+    const relative=(center-viewportCenter)/Math.max(innerHeight,1);
+    const scene=sec.querySelector('.fx-scene');
+    if(!scene)return;
+    scene.style.setProperty('--fx-x',`${fxPointerX*-24}px`);
+    scene.style.setProperty('--fx-y',`${fxPointerY*-15}px`);
+    scene.style.setProperty('--fx-scroll',`${Math.max(-38,Math.min(38,relative*-24))}px`);
+  });
+  fxTicking=false;
+}
+function requestFxUpdate(){
+  if(!fxTicking){
+    fxTicking=true;
+    requestAnimationFrame(updateSectionScenes);
+  }
+}
+addEventListener('scroll',requestFxUpdate,{passive:true});
+addEventListener('resize',requestFxUpdate,{passive:true});
+addEventListener('pointermove',requestFxUpdate,{passive:true});
+requestFxUpdate();
+
 </script>
 </body>
 </html>
