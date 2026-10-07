@@ -1062,6 +1062,484 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
   .fx-scene *,.fx-scene::before,.fx-scene::after{animation:none!important}
 }
 
+/* =========================================================
+   VISUAL IMPACT V3 — HIGH CONTRAST CINEMATIC SECTIONS
+   ========================================================= */
+.section.fx-section{
+  min-height:760px;
+  background:
+    radial-gradient(900px 520px at 82% 32%,rgba(43,188,255,.075),transparent 62%),
+    linear-gradient(180deg,#040b13 0%,#02070d 100%) !important;
+}
+.fx-scene{
+  opacity:1 !important;
+}
+.fx-scene::after{
+  background:
+    linear-gradient(90deg,rgba(3,8,15,.90) 0%,rgba(3,8,15,.66) 24%,rgba(3,8,15,.20) 58%,rgba(3,8,15,.50) 100%),
+    linear-gradient(180deg,rgba(3,8,15,.38),rgba(3,8,15,.06) 50%,rgba(3,8,15,.66)) !important;
+}
+.fx-photo{
+  opacity:calc(var(--photo-opacity) * 1.85) !important;
+  filter:saturate(1.85) contrast(1.22) brightness(.92) !important;
+}
+.fx-grid{opacity:.34 !important}
+.fx-rail,.fx-vrail{opacity:.92 !important}
+.fx-hud{
+  opacity:.86 !important;
+  border-color:rgba(var(--accent),.28) !important;
+  background:linear-gradient(145deg,rgba(7,18,30,.72),rgba(4,10,18,.32)) !important;
+  box-shadow:0 28px 80px rgba(0,0,0,.32),0 0 34px rgba(var(--accent),.08),inset 0 1px rgba(255,255,255,.055) !important;
+}
+.section-head{
+  position:relative;
+  z-index:7 !important;
+}
+.service-card,.problem-card,.diagnosis-console,.builder-stage,.builder-option,.process-card,.faq details,.contact-wrap,.result-card,.offer-box{
+  position:relative;
+  z-index:7;
+}
+.service-card,.problem-card,.diagnosis-console,.builder-stage,.result-card,.contact-wrap,.offer-box{
+  border-color:rgba(114,232,255,.14) !important;
+  box-shadow:0 28px 90px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.04) !important;
+}
+
+/* Strong cinematic divider */
+.fx-section::before{
+  content:"";
+  position:absolute;
+  z-index:2;
+  left:-12%;
+  right:-12%;
+  top:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,rgba(82,236,255,.25),#eaffff,rgba(111,124,255,.35),transparent);
+  box-shadow:0 0 28px rgba(82,236,255,.28);
+  opacity:.62;
+}
+.fx-section.fx-inview::before{
+  animation:v3SectionIgnite 2.4s ease-out both;
+}
+@keyframes v3SectionIgnite{
+  0%{opacity:.05;transform:scaleX(.15);filter:blur(8px)}
+  55%{opacity:1;transform:scaleX(.94);filter:blur(0)}
+  100%{opacity:.62;transform:scaleX(1)}
+}
+
+/* MAIN 3D ART LAYER */
+.impact-art{
+  --ia:82,236,255;
+  --ib:111,124,255;
+  position:absolute;
+  z-index:3;
+  right:1%;
+  top:6%;
+  width:min(48vw,700px);
+  height:min(44vw,620px);
+  pointer-events:none;
+  perspective:1200px;
+  opacity:.95;
+  transform:translate3d(var(--impact-x,0px),var(--impact-y,0px),0);
+  transition:transform .16s ease-out;
+  filter:drop-shadow(0 35px 55px rgba(0,0,0,.28));
+}
+.impact-art .ia-glow{
+  position:absolute;
+  inset:8%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(var(--ia),.20),rgba(var(--ib),.08) 36%,transparent 67%);
+  filter:blur(8px);
+  animation:iaGlow 5.5s ease-in-out infinite;
+}
+@keyframes iaGlow{0%,100%{transform:scale(.88);opacity:.55}50%{transform:scale(1.08);opacity:1}}
+.impact-art .ia-ring{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:64%;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(var(--ia),.34);
+  box-shadow:0 0 34px rgba(var(--ia),.10),inset 0 0 34px rgba(var(--ia),.04);
+  transform:translate(-50%,-50%) rotateX(69deg);
+  animation:iaSpin 13s linear infinite;
+}
+.impact-art .ia-ring.r2{
+  width:48%;
+  border-color:rgba(var(--ib),.38);
+  animation-duration:9s;
+  animation-direction:reverse;
+}
+.impact-art .ia-ring.r3{
+  width:78%;
+  border-style:dashed;
+  border-color:rgba(var(--ia),.20);
+  animation-duration:19s;
+}
+.impact-art .ia-ring::after{
+  content:"";
+  position:absolute;
+  width:12px;height:12px;border-radius:50%;
+  background:#eaffff;
+  left:50%;top:-6px;
+  box-shadow:0 0 28px rgba(var(--ia),.9);
+}
+@keyframes iaSpin{to{transform:translate(-50%,-50%) rotateX(69deg) rotateZ(360deg)}}
+
+.impact-art .ia-frame{
+  position:absolute;
+  left:50%;top:50%;
+  width:54%;
+  height:43%;
+  transform:translate(-50%,-50%) rotateY(-13deg) rotateX(7deg);
+  transform-style:preserve-3d;
+  border:1px solid rgba(var(--ia),.42);
+  border-radius:26px;
+  background:
+    linear-gradient(145deg,rgba(8,27,42,.74),rgba(4,11,19,.36)),
+    radial-gradient(circle at 75% 20%,rgba(var(--ia),.14),transparent 30%);
+  box-shadow:0 32px 90px rgba(0,0,0,.36),0 0 60px rgba(var(--ia),.10),inset 0 1px rgba(255,255,255,.08);
+  backdrop-filter:blur(9px);
+  overflow:hidden;
+  animation:iaFloat 6.8s ease-in-out infinite;
+}
+@keyframes iaFloat{
+  0%,100%{transform:translate(-50%,-50%) rotateY(-13deg) rotateX(7deg) translateY(0)}
+  50%{transform:translate(-50%,-50%) rotateY(-7deg) rotateX(3deg) translateY(-14px)}
+}
+.impact-art .ia-frame::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(180deg,transparent 0 19px,rgba(var(--ia),.035) 20px,transparent 21px),
+    linear-gradient(120deg,transparent 30%,rgba(255,255,255,.08),transparent 64%);
+  transform:translateX(-125%);
+  animation:iaGlassSweep 6.2s ease-in-out infinite;
+}
+@keyframes iaGlassSweep{0%,55%{transform:translateX(-125%)}86%,100%{transform:translateX(125%)}}
+.impact-art .ia-top{
+  position:absolute;left:18px;right:18px;top:15px;
+  height:1px;background:linear-gradient(90deg,rgba(var(--ia),.8),transparent);
+}
+.impact-art .ia-top::after{
+  content:"LIVE";
+  position:absolute;right:0;top:-12px;
+  font-size:8px;letter-spacing:.16em;color:rgba(var(--ia),.95);
+}
+.impact-art .ia-core{
+  position:absolute;
+  left:50%;top:50%;
+  width:100px;height:100px;
+  transform:translate(-50%,-50%) translateZ(36px);
+  border-radius:30px;
+  display:grid;place-items:center;
+  border:1px solid rgba(var(--ia),.52);
+  background:radial-gradient(circle,rgba(255,255,255,.13),rgba(var(--ia),.17) 32%,rgba(4,12,21,.78) 70%);
+  box-shadow:0 0 60px rgba(var(--ia),.20),inset 0 0 26px rgba(var(--ia),.08);
+  color:#ecfeff;font-weight:900;font-size:14px;letter-spacing:.08em;
+}
+.impact-art .ia-core::before,
+.impact-art .ia-core::after{
+  content:"";
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid rgba(var(--ia),.26);
+  animation:iaPulseRing 2.8s ease-out infinite;
+}
+.impact-art .ia-core::before{width:138px;height:138px}
+.impact-art .ia-core::after{width:176px;height:176px;animation-delay:1.4s}
+@keyframes iaPulseRing{0%{opacity:.7;scale:.65}100%{opacity:0;scale:1.15}}
+
+.impact-art .ia-node{
+  position:absolute;
+  width:92px;height:52px;
+  border:1px solid rgba(var(--ia),.30);
+  border-radius:14px;
+  background:rgba(5,16,27,.70);
+  box-shadow:0 14px 34px rgba(0,0,0,.28),0 0 20px rgba(var(--ia),.06);
+  backdrop-filter:blur(8px);
+  display:grid;place-items:center;
+  color:#d9fbff;
+  font-size:9px;font-weight:800;letter-spacing:.06em;
+  animation:iaNodeFloat var(--nf,6s) ease-in-out infinite;
+}
+.impact-art .ia-node.n1{left:6%;top:17%;--nf:6.4s}
+.impact-art .ia-node.n2{right:1%;top:25%;--nf:8.1s;animation-delay:-3s}
+.impact-art .ia-node.n3{left:12%;bottom:16%;--nf:7.1s;animation-delay:-4s}
+.impact-art .ia-node.n4{right:5%;bottom:11%;--nf:9.2s;animation-delay:-6s}
+@keyframes iaNodeFloat{0%,100%{transform:translateY(0) rotateZ(-1deg)}50%{transform:translateY(-10px) rotateZ(1deg)}}
+
+.impact-art .ia-link{
+  position:absolute;
+  left:50%;top:50%;
+  height:1px;width:38%;
+  transform-origin:left center;
+  background:linear-gradient(90deg,rgba(var(--ia),.58),transparent);
+  box-shadow:0 0 13px rgba(var(--ia),.20);
+}
+.impact-art .ia-link.l1{transform:rotate(-144deg)}
+.impact-art .ia-link.l2{transform:rotate(-32deg)}
+.impact-art .ia-link.l3{transform:rotate(146deg)}
+.impact-art .ia-link.l4{transform:rotate(30deg)}
+.impact-art .ia-link::after{
+  content:"";
+  position:absolute;left:-10%;top:-2px;width:66px;height:5px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(var(--ia),.9),#fff,transparent);
+  box-shadow:0 0 16px rgba(var(--ia),.65);
+  animation:iaSignal 3.8s linear infinite;
+}
+.impact-art .ia-link.l2::after{animation-delay:-1s}
+.impact-art .ia-link.l3::after{animation-delay:-2s}
+.impact-art .ia-link.l4::after{animation-delay:-3s}
+@keyframes iaSignal{to{left:110%}}
+
+.impact-art .ia-bars{
+  position:absolute;left:18px;right:18px;bottom:15px;height:42px;
+  display:flex;align-items:end;gap:5px;
+}
+.impact-art .ia-bars i{
+  flex:1;height:var(--bh,45%);border-radius:4px 4px 1px 1px;
+  background:linear-gradient(180deg,rgba(var(--ia),.75),rgba(var(--ib),.16));
+  box-shadow:0 0 12px rgba(var(--ia),.10);
+  animation:iaBar 2.8s ease-in-out infinite;
+  animation-delay:var(--bd,0s);
+  transform-origin:bottom;
+}
+@keyframes iaBar{0%,100%{scale:1 .35;opacity:.35}50%{scale:1 1;opacity:1}}
+
+/* DIAGNOSIS: scanning screen */
+.impact-diagnosis{--ia:66,239,255;--ib:100,116,255}
+.impact-diagnosis .ia-frame{width:58%;height:50%}
+.impact-diagnosis .ia-frame::after{
+  content:"";
+  position:absolute;left:7%;right:7%;top:-18%;
+  height:24%;
+  background:linear-gradient(180deg,transparent,rgba(76,242,255,.22),rgba(255,255,255,.20),transparent);
+  filter:blur(4px);
+  animation:iaScanner 3.8s linear infinite;
+}
+@keyframes iaScanner{to{transform:translateY(520%)}}
+.impact-diagnosis .ia-core{border-radius:50%;font-size:12px}
+.impact-diagnosis .ia-core{color:transparent}
+.impact-diagnosis .ia-core::after{box-shadow:0 0 45px rgba(66,239,255,.25)}
+.impact-diagnosis .ia-core::before{content:"SCAN";color:#eaffff;display:grid;place-items:center;font-size:11px;font-weight:900}
+
+/* SERVICES: stacked device panels */
+.impact-services{--ia:76,218,255;--ib:190,83,255}
+.impact-services .ia-frame{transform:translate(-48%,-48%) rotateY(-20deg) rotateX(8deg) rotateZ(-2deg)}
+.impact-services .ia-frame:nth-of-type(999){display:none}
+.impact-services .ia-node{width:110px;height:64px}
+.impact-services .n1{left:4%;top:9%}
+.impact-services .n2{right:-2%;top:15%}
+.impact-services .n3{left:0;bottom:9%}
+.impact-services .n4{right:3%;bottom:6%}
+
+/* OFFER: luminous prism */
+.impact-offer{--ia:107,241,185;--ib:72,221,255}
+.impact-offer .ia-frame{width:48%;height:48%;border-radius:50%;transform:translate(-50%,-50%) rotateX(62deg)}
+.impact-offer .ia-core{
+  width:118px;height:118px;border-radius:34px;
+  background:linear-gradient(145deg,rgba(184,255,222,.24),rgba(72,221,255,.11),rgba(4,12,21,.72));
+}
+
+/* SYSTEM: bigger orbital system */
+.impact-system{--ia:82,236,255;--ib:183,92,255}
+.impact-system .ia-ring{width:78%}.impact-system .ia-ring.r2{width:59%}.impact-system .ia-ring.r3{width:92%}
+.impact-system .ia-frame{width:44%;height:36%}
+
+/* ARCHITECTURE: horizontal pipeline */
+.impact-architecture{
+  --ia:71,232,255;--ib:105,126,255;
+  width:min(58vw,820px);height:390px;top:18%;right:-2%;
+}
+.impact-architecture .ia-ring,.impact-architecture .ia-frame{display:none}
+.impact-architecture .ia-core{left:74%;top:48%;width:88px;height:88px;border-radius:26px}
+.impact-architecture .ia-node{top:46%;bottom:auto}
+.impact-architecture .n1{left:1%}.impact-architecture .n2{left:23%;right:auto}.impact-architecture .n3{left:45%;bottom:auto}.impact-architecture .n4{left:66%;right:auto;bottom:auto}
+.impact-architecture::after{
+  content:"";
+  position:absolute;left:2%;right:4%;top:52%;
+  height:3px;background:linear-gradient(90deg,rgba(71,232,255,.12),rgba(71,232,255,.72),rgba(105,126,255,.6),transparent);
+  box-shadow:0 0 22px rgba(71,232,255,.22);
+}
+.impact-architecture::before{
+  content:"";
+  position:absolute;left:-12%;top:calc(52% - 4px);width:96px;height:11px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(71,232,255,.94),transparent);
+  box-shadow:0 0 30px rgba(71,232,255,.6);
+  animation:iaPipe 4.2s linear infinite;
+}
+@keyframes iaPipe{to{left:96%}}
+
+/* RESULTS: metric skyline */
+.impact-results{--ia:82,236,255;--ib:111,124,255}
+.impact-results .ia-frame{height:46%;width:62%}
+.impact-results .ia-ring{display:none}
+.impact-results .ia-core{left:76%;top:32%;width:80px;height:80px;border-radius:24px}
+
+/* VAULT */
+.impact-vaultscene{--ia:82,236,255;--ib:138,104,255}
+.impact-vaultscene .ia-frame{width:45%;height:45%;border-radius:28px;transform:translate(-50%,-50%) rotateY(-20deg) rotateX(11deg)}
+.impact-vaultscene .ia-core{border-radius:28px}
+.impact-vaultscene .ia-core::before{content:"LOCK";display:grid;place-items:center;color:#eaffff;font-size:10px}
+.impact-vaultscene .ia-core{color:transparent}
+
+/* METHOD: five-stage route */
+.impact-method{
+  --ia:82,236,255;--ib:183,92,255;
+  width:min(60vw,860px);height:360px;top:26%;right:-4%;
+}
+.impact-method .ia-frame,.impact-method .ia-ring,.impact-method .ia-core{display:none}
+.impact-method::after{
+  content:"";
+  position:absolute;left:0;right:0;top:51%;
+  height:2px;background:linear-gradient(90deg,transparent,rgba(82,236,255,.7),rgba(183,92,255,.7),transparent);
+  box-shadow:0 0 25px rgba(82,236,255,.22);
+}
+.impact-method .ia-node{top:45%;width:86px;height:54px}
+.impact-method .n1{left:3%}.impact-method .n2{left:24%;right:auto}.impact-method .n3{left:45%;bottom:auto}.impact-method .n4{left:66%;right:auto;bottom:auto}
+.impact-method .ia-extra{
+  position:absolute;left:87%;top:45%;width:86px;height:54px;
+  border:1px solid rgba(82,236,255,.30);border-radius:14px;background:rgba(5,16,27,.72);
+  display:grid;place-items:center;color:#d9fbff;font-size:9px;font-weight:800;
+}
+.impact-method .ia-pulse{
+  position:absolute;left:-8%;top:calc(51% - 4px);width:80px;height:9px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(82,236,255,.95),transparent);
+  box-shadow:0 0 26px rgba(82,236,255,.65);
+  animation:iaMethodPulse 5s linear infinite;
+}
+@keyframes iaMethodPulse{to{left:104%}}
+
+/* FAQ: knowledge waveform */
+.impact-faq{--ia:99,230,255;--ib:179,94,255}
+.impact-faq .ia-frame{width:58%;height:36%}
+.impact-faq .ia-ring.r3{display:none}
+.impact-faq .ia-core{width:88px;height:88px;border-radius:50%;font-size:10px}
+.impact-faq .ia-core{color:transparent}
+.impact-faq .ia-core::before{content:"QUERY";color:#eaffff;display:grid;place-items:center;font-size:9px}
+.impact-faq .ia-bars{height:54px}
+
+/* CONTACT: communication hub */
+.impact-contact{--ia:82,236,255;--ib:183,92,255;right:-2%;top:8%}
+.impact-contact .ia-frame{width:54%;height:44%}
+.impact-contact .ia-core{border-radius:50%;width:112px;height:112px}
+.impact-contact .ia-core{color:transparent}
+.impact-contact .ia-core::before{content:"CONNECT";color:#eaffff;display:grid;place-items:center;font-size:9px}
+.impact-contact .ia-node{width:104px}
+.impact-contact .n1{left:4%;top:14%}.impact-contact .n2{right:0;top:14%}.impact-contact .n3{left:5%;bottom:13%}.impact-contact .n4{right:0;bottom:13%}
+
+/* Make UI itself visually richer */
+.problem-card{
+  background:
+    linear-gradient(145deg,rgba(8,23,36,.90),rgba(4,11,19,.84)) !important;
+}
+.problem-card.active{
+  box-shadow:0 20px 60px rgba(0,0,0,.34),0 0 45px rgba(82,236,255,.10),inset 0 0 28px rgba(82,236,255,.035) !important;
+}
+.problem-card.active::after{
+  content:"";
+  position:absolute;left:15px;right:15px;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan),#fff,var(--blue),transparent);
+  box-shadow:0 0 16px rgba(82,236,255,.55);
+  animation:activeCardRail 2.6s ease-in-out infinite;
+}
+@keyframes activeCardRail{0%,100%{opacity:.25;transform:scaleX(.42)}50%{opacity:1;transform:scaleX(1)}}
+
+.service-card{
+  background:
+    linear-gradient(160deg,rgba(10,27,42,.94),rgba(4,10,18,.88)) !important;
+}
+.service-card:hover{
+  transform:translateY(-7px) !important;
+  border-color:rgba(82,236,255,.38) !important;
+  box-shadow:0 34px 100px rgba(0,0,0,.38),0 0 55px rgba(82,236,255,.10) !important;
+}
+.service-card h3{position:relative;z-index:3}
+.service-card .card-circuit{opacity:1.7;filter:drop-shadow(0 0 18px rgba(82,236,255,.14))}
+
+.builder-stage{
+  background:
+    radial-gradient(circle at 50% 48%,rgba(82,236,255,.10),transparent 24%),
+    linear-gradient(160deg,rgba(8,23,36,.94),rgba(4,10,18,.90)) !important;
+  box-shadow:0 34px 100px rgba(0,0,0,.34),0 0 60px rgba(82,236,255,.07) !important;
+}
+.builder-core{
+  box-shadow:0 0 115px rgba(82,236,255,.35),0 0 45px rgba(183,92,255,.22) !important;
+}
+.orbit{border-color:rgba(82,236,255,.25) !important}
+.orbit.two{border-color:rgba(183,92,255,.19) !important}
+
+.process-card{
+  min-height:225px !important;
+  border:1px solid rgba(82,236,255,.10) !important;
+  border-top-color:rgba(82,236,255,.44) !important;
+  border-radius:18px !important;
+  background:linear-gradient(180deg,rgba(7,23,35,.82),rgba(4,11,19,.58)) !important;
+  box-shadow:0 20px 60px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.025);
+  transition:.25s ease;
+}
+.process-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(82,236,255,.32) !important;
+  box-shadow:0 30px 75px rgba(0,0,0,.28),0 0 38px rgba(82,236,255,.08);
+}
+
+.faq details{
+  background:linear-gradient(145deg,rgba(7,22,34,.84),rgba(4,10,18,.68)) !important;
+  border-color:rgba(82,236,255,.11) !important;
+  box-shadow:0 14px 42px rgba(0,0,0,.14);
+}
+.faq details[open]{
+  border-color:rgba(82,236,255,.34) !important;
+  box-shadow:0 22px 60px rgba(0,0,0,.24),0 0 38px rgba(82,236,255,.08);
+}
+
+.contact-wrap{
+  background:
+    radial-gradient(500px 380px at 92% 20%,rgba(82,236,255,.09),transparent 62%),
+    linear-gradient(145deg,rgba(9,26,40,.95),rgba(4,10,18,.91)) !important;
+  border-color:rgba(82,236,255,.22) !important;
+  box-shadow:0 40px 120px rgba(0,0,0,.42),0 0 65px rgba(82,236,255,.07),inset 0 1px rgba(255,255,255,.05) !important;
+}
+.contact-card{
+  background:linear-gradient(155deg,rgba(4,13,22,.86),rgba(4,10,17,.68)) !important;
+  border-color:rgba(82,236,255,.12) !important;
+  box-shadow:0 24px 70px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.035);
+}
+
+/* Layout: leave visual breathing room on key headers */
+@media(min-width:1041px){
+  #diagnosi .section-head,
+  #servizi .section-head,
+  #sistema .section-head,
+  #architettura .section-head,
+  #metodo .section-head,
+  #contatti .section-head{
+    grid-template-columns:1.02fr .70fr;
+  }
+  #diagnosi .section-head > div:first-child,
+  #servizi .section-head > div:first-child,
+  #sistema .section-head > div:first-child,
+  #metodo .section-head > div:first-child{
+    max-width:720px;
+  }
+}
+@media(max-width:1040px){
+  .impact-art{
+    width:58vw;height:58vw;right:-12%;top:8%;opacity:.56;
+  }
+}
+@media(max-width:680px){
+  .section.fx-section{min-height:auto}
+  .impact-art{
+    width:92vw;height:92vw;right:-44%;top:8%;opacity:.30;
+    filter:blur(.2px);
+  }
+  .impact-art .ia-hud,.impact-art .ia-node{display:none}
+  .fx-photo{opacity:.14 !important}
+}
+
 </style>
 </head>
 <body>
@@ -1981,6 +2459,78 @@ addEventListener('scroll',requestFxUpdate,{passive:true});
 addEventListener('resize',requestFxUpdate,{passive:true});
 addEventListener('pointermove',requestFxUpdate,{passive:true});
 requestFxUpdate();
+
+/* VISUAL IMPACT V3 — distinct 3D art for every section */
+const impactConfig=[
+  {el:document.querySelector('#diagnosi'),type:'diagnosis',core:'SCAN',nodes:['UX','SEO','FLOW','CTA']},
+  {el:document.querySelector('#servizi'),type:'services',core:'BUILD',nodes:['WEB','AUTO','AI','CODE']},
+  {el:document.querySelector('#servizi')?.nextElementSibling,type:'offer',core:'FREE',nodes:['CHECK','PRIORITY','PLAN','GO']},
+  {el:document.querySelector('#sistema'),type:'system',core:'CORE',nodes:['API','DATA','AUTH','BOT']},
+  {el:document.querySelector('#architettura'),type:'architecture',core:'FLOW',nodes:['INPUT','LOGIC','BUILD','OUTPUT']},
+  {el:document.querySelector('#architettura')?.nextElementSibling,type:'results',core:'DATA',nodes:['TIME','UX','LINK','CTRL']},
+  {el:document.querySelector('#riservatezza'),type:'vaultscene',core:'LOCK',nodes:['AUTH','VAULT','ROLE','SAFE']},
+  {el:document.querySelector('#metodo'),type:'method',core:'STEP',nodes:['CONTACT','CHECK','ROADMAP','BUILD']},
+  {el:document.querySelector('#metodo')?.nextElementSibling,type:'faq',core:'QUERY',nodes:['FAQ','INFO','SCOPE','READY']},
+  {el:document.querySelector('#contatti'),type:'contact',core:'CONNECT',nodes:['CALL','WA','MAIL','BRIEF']}
+].filter(x=>x.el);
+
+function impactBars(){
+  const hs=[36,66,48,88,58,74,96,45,69,84,53,91,62,77];
+  return hs.map((h,i)=>`<i style="--bh:${h}%;--bd:-${(i*.23).toFixed(2)}s"></i>`).join('');
+}
+function impactMarkup(cfg){
+  const extra=cfg.type==='method'?'<div class="ia-extra">DELIVERY</div><div class="ia-pulse"></div>':'';
+  return `
+    <div class="impact-art impact-${cfg.type}" aria-hidden="true">
+      <div class="ia-glow"></div>
+      <div class="ia-ring r1"></div><div class="ia-ring r2"></div><div class="ia-ring r3"></div>
+      <div class="ia-link l1"></div><div class="ia-link l2"></div><div class="ia-link l3"></div><div class="ia-link l4"></div>
+      <div class="ia-frame">
+        <div class="ia-top"></div>
+        <div class="ia-core">${cfg.core}</div>
+        <div class="ia-bars">${impactBars()}</div>
+      </div>
+      <div class="ia-node n1">${cfg.nodes[0]}</div>
+      <div class="ia-node n2">${cfg.nodes[1]}</div>
+      <div class="ia-node n3">${cfg.nodes[2]}</div>
+      <div class="ia-node n4">${cfg.nodes[3]}</div>
+      ${extra}
+    </div>`;
+}
+impactConfig.forEach(cfg=>{
+  if(!cfg.el.querySelector('.impact-art')){
+    cfg.el.insertAdjacentHTML('afterbegin',impactMarkup(cfg));
+  }
+});
+
+let impactPX=0,impactPY=0;
+addEventListener('pointermove',e=>{
+  impactPX=(e.clientX/innerWidth-.5);
+  impactPY=(e.clientY/innerHeight-.5);
+},{passive:true});
+
+let impactRAF=false;
+function updateImpactArt(){
+  document.querySelectorAll('.fx-section.fx-inview .impact-art').forEach((art,i)=>{
+    const sec=art.closest('.fx-section');
+    const r=sec.getBoundingClientRect();
+    const rel=(r.top+r.height/2-innerHeight/2)/Math.max(innerHeight,1);
+    const depth=1+(i%3)*.18;
+    art.style.setProperty('--impact-x',`${impactPX*-34*depth}px`);
+    art.style.setProperty('--impact-y',`${impactPY*-22*depth + Math.max(-24,Math.min(24,rel*-12))}px`);
+  });
+  impactRAF=false;
+}
+function requestImpact(){
+  if(!impactRAF){
+    impactRAF=true;
+    requestAnimationFrame(updateImpactArt);
+  }
+}
+addEventListener('pointermove',requestImpact,{passive:true});
+addEventListener('scroll',requestImpact,{passive:true});
+addEventListener('resize',requestImpact,{passive:true});
+requestImpact();
 
 </script>
 </body>
