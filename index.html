@@ -1668,6 +1668,270 @@ body::before{
   body::after{animation:none!important}
 }
 
+/* =========================================================
+   SERVICE EXPERIENCE V5 — INTERACTIVE COMMERCIAL CARDS
+   ========================================================= */
+.service-card{
+  cursor:pointer;
+}
+.service-card .service-cta{
+  border:0;
+  background:none;
+  padding:0;
+  cursor:pointer;
+  font:inherit;
+}
+.service-card::before{
+  opacity:.22 !important;
+}
+.service-card:hover::before{opacity:1 !important}
+.service-card .card-action-row{
+  position:relative;z-index:4;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:20px;
+}
+.service-card .card-action-row small{
+  color:#6f8495;font-size:8px;letter-spacing:.11em;text-transform:uppercase;
+}
+.service-card .card-action-row small::before{
+  content:"";
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  margin-right:7px;background:var(--green);box-shadow:0 0 14px rgba(107,241,185,.5)
+}
+
+/* modal */
+.service-modal{
+  position:fixed;inset:0;z-index:150;
+  display:grid;place-items:center;
+  padding:22px;
+  opacity:0;pointer-events:none;
+  transition:opacity .28s ease;
+}
+.service-modal.open{opacity:1;pointer-events:auto}
+.service-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(1,4,8,.78);
+  backdrop-filter:blur(18px) saturate(1.2);
+}
+.service-modal-shell{
+  --modal-accent:82,236,255;
+  --modal-accent2:111,124,255;
+  position:relative;z-index:2;
+  width:min(1160px,calc(100vw - 36px));
+  max-height:min(880px,calc(100vh - 40px));
+  overflow:auto;
+  border:1px solid rgba(var(--modal-accent),.24);
+  border-radius:30px;
+  background:
+    radial-gradient(680px 360px at 84% 8%,rgba(var(--modal-accent),.11),transparent 62%),
+    linear-gradient(155deg,rgba(8,22,35,.98),rgba(3,9,16,.98));
+  box-shadow:0 45px 150px rgba(0,0,0,.66),0 0 70px rgba(var(--modal-accent),.08),inset 0 1px rgba(255,255,255,.05);
+  transform:translateY(24px) scale(.975);
+  transition:transform .34s cubic-bezier(.2,.8,.2,1);
+}
+.service-modal.open .service-modal-shell{transform:none}
+.service-modal-shell::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--modal-accent),.7),#fff,rgba(var(--modal-accent2),.65),transparent);
+  box-shadow:0 0 22px rgba(var(--modal-accent),.45)
+}
+.modal-close{
+  position:sticky;top:16px;float:right;z-index:8;
+  margin:16px 16px 0 0;
+  width:44px;height:44px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(4,12,20,.72);
+  color:#dffaff;font-size:20px;
+  cursor:pointer;backdrop-filter:blur(14px);
+  transition:.2s ease;
+}
+.modal-close:hover{border-color:rgba(var(--modal-accent),.36);transform:rotate(4deg);box-shadow:0 0 28px rgba(var(--modal-accent),.10)}
+
+.modal-grid{
+  display:grid;grid-template-columns:.92fr 1.08fr;gap:0;
+  min-height:680px;
+}
+.modal-visual{
+  position:relative;overflow:hidden;
+  padding:38px 34px;
+  border-right:1px solid rgba(255,255,255,.06);
+  min-height:680px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.modal-visual::before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(3,8,15,.35),transparent 55%),
+    repeating-linear-gradient(180deg,transparent 0 24px,rgba(var(--modal-accent),.022) 25px,transparent 26px);
+}
+.modal-visual::after{
+  content:"";position:absolute;inset:8% -20%;
+  background:radial-gradient(circle at 50% 50%,rgba(var(--modal-accent),.12),transparent 38%);
+  filter:blur(5px);animation:modalBreath 5.4s ease-in-out infinite;
+}
+@keyframes modalBreath{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.06)}}
+.modal-copy-top,.modal-visual-bottom{position:relative;z-index:3}
+.modal-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:9px;font-weight:850;letter-spacing:.16em;text-transform:uppercase;color:rgba(var(--modal-accent),.9)
+}
+.modal-kicker::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,rgba(var(--modal-accent),.9),transparent)}
+.modal-visual h3{font-size:clamp(34px,4vw,58px);margin:14px 0 13px;max-width:560px}
+.modal-lead{max-width:560px;color:#9eb0bf;font-size:14px}
+.modal-status{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:18px
+}
+.modal-status span{
+  padding:7px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.025);font-size:9px;color:#b4c4cf
+}
+.modal-status span:first-child{
+  border-color:rgba(107,241,185,.18);background:rgba(107,241,185,.045);color:#c8ffe2
+}
+
+/* animated diagram */
+.modal-diagram{
+  position:relative;z-index:3;
+  height:290px;margin-top:18px;
+}
+.md-core{
+  position:absolute;left:50%;top:50%;
+  width:112px;height:112px;transform:translate(-50%,-50%);
+  border-radius:34px;
+  border:1px solid rgba(var(--modal-accent),.42);
+  background:radial-gradient(circle,rgba(255,255,255,.16),rgba(var(--modal-accent),.12) 34%,rgba(3,11,19,.88) 72%);
+  display:grid;place-items:center;
+  color:#eaffff;font-size:11px;font-weight:900;letter-spacing:.12em;
+  box-shadow:0 0 80px rgba(var(--modal-accent),.18),inset 0 0 30px rgba(var(--modal-accent),.05);
+  animation:mdCore 4.4s ease-in-out infinite;
+}
+@keyframes mdCore{0%,100%{transform:translate(-50%,-50%) scale(.96)}50%{transform:translate(-50%,-50%) scale(1.05)}}
+.md-core::before,.md-core::after{
+  content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  border-radius:50%;border:1px solid rgba(var(--modal-accent),.20)
+}
+.md-core::before{width:160px;height:160px;animation:mdRing 6s linear infinite}
+.md-core::after{width:214px;height:214px;border-style:dashed;border-color:rgba(var(--modal-accent2),.20);animation:mdRing 10s linear infinite reverse}
+@keyframes mdRing{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.md-node{
+  position:absolute;width:110px;height:58px;border-radius:15px;
+  border:1px solid rgba(var(--modal-accent),.25);
+  background:rgba(5,15,25,.75);
+  display:grid;place-items:center;
+  color:#d8f8ff;font-size:9px;font-weight:850;letter-spacing:.07em;
+  box-shadow:0 15px 35px rgba(0,0,0,.26),0 0 25px rgba(var(--modal-accent),.07);
+  animation:mdNode var(--mns,6s) ease-in-out infinite;
+}
+.md-node.n1{left:4%;top:12%;--mns:6.2s}
+.md-node.n2{right:4%;top:13%;--mns:7.7s;animation-delay:-2.8s}
+.md-node.n3{left:5%;bottom:8%;--mns:8.4s;animation-delay:-4s}
+.md-node.n4{right:4%;bottom:8%;--mns:6.9s;animation-delay:-5s}
+@keyframes mdNode{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.md-line{
+  position:absolute;left:50%;top:50%;height:1px;width:37%;
+  transform-origin:left center;background:linear-gradient(90deg,rgba(var(--modal-accent),.55),transparent);
+  box-shadow:0 0 12px rgba(var(--modal-accent),.18)
+}
+.md-line.l1{transform:rotate(-145deg)}.md-line.l2{transform:rotate(-35deg)}
+.md-line.l3{transform:rotate(145deg)}.md-line.l4{transform:rotate(35deg)}
+.md-line::after{
+  content:"";position:absolute;left:-15%;top:-2px;width:70px;height:5px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(var(--modal-accent),.9),#fff,transparent);
+  box-shadow:0 0 18px rgba(var(--modal-accent),.62);
+  animation:mdSignal 3.4s linear infinite
+}
+.md-line.l2::after{animation-delay:-.8s}.md-line.l3::after{animation-delay:-1.6s}.md-line.l4::after{animation-delay:-2.4s}
+@keyframes mdSignal{to{left:115%}}
+
+.modal-visual-bottom{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-top:18px;border-top:1px solid rgba(255,255,255,.06);
+}
+.modal-visual-bottom small{font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#738899}
+.modal-visual-bottom strong{font-size:12px;color:#dffaff}
+
+/* details side */
+.modal-details{padding:42px 38px 38px}
+.detail-block{
+  padding:20px 0;border-bottom:1px solid rgba(255,255,255,.055)
+}
+.detail-block:first-child{padding-top:0}
+.detail-label{
+  display:block;margin-bottom:10px;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(var(--modal-accent),.88);font-weight:850
+}
+.detail-block h4{font-size:20px;margin:0 0 8px}
+.detail-block p{color:#91a5b7;font-size:12px;margin:0}
+.detail-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-top:12px
+}
+.detail-list div{
+  position:relative;padding:10px 12px 10px 28px;
+  border:1px solid rgba(255,255,255,.055);border-radius:12px;
+  background:rgba(255,255,255,.018);
+  color:#c1d1dc;font-size:10px
+}
+.detail-list div::before{
+  content:"✓";position:absolute;left:10px;top:9px;color:rgb(var(--modal-accent))
+}
+.detail-flow{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px
+}
+.detail-step{
+  position:relative;padding:12px 10px;border-radius:12px;text-align:center;
+  border:1px solid rgba(var(--modal-accent),.13);background:rgba(var(--modal-accent),.025)
+}
+.detail-step small{display:block;color:#718697;font-size:8px;margin-bottom:5px}
+.detail-step strong{display:block;font-size:10px}
+.detail-step:not(:last-child)::after{
+  content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+  color:rgba(var(--modal-accent),.55);z-index:3
+}
+.detail-meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px
+}
+.meta-box{
+  padding:14px;border:1px solid rgba(255,255,255,.06);border-radius:14px;background:rgba(255,255,255,.018)
+}
+.meta-box small{display:block;color:#6f8395;font-size:8px;letter-spacing:.11em;text-transform:uppercase}
+.meta-box strong{display:block;margin-top:5px;font-size:12px}
+.modal-actions{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:20px
+}
+.modal-note{
+  margin-top:10px;color:#718697;font-size:9px
+}
+
+/* selected service token in form */
+.service-selected{
+  display:none;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:12px;padding:10px 12px;border-radius:12px;
+  border:1px solid rgba(82,236,255,.14);background:rgba(82,236,255,.035)
+}
+.service-selected.visible{display:flex}
+.service-selected span{font-size:10px;color:#b9d7e4}
+.service-selected b{color:#dffaff}
+.service-selected button{
+  border:0;background:none;color:#6f8395;cursor:pointer;font-size:16px
+}
+
+@media(max-width:900px){
+  .modal-grid{grid-template-columns:1fr}
+  .modal-visual{min-height:520px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .modal-details{padding:28px 24px}
+}
+@media(max-width:620px){
+  .service-modal{padding:9px}
+  .service-modal-shell{width:calc(100vw - 18px);max-height:calc(100vh - 18px);border-radius:22px}
+  .modal-visual{padding:28px 20px;min-height:460px}
+  .modal-diagram{height:235px}
+  .md-node{width:88px;height:48px;font-size:8px}
+  .modal-details{padding:22px 18px}
+  .detail-list,.detail-meta{grid-template-columns:1fr}
+  .detail-flow{grid-template-columns:1fr 1fr}
+  .detail-step:nth-child(2)::after{display:none}
+}
+
 </style>
 </head>
 <body>
@@ -1877,52 +2141,52 @@ body::before{
       </div>
 
       <div class="bento">
-        <article class="service-card large reveal tilt-card">
+        <article class="service-card large reveal tilt-card" data-service="website" tabindex="0" role="button" aria-label="Scopri Website Rescue">
           <div class="card-circuit"></div>
           <div class="num">01 • WEBSITE RESCUE</div>
           <h3>Il tuo sito è bello, ma non lavora davvero?</h3>
           <div class="impact">Analisi + riprogettazione mirata</div>
           <p>Individuo i punti deboli di struttura, UX, mobile, velocità, contenuti e percorso di contatto. Poi intervengo solo dove serve, senza rifare tutto alla cieca.</p>
           <div class="service-list"><span class="chip">UX</span><span class="chip">CTA</span><span class="chip">Mobile</span><span class="chip">Performance</span></div>
-          <a class="service-cta" href="#contatti">Analizza il mio sito</a>
+          <div class="card-action-row"><button class="service-cta" type="button">Analizza il mio sito</button><small>Apri dettagli</small></div>
           <div class="card-graphic"><div class="mini-window"></div><div class="mini-lines"><i></i><i></i><i></i></div></div>
         </article>
 
-        <article class="service-card medium reveal tilt-card">
+        <article class="service-card medium reveal tilt-card" data-service="automation" tabindex="0" role="button" aria-label="Scopri Automazioni">
           <div class="card-circuit"></div>
           <div class="num">02 • AUTOMATION</div>
           <h3>Stai ancora facendo a mano ciò che può fare un sistema?</h3>
           <div class="impact">Riduzione di passaggi ripetitivi</div>
           <p>Prenotazioni, notifiche, email, Telegram, raccolta dati, aggiornamenti e procedure interne possono essere trasformati in flussi automatici e controllabili.</p>
           <div class="service-list"><span class="chip">Bot</span><span class="chip">Webhook</span><span class="chip">API</span><span class="chip">Workflow</span></div>
-          <a class="service-cta" href="#contatti">Scopri cosa posso automatizzare</a>
+          <div class="card-action-row"><button class="service-cta" type="button">Scopri cosa posso automatizzare</button><small>Apri dettagli</small></div>
         </article>
 
-        <article class="service-card third reveal tilt-card">
+        <article class="service-card third reveal tilt-card" data-service="software" tabindex="0" role="button" aria-label="Scopri software">
           <div class="card-circuit"></div>
           <div class="num">03 • CUSTOM SOFTWARE</div>
           <h3>Ti serve uno strumento che non esiste?</h3>
           <div class="impact">Software costruito sul tuo flusso</div>
           <p>Dashboard, portali clienti, aree riservate, gestionali, calendari, ruoli e pannelli amministrativi progettati attorno al modo in cui lavori davvero.</p>
-          <a class="service-cta" href="#contatti">Raccontami l'idea</a>
+          <div class="card-action-row"><button class="service-cta" type="button">Raccontami l'idea</button><small>Apri dettagli</small></div>
         </article>
 
-        <article class="service-card third reveal tilt-card">
+        <article class="service-card third reveal tilt-card" data-service="ai" tabindex="0" role="button" aria-label="Scopri ai">
           <div class="card-circuit"></div>
           <div class="num">04 • AI INTEGRATION</div>
           <h3>Vuoi integrare l'AI senza aggiungere un altro giocattolo?</h3>
           <div class="impact">AI dentro un processo reale</div>
           <p>Assistenti, analisi documentale, classificazione, generazione e automazioni AI inserite dove migliorano davvero il lavoro.</p>
-          <a class="service-cta" href="#contatti">Valutiamo l'integrazione</a>
+          <div class="card-action-row"><button class="service-cta" type="button">Valutiamo l'integrazione</button><small>Apri dettagli</small></div>
         </article>
 
-        <article class="service-card third reveal tilt-card">
+        <article class="service-card third reveal tilt-card" data-service="trading" tabindex="0" role="button" aria-label="Scopri trading">
           <div class="card-circuit"></div>
           <div class="num">05 • TRADING DEVELOPMENT</div>
           <h3>Hai una logica TradingView o MT5 da trasformare in codice?</h3>
           <div class="impact">Pine Script / MQL5 su specifiche</div>
           <p>Indicatori, alert, pannelli, utility ed Expert Advisor sviluppati a partire da regole definite con te o con il tuo professionista di riferimento.</p>
-          <a class="service-cta" href="#contatti">Parliamo della logica</a>
+          <div class="card-action-row"><button class="service-cta" type="button">Parliamo della logica</button><small>Apri dettagli</small></div>
         </article>
       </div>
       <p class="micro-note reveal">Trading Development = sviluppo software tecnico. Non comprende consulenza finanziaria né indicazioni operative di investimento.</p>
@@ -2144,6 +2408,10 @@ body::before{
           </div>
 
           <form class="contact-card" id="briefForm">
+            <div class="service-selected" id="serviceSelected">
+              <span>Servizio selezionato: <b id="serviceSelectedName"></b></span>
+              <button type="button" id="clearSelectedService" aria-label="Rimuovi selezione">×</button>
+            </div>
             <div class="form-grid">
               <label>Nome<input id="name" type="text" required placeholder="Il tuo nome"></label>
               <label>Email<input id="email" type="email" required placeholder="nome@email.it"></label>
@@ -2170,6 +2438,81 @@ body::before{
       </div>
     </div>
   </section>
+
+  <div class="service-modal" id="serviceModal" aria-hidden="true">
+    <div class="service-modal-backdrop" data-close-modal></div>
+    <div class="service-modal-shell" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="Chiudi" data-close-modal>×</button>
+      <div class="modal-grid">
+        <div class="modal-visual">
+          <div class="modal-copy-top">
+            <div class="modal-kicker" id="modalKicker">SERVIZIO</div>
+            <h3 id="modalTitle">Dettaglio servizio</h3>
+            <p class="modal-lead" id="modalLead"></p>
+            <div class="modal-status">
+              <span>Prima analisi gratuita</span>
+              <span>Progetto su misura</span>
+              <span>Scope definito prima dello sviluppo</span>
+            </div>
+          </div>
+
+          <div class="modal-diagram">
+            <div class="md-line l1"></div><div class="md-line l2"></div><div class="md-line l3"></div><div class="md-line l4"></div>
+            <div class="md-node n1" id="modalNode1">INPUT</div>
+            <div class="md-node n2" id="modalNode2">ANALISI</div>
+            <div class="md-node n3" id="modalNode3">BUILD</div>
+            <div class="md-node n4" id="modalNode4">OUTPUT</div>
+            <div class="md-core" id="modalCore">CORE</div>
+          </div>
+
+          <div class="modal-visual-bottom">
+            <small>LUKA TECH LAB / PROJECT SYSTEM</small>
+            <strong id="modalVisualStatus">READY TO ANALYZE</strong>
+          </div>
+        </div>
+
+        <div class="modal-details">
+          <div class="detail-block">
+            <span class="detail-label">Il problema che risolvo</span>
+            <h4 id="modalProblemTitle"></h4>
+            <p id="modalProblemText"></p>
+          </div>
+
+          <div class="detail-block">
+            <span class="detail-label">Cosa posso fare</span>
+            <div class="detail-list" id="modalDeliverables"></div>
+          </div>
+
+          <div class="detail-block">
+            <span class="detail-label">Come lavoro</span>
+            <div class="detail-flow">
+              <div class="detail-step"><small>01</small><strong>Analisi</strong></div>
+              <div class="detail-step"><small>02</small><strong>Scope</strong></div>
+              <div class="detail-step"><small>03</small><strong>Sviluppo</strong></div>
+              <div class="detail-step"><small>04</small><strong>Test & rilascio</strong></div>
+            </div>
+          </div>
+
+          <div class="detail-block">
+            <span class="detail-label">Impostazione progetto</span>
+            <div class="detail-meta">
+              <div class="meta-box"><small>Preventivo</small><strong>Su perimetro definito</strong></div>
+              <div class="meta-box"><small>Avvio</small><strong>Solo dopo approvazione</strong></div>
+              <div class="meta-box"><small>Riservatezza</small><strong>Materiale non pubblico</strong></div>
+              <div class="meta-box"><small>Pagamento</small><strong>Acconto / saldo configurabile</strong></div>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button class="btn" id="modalContactBtn" type="button">Richiedi il check-up gratuito</button>
+            <button class="btn secondary" type="button" data-close-modal>Continua a esplorare</button>
+          </div>
+          <div class="modal-note" id="modalNote"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <footer>
@@ -2659,6 +3002,177 @@ addEventListener('pointermove',requestImpact,{passive:true});
 addEventListener('scroll',requestImpact,{passive:true});
 addEventListener('resize',requestImpact,{passive:true});
 requestImpact();
+
+/* =========================================================
+   SERVICE EXPERIENCE V5
+   ========================================================= */
+const serviceData={
+  website:{
+    kicker:'01 / WEBSITE RESCUE',
+    title:'Il tuo sito è online. Ma sta lavorando davvero per te?',
+    lead:'Analizzo ciò che oggi crea attrito e intervengo in modo mirato su UX, struttura, mobile, performance, CTA e flusso di contatto.',
+    problemTitle:'Un sito può essere “bello” e comunque perdere opportunità.',
+    problemText:'Navigazione confusa, messaggio poco chiaro, mobile debole, tempi di caricamento, moduli poco efficaci o percorsi troppo lunghi possono ridurre la qualità delle richieste.',
+    deliverables:['Audit UX e struttura','Analisi mobile e responsive','CTA e percorso di conversione','Performance e priorità tecniche','Rework sezioni critiche','Automazioni collegate al sito'],
+    nodes:['UX','MOBILE','CTA','PERF'],
+    core:'WEB',
+    status:'WEBSITE DIAGNOSTIC ACTIVE',
+    form:'Il mio sito non è efficace',
+    name:'Website Rescue',
+    accent:'82,236,255',
+    accent2:'111,124,255',
+    note:'La prima analisi serve a capire se conviene ottimizzare l’esistente o riprogettare solo alcune parti.'
+  },
+  automation:{
+    kicker:'02 / AUTOMATION',
+    title:'Quanto lavoro stai facendo manualmente senza motivo?',
+    lead:'Ricostruisco il processo e individuo quali passaggi possono diventare automatici senza toglierti controllo.',
+    problemTitle:'Il costo nascosto spesso non è il software: è il tempo perso.',
+    problemText:'Copia-incolla, notifiche manuali, aggiornamenti ripetuti, gestione prenotazioni e passaggi tra strumenti separati possono essere collegati in un unico flusso.',
+    deliverables:['Mappatura del processo attuale','Webhook e API','Bot Telegram / notifiche','Email e calendario','Database e raccolta dati','Controlli ed error handling'],
+    nodes:['INPUT','RULES','API','OUTPUT'],
+    core:'AUTO',
+    status:'WORKFLOW ENGINE READY',
+    form:'Voglio automatizzare un processo',
+    name:'Automazioni',
+    accent:'82,236,255',
+    accent2:'183,92,255',
+    note:'L’automazione viene progettata solo dopo aver capito cosa deve succedere, quando e con quali eccezioni.'
+  },
+  software:{
+    kicker:'03 / CUSTOM SOFTWARE',
+    title:'Se il software standard non segue il tuo lavoro, costruiamo quello giusto.',
+    lead:'Dashboard, gestionali, aree clienti, calendari, ruoli, admin e strumenti interni sviluppati attorno al processo reale.',
+    problemTitle:'Non sempre esiste già il programma che serve.',
+    problemText:'Quando Excel, WhatsApp, plugin e strumenti separati iniziano a diventare un sistema fragile, può avere senso costruire un software dedicato.',
+    deliverables:['Dashboard e pannelli admin','Area riservata / portale clienti','Gestione ruoli e permessi','Calendari e prenotazioni','Database e workflow','Integrazioni esterne'],
+    nodes:['USER','DATA','ADMIN','APP'],
+    core:'APP',
+    status:'CUSTOM SYSTEM BLUEPRINT',
+    form:'Mi serve un software / web app su misura',
+    name:'Software su misura',
+    accent:'89,205,255',
+    accent2:'111,124,255',
+    note:'Il progetto parte da funzioni e priorità, non da un template predefinito.'
+  },
+  ai:{
+    kicker:'04 / AI INTEGRATION',
+    title:'L’AI deve lavorare dentro il processo, non essere solo una scritta sul sito.',
+    lead:'Valuto dove può davvero ridurre tempi, organizzare dati, assistere utenti o supportare attività ripetitive.',
+    problemTitle:'“Mettere l’AI” non è un obiettivo. Risolvere un problema sì.',
+    problemText:'L’integrazione parte da un caso d’uso concreto: documenti, richieste clienti, classificazione, generazione, estrazione dati o supporto operativo.',
+    deliverables:['Analisi del caso d’uso','Assistenti e workflow AI','Analisi documentale','Classificazione e routing','Generazione controllata','Collegamento API e database'],
+    nodes:['INPUT','AI','RULES','ACTION'],
+    core:'AI',
+    status:'AI WORKFLOW ONLINE',
+    form:"Voglio integrare l'AI",
+    name:'Integrazione AI',
+    accent:'82,236,255',
+    accent2:'183,92,255',
+    note:'L’AI viene integrata solo quando produce un vantaggio concreto e misurabile nel flusso.'
+  },
+  trading:{
+    kicker:'05 / TRADING DEVELOPMENT',
+    title:'Hai una logica TradingView o MT5 da trasformare in software?',
+    lead:'Traduco regole tecniche definite in indicatori, alert, utility, pannelli o Expert Advisor.',
+    problemTitle:'Una strategia descritta a parole non è ancora una specifica software.',
+    problemText:'Prima formalizziamo condizioni, input, output, gestione degli stati e casi limite; poi passiamo allo sviluppo Pine Script o MQL5.',
+    deliverables:['Indicatori Pine Script','Alert e condizioni personalizzate','Dashboard TradingView','Expert Advisor MQL5','Utility MT5','Test tecnico e debug'],
+    nodes:['RULES','SIGNAL','CODE','TEST'],
+    core:'DEV',
+    status:'TRADING DEV SPEC READY',
+    form:'Mi serve Pine Script / MQL5',
+    name:'Pine Script / MQL5',
+    accent:'82,236,255',
+    accent2:'183,92,255',
+    note:'Sviluppo software tecnico su specifiche. Non comprende consulenza finanziaria, segnali o indicazioni operative.'
+  }
+};
+
+const serviceModal=$('#serviceModal');
+const modalShell=serviceModal?.querySelector('.service-modal-shell');
+let activeService=null;
+
+function openServiceModal(key){
+  const d=serviceData[key];
+  if(!d||!serviceModal)return;
+  activeService=key;
+  modalShell.style.setProperty('--modal-accent',d.accent);
+  modalShell.style.setProperty('--modal-accent2',d.accent2);
+  $('#modalKicker').textContent=d.kicker;
+  $('#modalTitle').textContent=d.title;
+  $('#modalLead').textContent=d.lead;
+  $('#modalProblemTitle').textContent=d.problemTitle;
+  $('#modalProblemText').textContent=d.problemText;
+  $('#modalDeliverables').innerHTML=d.deliverables.map(x=>`<div>${x}</div>`).join('');
+  d.nodes.forEach((x,i)=>$('#modalNode'+(i+1)).textContent=x);
+  $('#modalCore').textContent=d.core;
+  $('#modalVisualStatus').textContent=d.status;
+  $('#modalNote').textContent=d.note;
+  serviceModal.classList.add('open');
+  serviceModal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>serviceModal.querySelector('.modal-close')?.focus(),100);
+}
+function closeServiceModal(){
+  if(!serviceModal)return;
+  serviceModal.classList.remove('open');
+  serviceModal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+$$('[data-close-modal]').forEach(el=>el.addEventListener('click',closeServiceModal));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&serviceModal?.classList.contains('open'))closeServiceModal()});
+
+$$('.service-card[data-service]').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(e.target.closest('a'))return;
+    openServiceModal(card.dataset.service);
+  });
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();openServiceModal(card.dataset.service)}
+  });
+});
+
+const serviceSelected=$('#serviceSelected');
+const serviceSelectedName=$('#serviceSelectedName');
+const clearSelectedService=$('#clearSelectedService');
+
+function selectServiceForContact(key){
+  const d=serviceData[key];
+  if(!d)return;
+  const sel=$('#type');
+  if(sel){
+    [...sel.options].forEach(o=>{if(o.textContent.trim()===d.form)o.selected=true});
+  }
+  if(serviceSelected&&serviceSelectedName){
+    serviceSelectedName.textContent=d.name;
+    serviceSelected.classList.add('visible');
+  }
+  closeServiceModal();
+  setTimeout(()=>{
+    document.querySelector('#contatti')?.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>$('#message')?.focus(),700);
+  },60);
+}
+$('#modalContactBtn')?.addEventListener('click',()=>activeService&&selectServiceForContact(activeService));
+clearSelectedService?.addEventListener('click',()=>{
+  serviceSelected?.classList.remove('visible');
+  if($('#type'))$('#type').selectedIndex=0;
+});
+
+/* enrich contact brief with selected service context */
+const originalBriefHandler=$('#briefForm');
+if(originalBriefHandler){
+  originalBriefHandler.addEventListener('submit',()=>{
+    if(activeService&&serviceSelected?.classList.contains('visible')){
+      const d=serviceData[activeService];
+      const msg=$('#message');
+      if(msg && !msg.dataset.servicePrefill){
+        msg.dataset.servicePrefill='1';
+      }
+    }
+  },{capture:true});
+}
 
 </script>
 </body>
