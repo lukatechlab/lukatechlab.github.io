@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Luka Tech Lab — software su misura, web app, automazioni, integrazioni AI, bot, API, Pine Script e MQL5.">
+<meta name="description" content="Luka Tech Lab analizza problemi digitali, ottimizza siti, automatizza processi e sviluppa software, web app, integrazioni AI, Pine Script e MQL5 su misura.">
 <meta name="theme-color" content="#03070d">
-<title>Luka Tech Lab — Digital Systems Studio</title>
+<title>Luka Tech Lab — Analisi, automazioni e software su misura</title>
 <style>
 :root{
   --bg:#03070d;
@@ -319,6 +319,58 @@ p{margin-top:0}
 .contact-grid{position:relative;z-index:2;display:grid;grid-template-columns:.9fr 1.1fr;gap:32px}.contact-copy p{color:var(--muted);font-size:14px}.contact-card{padding:24px;border:1px solid rgba(255,255,255,.075);border-radius:22px;background:rgba(4,10,16,.58);backdrop-filter:blur(14px)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:grid;gap:7px;color:#b7c5d1;font-size:10px;font-weight:760}input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:#06101a;color:#fff;padding:13px;outline:none;transition:.2s ease}input:focus,select:focus,textarea:focus{border-color:rgba(82,236,255,.44);box-shadow:0 0 0 3px rgba(82,236,255,.055)}textarea{resize:vertical}.form-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:3px}.form-note{font-size:9px;color:#6f8191}.success-box{display:none;margin-top:12px;padding:12px 13px;border-radius:12px;background:rgba(107,241,185,.07);border:1px solid rgba(107,241,185,.18);color:#aef7d5;font-size:10px}
 footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;font-size:10px}.footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}.footer strong{color:#fff}
 
+
+/* MARKETING / CONVERSION LAYER */
+.promo-chip{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;padding:8px 11px;border-radius:999px;border:1px solid rgba(107,241,185,.25);background:rgba(107,241,185,.055);color:#c7ffe7;font-size:9px;font-weight:850;letter-spacing:.11em;text-transform:uppercase;box-shadow:0 0 30px rgba(107,241,185,.06)}
+.promo-chip i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green);animation:blink 1.8s ease-in-out infinite}
+.hero-trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.hero-trust span{padding:7px 9px;border-radius:9px;border:1px solid rgba(255,255,255,.065);background:rgba(255,255,255,.018);font-size:9px;color:#8ea2b4}
+.offer-strip{position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.055);background:linear-gradient(90deg,rgba(107,241,185,.035),rgba(82,236,255,.04),rgba(89,124,255,.035))}
+.offer-strip::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.035),transparent 65%);animation:offerSweep 7s linear infinite}
+@keyframes offerSweep{from{transform:translateX(-70%)}to{transform:translateX(70%)}}
+.offer-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0}
+.offer-copy{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.offer-copy strong{font-size:13px}.offer-copy span{font-size:10px;color:#8fa4b6}
+.offer-badge{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid rgba(107,241,185,.25);background:rgba(107,241,185,.07);color:#baffdc;font-size:9px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+.diagnosis-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:22px;align-items:stretch}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.problem-card{position:relative;overflow:hidden;min-height:168px;text-align:left;padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.075);background:linear-gradient(160deg,rgba(10,21,34,.86),rgba(5,11,18,.84));cursor:pointer;transition:.22s ease}
+.problem-card::before{content:"";position:absolute;inset:0;background:radial-gradient(180px circle at var(--px,50%) var(--py,30%),rgba(82,236,255,.12),transparent 60%);opacity:0;transition:.2s}
+.problem-card:hover,.problem-card.active{transform:translateY(-3px);border-color:rgba(82,236,255,.28);box-shadow:0 22px 55px rgba(0,0,0,.20)}
+.problem-card:hover::before,.problem-card.active::before{opacity:1}
+.problem-card small{position:relative;z-index:2;display:block;color:#6cdff7;font-size:9px;letter-spacing:.13em;font-weight:850;margin-bottom:10px}
+.problem-card strong{position:relative;z-index:2;display:block;font-size:16px;line-height:1.18;margin-bottom:7px}
+.problem-card span{position:relative;z-index:2;display:block;color:#8295a6;font-size:10px;line-height:1.45}
+.diagnosis-console{position:relative;overflow:hidden;border:1px solid rgba(82,236,255,.16);border-radius:26px;background:linear-gradient(160deg,rgba(7,17,29,.94),rgba(4,10,17,.90));min-height:420px;padding:26px;box-shadow:var(--shadow)}
+.diagnosis-console::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 20px,rgba(82,236,255,.018) 21px,transparent 22px),radial-gradient(circle at 80% 10%,rgba(82,236,255,.10),transparent 28%);pointer-events:none}
+.diag-head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:15px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.06)}
+.diag-head span{font-size:9px;letter-spacing:.13em;color:#6f8496;text-transform:uppercase}.diag-head b{font-size:9px;color:#b4ffda}
+.diag-content{position:relative;z-index:2;padding-top:26px}.diag-label{font-size:9px;letter-spacing:.14em;color:#77dff3;text-transform:uppercase;font-weight:850}
+.diag-content h3{font-size:34px;margin:10px 0 12px}.diag-content p{color:#91a5b7;font-size:13px;max-width:620px}
+.diag-points{display:grid;gap:9px;margin:22px 0}.diag-points div{display:flex;gap:10px;align-items:flex-start;color:#c5d2dc;font-size:11px}
+.diag-points i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;flex:none;background:rgba(82,236,255,.07);border:1px solid rgba(82,236,255,.16);color:#8ff0ff;font-style:normal;font-size:9px}
+.diag-actions{display:flex;gap:10px;flex-wrap:wrap}
+.service-card .impact{display:inline-flex;align-items:center;gap:7px;margin:10px 0 2px;color:#b9f6ff;font-size:10px;font-weight:800}.service-card .impact::before{content:"→";color:var(--cyan)}
+.service-cta{position:relative;z-index:3;display:inline-flex;align-items:center;gap:7px;margin-top:20px;color:#d7faff;font-size:10px;font-weight:850}.service-cta::after{content:"↗";color:var(--cyan);transition:transform .2s}.service-cta:hover::after{transform:translate(2px,-2px)}
+.offer-box{position:relative;overflow:hidden;border:1px solid rgba(107,241,185,.20);border-radius:30px;background:linear-gradient(145deg,rgba(8,25,31,.90),rgba(6,12,20,.92));padding:34px;box-shadow:0 30px 90px rgba(0,0,0,.28)}
+.offer-box::before{content:"";position:absolute;right:-140px;top:-180px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(107,241,185,.13),transparent 67%)}
+.offer-box::after{content:"";position:absolute;left:-20%;right:-20%;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),#fff,var(--cyan),transparent);box-shadow:0 0 24px rgba(107,241,185,.35)}
+.offer-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center}.offer-grid h2{font-size:clamp(34px,4vw,56px)}.offer-grid p{color:#91a5b7;max-width:720px}
+.offer-list{display:grid;gap:10px;margin-top:20px}.offer-list div{display:flex;gap:10px;color:#c6d5df;font-size:11px}.offer-list b{color:var(--green)}
+.offer-panel{padding:22px;border:1px solid rgba(255,255,255,.08);border-radius:20px;background:rgba(4,12,18,.58);backdrop-filter:blur(12px)}
+.offer-panel small{display:block;font-size:9px;letter-spacing:.13em;color:#7d92a5;text-transform:uppercase}.offer-panel strong{display:block;font-size:24px;margin:7px 0 8px;color:#d5fff0}.offer-panel p{font-size:11px;margin-bottom:16px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.result-card{min-height:180px;padding:22px;border:1px solid rgba(255,255,255,.07);border-radius:20px;background:rgba(255,255,255,.018)}
+.result-card small{font-size:9px;letter-spacing:.13em;color:#6edff6;font-weight:850}.result-card h3{font-size:20px;margin:12px 0 8px}.result-card p{font-size:11px;color:#899cad;margin:0}
+.contact-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.contact-option{position:relative;padding:15px;border:1px solid rgba(255,255,255,.075);border-radius:15px;background:rgba(255,255,255,.02)}
+.contact-option.primary{border-color:rgba(107,241,185,.22);background:rgba(107,241,185,.035)}
+.contact-option small{display:block;font-size:8px;letter-spacing:.12em;color:#6f8395;text-transform:uppercase;margin-bottom:5px}.contact-option strong{display:block;font-size:12px}.contact-option span{display:block;font-size:9px;color:#8395a5;margin-top:4px}
+.contact-placeholder{display:inline-flex;margin-top:9px;padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.07);color:#8395a5;font-size:8px}
+.contact-offer{margin-top:18px;padding:14px;border-radius:14px;border:1px solid rgba(107,241,185,.15);background:rgba(107,241,185,.04);font-size:10px;color:#b9d8c8}.contact-offer b{color:#caffdf}
+.micro-note{font-size:9px;color:#738697;margin-top:10px}
+@media(max-width:1040px){.diagnosis-wrap,.offer-grid{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.offer-inner{align-items:flex-start;flex-direction:column}.problem-grid,.result-grid,.contact-options{grid-template-columns:1fr}.diagnosis-console{min-height:390px}.diag-content h3{font-size:28px}.offer-box{padding:24px 18px}}
+
 /* responsive */
 @media(max-width:1040px){
   .navlinks,.nav>.btn.small{display:none}.menu-toggle{display:grid}
@@ -355,19 +407,19 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
       <span class="brand-copy"><strong>LUKA TECH LAB</strong><span>SOFTWARE • AUTOMATION • AI</span></span>
     </a>
     <div class="navlinks">
-      <a href="#servizi">Servizi</a>
+      <a href="#diagnosi">Diagnosi</a>
+      <a href="#servizi">Soluzioni</a>
       <a href="#sistema">Sistema</a>
-      <a href="#riservatezza">Riservatezza</a>
       <a href="#metodo">Metodo</a>
       <a href="#contatti">Contatti</a>
     </div>
-    <a class="btn small" href="#contatti">Parliamo del progetto</a>
+    <a class="btn small" href="#contatti">Analisi gratuita</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#servizi">Servizi</a>
+    <a href="#diagnosi">Diagnosi</a>
+    <a href="#servizi">Soluzioni</a>
     <a href="#sistema">Sistema</a>
-    <a href="#riservatezza">Riservatezza</a>
     <a href="#metodo">Metodo</a>
     <a href="#contatti">Contatti</a>
   </div>
@@ -377,20 +429,24 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy reveal">
+        <div class="promo-chip"><i></i> Prima analisi digitale gratuita</div>
         <div class="eyebrow">Digital Systems Studio</div>
-        <h1>Dal problema reale a un <span class="grad">sistema digitale che lavora per te.</span></h1>
+        <h1>Trovo dove il tuo sistema digitale <span class="grad">si blocca.</span><br> Poi costruisco la soluzione.</h1>
         <p>
-          Progetto web app, software personalizzato, automazioni, bot e integrazioni AI.
-          Quando serve, sviluppo anche soluzioni tecniche in Pine Script e MQL5 per TradingView e MetaTrader 5.
+          Sito poco efficace, operazioni manuali, strumenti scollegati, software che manca o una logica tecnica da trasformare in codice:
+          parto dal problema, individuo il punto critico e progetto un intervento concreto.
         </p>
         <div class="hero-actions">
-          <a class="btn" href="#contatti">Richiedi una valutazione</a>
-          <a class="btn secondary" href="#sistema">Esplora il sistema</a>
+          <a class="btn" href="#diagnosi">Fai il check-up gratuito</a>
+          <a class="btn secondary" href="#servizi">Vedi cosa posso risolvere</a>
         </div>
         <div class="hero-meta">
-          <span><i class="status-dot"></i> Soluzioni su misura</span>
-          <span><i class="status-dot"></i> Materiale cliente riservato</span>
-          <span><i class="status-dot"></i> Supporto post-lancio</span>
+          <span><i class="status-dot"></i> Prima analisi senza impegno</span>
+          <span><i class="status-dot"></i> Progetto su misura</span>
+          <span><i class="status-dot"></i> Riservatezza operativa</span>
+        </div>
+        <div class="hero-trust">
+          <span>Web & UX</span><span>Automazioni</span><span>Software</span><span>AI</span><span>Pine / MQL5</span>
         </div>
         <div class="hero-pulsebar"></div>
       </div>
@@ -410,21 +466,89 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
         </div>
         <div class="hero-side-rail"><i></i><i></i><i></i><i></i></div>
         <div class="stage-badge">
-          <small>CONCEPT</small>
-          <strong>Un sistema vivo, non una pagina statica.</strong>
-          <p>Interfaccia, automazioni, dati e AI collegati in un unico ecosistema digitale.</p>
+          <small>APPROCCIO</small>
+          <strong>Prima capisco il problema. Poi sviluppo.</strong>
+          <p>Analisi, priorità e soluzione tecnica vengono progettate come un unico percorso.</p>
         </div>
       </div>
     </div>
     <div class="scroll-cue"><i></i> scorri per esplorare</div>
   </section>
 
-  <section class="proof">
-    <div class="container proof-grid">
-      <div class="proof-item"><strong>Web app & portali</strong><span>Dashboard, aree riservate, booking, database.</span></div>
-      <div class="proof-item"><strong>Automazioni & bot</strong><span>Workflow, notifiche, API, Telegram, webhook.</span></div>
-      <div class="proof-item"><strong>AI integrata</strong><span>Assistenti, documenti, classificazione, processi.</span></div>
-      <div class="proof-item"><strong>Trading development</strong><span>Pine Script, MQL5, utility e integrazioni.</span></div>
+  <section class="offer-strip">
+    <div class="container offer-inner">
+      <div class="offer-copy">
+        <span class="offer-badge">Promo attiva</span>
+        <strong>Primo check-up digitale gratuito</strong>
+        <span>Mi descrivi il problema, individuo le aree critiche e ti indico la strada più sensata prima di parlare di sviluppo.</span>
+      </div>
+      <a class="btn secondary small" href="#contatti">Richiedi il check-up</a>
+    </div>
+  </section>
+
+  <section class="section" id="diagnosi">
+    <div class="section-rule"></div>
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Diagnosi digitale</div>
+          <h2>Dimmi cosa non funziona. <span class="grad">Ti mostro dove posso intervenire.</span></h2>
+        </div>
+        <p>Il cliente non deve sapere già quale tecnologia serve. Deve riconoscere il problema. Da lì costruiamo il percorso tecnico.</p>
+      </div>
+
+      <div class="diagnosis-wrap">
+        <div class="problem-grid reveal">
+          <button class="problem-card active" data-key="site">
+            <small>01 • SITO WEB</small>
+            <strong>Il sito non convince o non porta richieste?</strong>
+            <span>Analizzo percorso utente, chiarezza, CTA, mobile, prestazioni e struttura.</span>
+          </button>
+          <button class="problem-card" data-key="manual">
+            <small>02 • TEMPO PERSO</small>
+            <strong>Fai ancora troppe operazioni a mano?</strong>
+            <span>Individuo i passaggi ripetitivi e li trasformo in workflow automatici.</span>
+          </button>
+          <button class="problem-card" data-key="tools">
+            <small>03 • STRUMENTI SCOLLEGATI</small>
+            <strong>Usi troppi strumenti che non comunicano?</strong>
+            <span>Collego sito, API, bot, database, calendario e servizi esterni.</span>
+          </button>
+          <button class="problem-card" data-key="custom">
+            <small>04 • SOFTWARE MANCANTE</small>
+            <strong>Ti serve una funzione che i software standard non hanno?</strong>
+            <span>Progetto una web app o uno strumento costruito sul tuo flusso reale.</span>
+          </button>
+          <button class="problem-card" data-key="ai">
+            <small>05 • AI</small>
+            <strong>Vuoi usare l'AI, ma non sai dove abbia davvero senso?</strong>
+            <span>Valuto il processo e integro l'AI solo dove può produrre valore concreto.</span>
+          </button>
+          <button class="problem-card" data-key="trading">
+            <small>06 • TRADING DEV</small>
+            <strong>Hai una logica da trasformare in Pine Script o MQL5?</strong>
+            <span>Traduco specifiche definite in codice, alert, indicatori, utility o Expert Advisor.</span>
+          </button>
+        </div>
+
+        <div class="diagnosis-console reveal">
+          <div class="diag-head"><span>LUKA TECH LAB / DIGITAL CHECK</span><b>ANALISI INIZIALE GRATUITA</b></div>
+          <div class="diag-content">
+            <div class="diag-label" id="diagLabel">Sito web / UX / conversione</div>
+            <h3 id="diagTitle">Troviamo il punto critico del tuo sito.</h3>
+            <p id="diagText">Analizzo struttura, messaggio, percorso dell'utente, call to action, mobile e punti di attrito. L'obiettivo è capire cosa sta limitando il sito prima di rifarlo.</p>
+            <div class="diag-points" id="diagPoints">
+              <div><i>1</i> Individuazione delle criticità principali</div>
+              <div><i>2</i> Priorità degli interventi</div>
+              <div><i>3</i> Proposta tecnica coerente con l'obiettivo</div>
+            </div>
+            <div class="diag-actions">
+              <a class="btn" href="#contatti">Richiedi analisi gratuita</a>
+              <a class="btn secondary" href="#servizi">Vedi le soluzioni</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -433,54 +557,88 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
     <div class="container">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow">Cosa costruisco</div>
-          <h2>Non vendo tecnologia generica. <span class="grad">Costruisco ciò che serve.</span></h2>
+          <div class="eyebrow">Soluzioni concrete</div>
+          <h2>Non ti vendo “tecnologia”. <span class="grad">Intervengo su problemi reali.</span></h2>
         </div>
-        <p>Ogni progetto parte dal problema reale: utenti, passaggi, dati, strumenti già utilizzati e risultato da ottenere.</p>
+        <p>Ogni servizio è presentato dal punto di vista del risultato: cosa non funziona oggi, cosa posso costruire e come può migliorare il processo.</p>
       </div>
 
       <div class="bento">
         <article class="service-card large reveal tilt-card">
           <div class="card-circuit"></div>
-          <div class="num">01 • WEB SYSTEMS</div>
-          <h3>Web app, portali e aree riservate</h3>
-          <p>Esperienze complete con autenticazione, ruoli, dashboard, prenotazioni, contenuti, database e pannelli amministrativi.</p>
-          <div class="service-list"><span class="chip">Dashboard</span><span class="chip">Area cliente</span><span class="chip">Booking</span><span class="chip">Admin</span></div>
+          <div class="num">01 • WEBSITE RESCUE</div>
+          <h3>Il tuo sito è bello, ma non lavora davvero?</h3>
+          <div class="impact">Analisi + riprogettazione mirata</div>
+          <p>Individuo i punti deboli di struttura, UX, mobile, velocità, contenuti e percorso di contatto. Poi intervengo solo dove serve, senza rifare tutto alla cieca.</p>
+          <div class="service-list"><span class="chip">UX</span><span class="chip">CTA</span><span class="chip">Mobile</span><span class="chip">Performance</span></div>
+          <a class="service-cta" href="#contatti">Analizza il mio sito</a>
           <div class="card-graphic"><div class="mini-window"></div><div class="mini-lines"><i></i><i></i><i></i></div></div>
         </article>
 
         <article class="service-card medium reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">02 • AUTOMATION</div>
-          <h3>Automazioni, bot e integrazioni</h3>
-          <p>Trasformo procedure ripetitive in flussi digitali controllabili tramite API, webhook, bot e logiche backend.</p>
-          <div class="service-list"><span class="chip">Telegram</span><span class="chip">API</span><span class="chip">Webhook</span></div>
-          <div class="card-graphic"><div class="node-graphic"><i></i><i></i><i></i></div></div>
+          <h3>Stai ancora facendo a mano ciò che può fare un sistema?</h3>
+          <div class="impact">Riduzione di passaggi ripetitivi</div>
+          <p>Prenotazioni, notifiche, email, Telegram, raccolta dati, aggiornamenti e procedure interne possono essere trasformati in flussi automatici e controllabili.</p>
+          <div class="service-list"><span class="chip">Bot</span><span class="chip">Webhook</span><span class="chip">API</span><span class="chip">Workflow</span></div>
+          <a class="service-cta" href="#contatti">Scopri cosa posso automatizzare</a>
         </article>
 
         <article class="service-card third reveal tilt-card">
           <div class="card-circuit"></div>
-          <div class="num">03 • AI INTEGRATION</div>
-          <h3>AI dentro il processo</h3>
-          <p>Assistenti, analisi documentale, classificazione e automazioni intelligenti integrate direttamente nel software.</p>
-          <div class="service-list"><span class="chip">Assistenti AI</span><span class="chip">Documenti</span><span class="chip">Dati</span></div>
+          <div class="num">03 • CUSTOM SOFTWARE</div>
+          <h3>Ti serve uno strumento che non esiste?</h3>
+          <div class="impact">Software costruito sul tuo flusso</div>
+          <p>Dashboard, portali clienti, aree riservate, gestionali, calendari, ruoli e pannelli amministrativi progettati attorno al modo in cui lavori davvero.</p>
+          <a class="service-cta" href="#contatti">Raccontami l'idea</a>
         </article>
 
         <article class="service-card third reveal tilt-card">
           <div class="card-circuit"></div>
-          <div class="num">04 • SOFTWARE CUSTOM</div>
-          <h3>Software su misura</h3>
-          <p>Strumenti costruiti attorno al flusso operativo reale, con logiche proprietarie e interfacce dedicate.</p>
-          <div class="service-list"><span class="chip">Backend</span><span class="chip">Database</span><span class="chip">Ruoli</span></div>
+          <div class="num">04 • AI INTEGRATION</div>
+          <h3>Vuoi integrare l'AI senza aggiungere un altro giocattolo?</h3>
+          <div class="impact">AI dentro un processo reale</div>
+          <p>Assistenti, analisi documentale, classificazione, generazione e automazioni AI inserite dove migliorano davvero il lavoro.</p>
+          <a class="service-cta" href="#contatti">Valutiamo l'integrazione</a>
         </article>
 
         <article class="service-card third reveal tilt-card">
           <div class="card-circuit"></div>
           <div class="num">05 • TRADING DEVELOPMENT</div>
-          <h3>Pine Script & MQL5</h3>
-          <p>Sviluppo tecnico per TradingView e MetaTrader 5: indicatori, Expert Advisor, utility, alert e integrazioni.</p>
-          <div class="service-list"><span class="chip">Pine v6</span><span class="chip">MQL5</span><span class="chip">MT5</span></div>
+          <h3>Hai una logica TradingView o MT5 da trasformare in codice?</h3>
+          <div class="impact">Pine Script / MQL5 su specifiche</div>
+          <p>Indicatori, alert, pannelli, utility ed Expert Advisor sviluppati a partire da regole definite con te o con il tuo professionista di riferimento.</p>
+          <a class="service-cta" href="#contatti">Parliamo della logica</a>
         </article>
+      </div>
+      <p class="micro-note reveal">Trading Development = sviluppo software tecnico. Non comprende consulenza finanziaria né indicazioni operative di investimento.</p>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-rule"></div>
+    <div class="container">
+      <div class="offer-box reveal">
+        <div class="offer-grid">
+          <div>
+            <div class="promo-chip"><i></i> Primo intervento: analisi gratuita</div>
+            <h2>Prima di spendere nello sviluppo, <span class="grad">capisci cosa vale la pena sistemare.</span></h2>
+            <p>Mi descrivi il problema e facciamo una prima diagnosi: cosa sta bloccando il processo, quali interventi hanno priorità e quale strada tecnica ha più senso.</p>
+            <div class="offer-list">
+              <div><b>✓</b> Primo confronto senza impegno</div>
+              <div><b>✓</b> Individuazione delle criticità principali</div>
+              <div><b>✓</b> Indicazione dei prossimi passi</div>
+              <div><b>✓</b> Preventivo solo dopo aver definito il perimetro</div>
+            </div>
+          </div>
+          <div class="offer-panel">
+            <small>CHECK-UP DIGITALE</small>
+            <strong>€0 per la prima analisi</strong>
+            <p>Nessun acquisto automatico. Prima capiamo se posso davvero aiutarti e in quale modo.</p>
+            <a class="btn" href="#contatti">Richiedi il check-up</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -491,9 +649,9 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
       <div class="section-head reveal">
         <div>
           <div class="eyebrow">System Builder</div>
-          <h2>Una soluzione non è una pagina. <span class="grad">È un sistema di parti che collaborano.</span></h2>
+          <h2>Il problema può sembrare semplice. <span class="grad">La soluzione deve essere progettata bene.</span></h2>
         </div>
-        <p>Seleziona un modulo: il diagramma mostra come può entrare dentro una soluzione completa.</p>
+        <p>Seleziona un modulo: vedi come può entrare in un sistema completo senza creare nuovi passaggi inutili.</p>
       </div>
 
       <div class="builder-wrap">
@@ -532,10 +690,10 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
     <div class="container">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow">Dal problema al sistema</div>
-          <h2>Il valore nasce <span class="grad">prima del codice.</span></h2>
+          <div class="eyebrow">Come lavoriamo</div>
+          <h2>Prima diagnosi. Poi roadmap. <span class="grad">Solo dopo sviluppo.</span></h2>
         </div>
-        <p>Analisi, struttura, sviluppo e controllo vengono trattati come parti dello stesso progetto.</p>
+        <p>Un percorso semplice: capiamo il problema, definiamo priorità e perimetro, poi passiamo allo sviluppo con obiettivi chiari.</p>
       </div>
 
       <div class="arch-flow">
@@ -544,6 +702,27 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
         <div class="flow-step reveal" data-step="03"><i></i><h3>Sviluppo</h3><p>Milestone chiare, codice e interfacce coerenti.</p></div>
         <div class="flow-step reveal" data-step="04"><i></i><h3>Test</h3><p>Controlli reali prima della pubblicazione.</p></div>
         <div class="flow-step reveal" data-step="05"><h3>Consegna</h3><p>Rilascio, documentazione essenziale e supporto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-rule"></div>
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Obiettivi dell'intervento</div>
+          <h2>Il risultato non è “avere più tecnologia”. <span class="grad">È lavorare meglio.</span></h2>
+        </div>
+        <p>Ogni progetto deve avere un motivo concreto: ridurre attrito, eliminare lavoro manuale, centralizzare dati o creare una funzione che oggi manca.</p>
+      </div>
+      <div class="result-grid">
+        <div class="result-card reveal"><small>01</small><h3>Meno passaggi manuali</h3><p>Automatizzare attività ripetitive e ridurre errori operativi.</p></div>
+        <div class="result-card reveal"><small>02</small><h3>Più chiarezza per il cliente</h3><p>Rendere il percorso web più semplice, leggibile e orientato all'azione.</p></div>
+        <div class="result-card reveal"><small>03</small><h3>Strumenti collegati</h3><p>Far comunicare servizi, API, database, bot e calendario.</p></div>
+        <div class="result-card reveal"><small>04</small><h3>Software che segue il processo</h3><p>Costruire lo strumento attorno al lavoro reale, non il contrario.</p></div>
+        <div class="result-card reveal"><small>05</small><h3>AI utile, non decorativa</h3><p>Usare l'AI soltanto dove può migliorare tempi, gestione o analisi.</p></div>
+        <div class="result-card reveal"><small>06</small><h3>Controllo e riservatezza</h3><p>Progettare accessi, ruoli e flussi senza esporre materiale sensibile.</p></div>
       </div>
     </div>
   </section>
@@ -579,18 +758,18 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
     <div class="container">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow">Metodo di lavoro</div>
-          <h2>Un percorso leggibile, <span class="grad">senza sviluppo alla cieca.</span></h2>
+          <div class="eyebrow">Percorso cliente</div>
+          <h2>Da “ho un problema” a <span class="grad">“questa è la soluzione”.</span></h2>
         </div>
-        <p>Ogni fase ha un obiettivo verificabile e riduce il rischio di revisioni inutili.</p>
+        <p>Il cliente deve sapere sempre cosa stiamo facendo, perché lo stiamo facendo e quale risultato stiamo cercando.</p>
       </div>
 
       <div class="process">
-        <div class="process-card reveal"><small>01</small><h3>Analisi</h3><p>Capire il problema prima di scegliere la tecnologia.</p></div>
-        <div class="process-card reveal"><small>02</small><h3>Scope</h3><p>Definire cosa è incluso, escluso e prioritario.</p></div>
-        <div class="process-card reveal"><small>03</small><h3>Progetto</h3><p>Disegnare flussi, ruoli, dati e componenti.</p></div>
-        <div class="process-card reveal"><small>04</small><h3>Build</h3><p>Sviluppo, test, demo e correzioni.</p></div>
-        <div class="process-card reveal"><small>05</small><h3>Supporto</h3><p>Rilascio e continuità dopo la consegna.</p></div>
+        <div class="process-card reveal"><small>01</small><h3>Contatto</h3><p>Mi racconti il problema, anche senza conoscere la soluzione tecnica.</p></div>
+        <div class="process-card reveal"><small>02</small><h3>Check-up gratuito</h3><p>Identifico criticità, priorità e fattibilità dell'intervento.</p></div>
+        <div class="process-card reveal"><small>03</small><h3>Roadmap</h3><p>Definiamo soluzione, perimetro, tempi e preventivo.</p></div>
+        <div class="process-card reveal"><small>04</small><h3>Sviluppo</h3><p>Costruzione, test, demo e correzioni su obiettivi concordati.</p></div>
+        <div class="process-card reveal"><small>05</small><h3>Consegna</h3><p>Rilascio, controllo finale e supporto concordato.</p></div>
       </div>
     </div>
   </section>
@@ -606,10 +785,12 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
         <p>Il progetto cambia, il metodo no: perimetro, obiettivi e responsabilità devono essere comprensibili prima di partire.</p>
       </div>
       <div class="faq reveal">
-        <details><summary>Quanto costa un progetto?</summary><p>Dipende da funzioni, integrazioni, tempi, complessità tecnica e supporto richiesto. Dopo l'analisi viene definito un perimetro chiaro e un preventivo.</p></details>
-        <details><summary>Posso richiedere una singola funzione?</summary><p>Sì. È possibile sviluppare una singola automazione, un bot, una dashboard, una API, un indicatore Pine o un modulo MQL5.</p></details>
-        <details><summary>Posso vedere lavori precedenti?</summary><p>Il materiale riservato non viene pubblicato. Quando consentito, dopo il primo contatto possono essere usate demo, prototipi o case study anonimizzati.</p></details>
-        <details><summary>Lo sviluppo trading è consulenza finanziaria?</summary><p>No. La parte Trading Development riguarda esclusivamente sviluppo software tecnico: Pine Script, MQL5, Expert Advisor, utility e integrazioni.</p></details>
+        <details><summary>La prima analisi è davvero gratuita?</summary><p>Sì: il primo check-up serve a capire il problema, le priorità e se ha senso procedere. Lo sviluppo viene eventualmente quotato dopo aver definito il perimetro.</p></details>
+        <details><summary>Devo sapere già cosa mi serve?</summary><p>No. Puoi partire dal problema: un sito che non funziona come vorresti, attività manuali, strumenti scollegati o una funzione che manca.</p></details>
+        <details><summary>Puoi intervenire su un sito già esistente?</summary><p>Sì. L'intervento può partire da analisi, correzione di punti critici, ottimizzazione del percorso utente o sviluppo di nuove funzioni senza necessariamente rifare tutto.</p></details>
+        <details><summary>Puoi automatizzare processi già esistenti?</summary><p>Sì. Prima ricostruisco il flusso attuale, poi valuto cosa può essere automatizzato in modo affidabile tramite API, webhook, bot, database o integrazioni.</p></details>
+        <details><summary>Posso richiedere Pine Script o MQL5?</summary><p>Sì, come sviluppo software tecnico su specifiche definite. Non comprende consulenza finanziaria, segnali o indicazioni operative.</p></details>
+        <details><summary>Posso vedere lavori precedenti?</summary><p>Il materiale riservato non viene pubblicato. Quando possibile, dopo il primo contatto possono essere mostrate demo, prototipi o case study anonimizzati.</p></details>
       </div>
     </div>
   </section>
@@ -620,32 +801,57 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
       <div class="contact-wrap reveal">
         <div class="contact-grid">
           <div class="contact-copy">
-            <div class="eyebrow">Parliamo del progetto</div>
-            <h2>Descrivimi il problema. <span class="grad">Partiamo da quello.</span></h2>
-            <p>Non devi conoscere già la soluzione tecnica. Basta spiegare cosa vuoi ottenere, come lavori oggi e dove il processo è lento, manuale o frammentato.</p>
+            <div class="promo-chip"><i></i> Prima analisi gratuita</div>
+            <div class="eyebrow">Iniziamo dal problema</div>
+            <h2>Raccontami cosa ti sta facendo <span class="grad">perdere tempo, clienti o controllo.</span></h2>
+            <p>Non serve un brief tecnico perfetto. Mi basta capire cosa succede oggi e cosa vorresti ottenere. Da lì posso dirti se ha senso intervenire e in quale direzione.</p>
+
+            <div class="contact-options">
+              <div class="contact-option primary">
+                <small>Canale consigliato</small>
+                <strong>Prenota una call</strong>
+                <span>Per il check-up iniziale e la diagnosi del problema.</span>
+                <span class="contact-placeholder">Calendario da collegare</span>
+              </div>
+              <div class="contact-option">
+                <small>Contatto rapido</small>
+                <strong>WhatsApp</strong>
+                <span>Per una prima richiesta o per inviarmi materiale.</span>
+                <span class="contact-placeholder">Numero da collegare</span>
+              </div>
+              <div class="contact-option">
+                <small>Contatto formale</small>
+                <strong>Email</strong>
+                <span>Per brief, documenti e richieste strutturate.</span>
+                <span class="contact-placeholder">Email da collegare</span>
+              </div>
+            </div>
+
+            <div class="contact-offer"><b>Promo attiva:</b> il primo check-up digitale è gratuito e senza impegno. Prima capiamo se posso realmente aiutarti; poi, se ha senso, definiamo il progetto.</div>
           </div>
+
           <form class="contact-card" id="briefForm">
             <div class="form-grid">
               <label>Nome<input id="name" type="text" required placeholder="Il tuo nome"></label>
               <label>Email<input id="email" type="email" required placeholder="nome@email.it"></label>
             </div>
-            <label>Tipo di progetto
+            <label>Qual è il problema principale?
               <select id="type">
-                <option>Web app / sito evoluto</option>
-                <option>Software su misura</option>
-                <option>Automazione / bot</option>
-                <option>Integrazione AI</option>
-                <option>Pine Script / MQL5</option>
-                <option>Valutazione tecnica</option>
-                <option>Altro</option>
+                <option>Il mio sito non è efficace</option>
+                <option>Voglio automatizzare un processo</option>
+                <option>Mi serve un software / web app su misura</option>
+                <option>Voglio collegare strumenti diversi</option>
+                <option>Voglio integrare l'AI</option>
+                <option>Mi serve Pine Script / MQL5</option>
+                <option>Non lo so ancora: voglio una valutazione</option>
               </select>
             </label>
-            <label>Problema o obiettivo<textarea id="message" rows="6" required placeholder="Esempio: oggi gestiamo tutto manualmente e vogliamo centralizzare il processo..."></textarea></label>
+            <label>Descrivimi cosa succede oggi<textarea id="message" rows="6" required placeholder="Esempio: riceviamo richieste dal sito, poi copiamo tutto a mano su WhatsApp e calendario..."></textarea></label>
             <div class="form-actions">
-              <button class="btn" type="submit">Prepara il briefing</button>
-              <span class="form-note">Il sito non invia ancora dati a un server.</span>
+              <button class="btn" type="submit">Prepara la richiesta</button>
+              <span class="form-note">La richiesta viene preparata sul dispositivo; collegheremo calendario, WhatsApp ed email nel prossimo passaggio.</span>
             </div>
-            <div class="success-box" id="successBox">Briefing preparato e copiato negli appunti. Puoi incollarlo in email o chat.</div>
+            <div class="success-box" id="successBox">Richiesta preparata e copiata negli appunti. Nel prossimo passaggio collegheremo l'invio diretto.</div>
           </form>
         </div>
       </div>
@@ -655,7 +861,7 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
 
 <footer>
   <div class="container footer">
-    <div><strong>LUKA TECH LAB</strong> — Digital Systems Studio</div>
+    <div><strong>LUKA TECH LAB</strong> — Analisi, automazioni & software su misura</div>
     <div>Soluzioni digitali su misura • Italia / remoto</div>
     <div>© 2026 Luka Tech Lab</div>
   </div>
@@ -874,6 +1080,63 @@ function drawHero(){
   requestAnimationFrame(drawHero);
 }
 resizeHero();drawHero();addEventListener('resize',resizeHero);
+
+
+/* DIAGNOSI INTERATTIVA */
+const diagnosisData={
+  site:{
+    label:'Sito web / UX / conversione',
+    title:'Troviamo il punto critico del tuo sito.',
+    text:"Analizzo struttura, messaggio, percorso dell'utente, call to action, mobile e punti di attrito. L'obiettivo è capire cosa sta limitando il sito prima di rifarlo.",
+    points:['Individuazione delle criticità principali','Priorità degli interventi','Proposta tecnica coerente con l’obiettivo']
+  },
+  manual:{
+    label:'Automazione / processi',
+    title:'Trasformiamo attività ripetitive in un flusso automatico.',
+    text:'Ricostruiamo il processo attuale e individuiamo i passaggi che possono essere automatizzati senza perdere controllo.',
+    points:['Mappatura del flusso attuale','Individuazione dei passaggi automatizzabili','Progettazione di bot, webhook, API o workflow']
+  },
+  tools:{
+    label:'Integrazioni / sistemi',
+    title:'Facciamo comunicare strumenti che oggi lavorano separati.',
+    text:'Sito, calendario, bot, database, API e servizi esterni possono essere collegati in un unico flusso più ordinato.',
+    points:['Analisi degli strumenti esistenti','Definizione dei dati da scambiare','Integrazione e controllo degli errori']
+  },
+  custom:{
+    label:'Software su misura',
+    title:'Costruiamo la funzione che oggi ti manca.',
+    text:'Se i software standard non seguono il tuo processo, progetto uno strumento dedicato: web app, dashboard, portale, area riservata o gestionale.',
+    points:['Funzioni necessarie e priorità','Ruoli, dati e flussi','Prototipo, sviluppo e test']
+  },
+  ai:{
+    label:'AI integration',
+    title:'Inseriamo l’AI dove può davvero produrre valore.',
+    text:'Valuto dove l’AI può ridurre tempi, classificare richieste, analizzare documenti o supportare un workflow esistente.',
+    points:['Scelta del caso d’uso','Definizione dei dati e dei limiti','Integrazione nel processo reale']
+  },
+  trading:{
+    label:'Trading development',
+    title:'Trasformiamo una logica definita in Pine Script o MQL5.',
+    text:'Sviluppo indicatori, alert, utility, pannelli o Expert Advisor a partire da specifiche tecniche concordate.',
+    points:['Formalizzazione delle regole','Sviluppo e gestione dei casi limite','Test tecnico e consegna del codice']
+  }
+};
+$$('.problem-card').forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--px',`${((e.clientX-r.left)/r.width)*100}%`);
+    card.style.setProperty('--py',`${((e.clientY-r.top)/r.height)*100}%`);
+  });
+  card.addEventListener('click',()=>{
+    $$('.problem-card').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    const d=diagnosisData[card.dataset.key];
+    $('#diagLabel').textContent=d.label;
+    $('#diagTitle').textContent=d.title;
+    $('#diagText').textContent=d.text;
+    $('#diagPoints').innerHTML=d.points.map((p,i)=>`<div><i>${i+1}</i>${p}</div>`).join('');
+  });
+});
 
 /* briefing */
 $('#briefForm').addEventListener('submit',async e=>{
