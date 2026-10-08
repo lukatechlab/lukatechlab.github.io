@@ -27,7 +27,7 @@
   --radius:26px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{
   margin:0;
   min-height:100%;
@@ -2900,6 +2900,49 @@ body::before{
   .project-feature-grid{grid-template-columns:1fr}
 }
 
+
+/* =========================================================
+   V9.1 — STABILITY / NAVIGATION HOTFIX
+   ========================================================= */
+section[id]{scroll-margin-top:86px}
+
+/* Off-screen scenes no longer consume continuous animation/compositing work. */
+.fx-section:not(.fx-inview) .fx-scene,
+.fx-section:not(.fx-inview) .fx-scene::before,
+.fx-section:not(.fx-inview) .fx-scene::after,
+.fx-section:not(.fx-inview) .fx-scene *,
+.fx-section:not(.fx-inview) .impact-art,
+.fx-section:not(.fx-inview) .impact-art::before,
+.fx-section:not(.fx-inview) .impact-art::after,
+.fx-section:not(.fx-inview) .impact-art *{
+  animation-play-state:paused !important;
+}
+
+/* Keep the contact section ready and stable when reached by an anchor jump. */
+#contatti{
+  contain:layout style;
+}
+#contatti .contact-wrap{
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* Reduce expensive backdrop compositing on phones without changing the visual design. */
+@media(max-width:680px){
+  .contact-wrap,
+  .diagnosis-console,
+  .service-card,
+  .builder-stage,
+  .offer-box{
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+  }
+  .site-header.scrolled{
+    -webkit-backdrop-filter:blur(10px) !important;
+    backdrop-filter:blur(10px) !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -3630,12 +3673,36 @@ const menuToggle=$('#menuToggle'),mobileMenu=$('#mobileMenu');
 menuToggle.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
 $$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
 
+/* STABILITY HOTFIX — safe internal navigation */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');
+  if(!a)return;
+  const href=a.getAttribute('href');
+  if(!href || href==='#')return;
+  const target=document.querySelector(href);
+  if(!target)return;
+
+  e.preventDefault();
+  mobileMenu?.classList.remove('open');
+
+  /* Make reveal content visible before a direct jump, avoiding blank sections. */
+  if(target.classList.contains('reveal'))target.classList.add('visible');
+  target.querySelectorAll?.('.reveal').forEach(el=>el.classList.add('visible'));
+
+  const distance=Math.abs(target.getBoundingClientRect().top);
+  const longJump=distance>innerHeight*1.25;
+  const behavior=(innerWidth<=900 || longJump)?'auto':'smooth';
+
+  target.scrollIntoView({behavior,block:'start'});
+  try{history.pushState(null,'',href)}catch(_){}
+});
+
 /* reveal */
 const revealObserver=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){e.target.classList.add('visible');revealObserver.unobserve(e.target)}
   });
-},{threshold:.12});
+},{threshold:.04,rootMargin:'100px 0px 100px 0px'});
 $$('.reveal').forEach(el=>revealObserver.observe(el));
 
 /* cursor / tilt */
@@ -3666,7 +3733,18 @@ function updateWorldPointer(e){
   worldTX=nx*-22;worldTY=ny*-14;
 }
 addEventListener('pointermove',updateWorldPointer,{passive:true});
+let worldActive=true;
+const heroSection=$('.hero');
+if(heroSection){
+  new IntersectionObserver(entries=>{
+    worldActive=entries[0]?.isIntersecting ?? true;
+  },{threshold:0,rootMargin:'120px 0px'}).observe(heroSection);
+}
 function animateWorld(){
+  if(!worldActive || document.hidden){
+    setTimeout(()=>requestAnimationFrame(animateWorld),180);
+    return;
+  }
   worldX+=(worldTX-worldX)*.045;worldY+=(worldTY-worldY)*.045;
   if(heroPhotoBg){
     const scrollShift=Math.min(scrollY*.035,32);
@@ -3691,7 +3769,7 @@ $$('.builder-option').forEach(btn=>{
 
 /* GLOBAL CIRCUIT FIELD */
 const gc=$('#globalCircuit'),gctx=gc.getContext('2d');
-let circuits=[],pulses=[],gw=0,gh=0,gDpr=1,gAnim=true;
+let circuits=[],pulses=[],gw=0,gh=0,gDpr=1,gAnim=true,gLastFrame=0;
 function seededRand(seed){
   let s=seed>>>0;
   return ()=>((s=(s*1664525+1013904223)>>>0)/4294967296);
@@ -3749,8 +3827,17 @@ function pathPoint(poly,t){
   }
   return poly[poly.length-1]
 }
-function drawGlobal(){
-  if(!gAnim){requestAnimationFrame(drawGlobal);return}
+function drawGlobal(ts=0){
+  if(!gAnim){
+    setTimeout(()=>requestAnimationFrame(drawGlobal),220);
+    return;
+  }
+  const minFrame=innerWidth<=680?33:16;
+  if(ts-gLastFrame<minFrame){
+    requestAnimationFrame(drawGlobal);
+    return;
+  }
+  gLastFrame=ts;
   gctx.clearRect(0,0,gw,gh);
   gctx.lineWidth=.75;
   circuits.forEach((p,i)=>{
@@ -3785,7 +3872,7 @@ document.addEventListener('visibilitychange',()=>gAnim=!document.hidden);
 
 /* HERO 3D NETWORK */
 const hs=$('#heroSystem'),hctx=hs.getContext('2d');
-let hw=0,hh=0,hDpr=1,ht=0;
+let hw=0,hh=0,hDpr=1,ht=0,heroCanvasActive=true;
 const nodes3D=[
   {x:-1.2,y:.5,z:.4,l:'WEB'},
   {x:1.05,y:.65,z:-.2,l:'AI'},
@@ -3811,6 +3898,10 @@ function project3D(p){
   return{x:hw/2+x*scale,y:hh/2+y*scale*.86,z,scale}
 }
 function drawHero(){
+  if(!heroCanvasActive || document.hidden){
+    setTimeout(()=>requestAnimationFrame(drawHero),180);
+    return;
+  }
   hctx.clearRect(0,0,hw,hh);ht+=.0065;
   const pts=nodes3D.map(project3D);
   // perspective grid
@@ -3855,6 +3946,11 @@ function drawHero(){
   hctx.beginPath();hctx.moveTo(cx-5,cy+9);hctx.lineTo(cx+20,cy-18);hctx.stroke();
 
   requestAnimationFrame(drawHero);
+}
+if(heroSection){
+  new IntersectionObserver(entries=>{
+    heroCanvasActive=entries[0]?.isIntersecting ?? true;
+  },{threshold:0,rootMargin:'100px 0px'}).observe(heroSection);
 }
 resizeHero();drawHero();addEventListener('resize',resizeHero);
 
@@ -4353,7 +4449,7 @@ $('#serviceModalCTA')?.addEventListener('click',()=>{
   }
   closeServiceV8();
   setTimeout(()=>{
-    $('#contatti')?.scrollIntoView({behavior:'smooth',block:'start'});
+    $('#contatti')?.scrollIntoView({behavior:'auto',block:'start'});
     setTimeout(()=>$('#message')?.focus(),650);
   },80);
 });
