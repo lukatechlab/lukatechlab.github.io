@@ -2804,6 +2804,102 @@ body::before{
   .service-modal-v8-actions .btn{width:100%}
 }
 
+
+/* =========================================================
+   V9 — LEAD-FIRST CONTACT / CREAZIONE DA ZERO
+   ========================================================= */
+.contact-card select{
+  background-image:
+    linear-gradient(45deg,transparent 50%,#91dfff 50%),
+    linear-gradient(135deg,#91dfff 50%,transparent 50%) !important;
+  background-position:
+    calc(100% - 18px) calc(50% - 2px),
+    calc(100% - 13px) calc(50% - 2px) !important;
+  background-size:5px 5px,5px 5px !important;
+  background-repeat:no-repeat !important;
+  padding-right:38px !important;
+}
+.contact-card optgroup{
+  background:#07121d;
+  color:#78e9ff;
+  font-weight:800;
+}
+.contact-card option{
+  background:#07121d;
+  color:#f4f8fb;
+}
+.project-features{
+  margin-top:14px;
+  padding:15px;
+  border:1px solid rgba(82,236,255,.10);
+  border-radius:16px;
+  background:rgba(82,236,255,.018);
+}
+.project-features-head{
+  display:flex;align-items:end;justify-content:space-between;gap:12px;
+  margin-bottom:11px
+}
+.project-features-head span{
+  color:#dffbff;font-size:10px;font-weight:800
+}
+.project-features-head small{
+  color:#708696;font-size:7px
+}
+.project-feature-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:7px
+}
+.feature-chip{
+  position:relative;cursor:pointer
+}
+.feature-chip input{
+  position:absolute;opacity:0;pointer-events:none
+}
+.feature-chip span{
+  display:flex;align-items:center;min-height:38px;padding:8px 10px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:11px;
+  background:rgba(255,255,255,.018);
+  color:#9fb1bf;
+  font-size:8px;
+  transition:.2s ease
+}
+.feature-chip span::before{
+  content:"+";display:grid;place-items:center;
+  width:17px;height:17px;margin-right:7px;border-radius:6px;
+  border:1px solid rgba(82,236,255,.18);
+  color:var(--cyan)
+}
+.feature-chip input:checked + span{
+  color:#efffff;
+  border-color:rgba(82,236,255,.34);
+  background:rgba(82,236,255,.07);
+  box-shadow:0 0 22px rgba(82,236,255,.06)
+}
+.feature-chip input:checked + span::before{
+  content:"✓";
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  color:#031019;
+  border-color:transparent
+}
+.custom-idea-note{
+  margin-top:13px;padding:12px 13px;border-radius:13px;
+  border:1px solid rgba(183,92,255,.14);
+  background:linear-gradient(135deg,rgba(82,236,255,.025),rgba(183,92,255,.035));
+  color:#8fa4b5;font-size:9px;line-height:1.45
+}
+.custom-idea-note b{color:#eafcff}
+.custom-idea-note strong{color:#b9dfff}
+@media(max-width:680px){
+  .project-features{padding:12px}
+  .project-features-head{display:block}
+  .project-features-head small{display:block;margin-top:4px}
+  .project-feature-grid{grid-template-columns:1fr 1fr}
+  .feature-chip span{min-height:42px;font-size:7.5px}
+}
+@media(max-width:390px){
+  .project-feature-grid{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -2874,23 +2970,23 @@ body::before{
       <div class="hero-copy reveal">
         <div class="promo-chip"><i></i> Prima analisi digitale gratuita</div>
         <div class="eyebrow">Custom Digital Systems Studio</div>
-        <h1>Da un'idea a un <span class="grad">sistema digitale completo.</span></h1>
+        <h1>Creo siti web da zero e trasformo <span class="grad">le tue idee in progetti digitali reali.</span></h1>
         <p>
-          Progetto e sviluppo da zero siti web, web app, software su misura, aree clienti, dashboard, ecosistemi con più servizi collegati,
-          automazioni, integrazioni AI, bot e strumenti tecnici. Se l'idea è tecnicamente fattibile, definiamo architettura, interfaccia,
-          logica e connessioni fino al rilascio.
+          Puoi arrivare anche solo con un'idea. Posso creare da zero siti vetrina, siti aziendali, landing page, e-commerce,
+          portali, web app, software su misura, automazioni, bot, integrazioni AI e progetti digitali non standard.
+          Partiamo da ciò che vuoi ottenere e costruiamo la soluzione adatta, dalla struttura al rilascio.
         </p>
         <div class="hero-actions">
           <a class="btn" href="#contatti">Raccontami cosa vuoi costruire</a>
           <a class="btn secondary" href="#servizi">Esplora cosa posso creare</a>
         </div>
         <div class="hero-meta">
-          <span><i class="status-dot"></i> Progetti da zero o su sistemi esistenti</span>
-          <span><i class="status-dot"></i> Frontend + logica + integrazioni</span>
-          <span><i class="status-dot"></i> Supporto dopo il rilascio</span>
+          <span><i class="status-dot"></i> Creazione completa da zero</span>
+          <span><i class="status-dot"></i> Dall’idea alla pubblicazione</span>
+          <span><i class="status-dot"></i> Progetti anche fuori dagli schemi</span>
         </div>
         <div class="hero-trust">
-          <span>Siti Web</span><span>Web App</span><span>Software</span><span>Multi-System</span><span>Automation</span><span>AI</span><span>Pine / MQL5</span>
+          <span>Siti da zero</span><span>E-commerce</span><span>Web App</span><span>Software</span><span>Automation</span><span>Bot</span><span>AI</span><span>Progetti custom</span>
         </div>
         <div class="hero-pulsebar"></div>
       </div>
@@ -2942,9 +3038,9 @@ body::before{
       <div class="capability-intro reveal">
         <div>
           <span class="eyebrow">Dall'idea al rilascio</span>
-          <strong>Non solo una singola pagina: posso progettare l'intero sistema.</strong>
+          <strong>Tu mi descrivi cosa hai in testa. Io lo trasformo in un progetto realizzabile.</strong>
         </div>
-        <p>Ogni progetto può includere tutti gli strati necessari, senza costringerti a cercare una soluzione diversa per ogni pezzo.</p>
+        <p>Non devi sapere in anticipo quali tecnologie servono. Definiamo insieme cosa deve fare il progetto e costruiamo solo ciò che è utile.</p>
       </div>
       <div class="capability-flow reveal">
         <div><small>01</small><b>Idea & requisiti</b><span>obiettivo • utenti • funzioni</span></div>
@@ -3316,9 +3412,9 @@ body::before{
         <div class="contact-grid">
           <div class="contact-copy">
             <div class="promo-chip"><i></i> Prima analisi gratuita</div>
-            <div class="eyebrow">Iniziamo dall’idea o dal problema</div>
-            <h2>Raccontami cosa vuoi <span class="grad">creare, collegare o migliorare.</span></h2>
-            <p>Non serve conoscere già tecnologia o stack. Puoi arrivare con un’idea, uno screenshot, un processo da automatizzare o un sistema da rifare: trasformiamo insieme il risultato desiderato in un progetto tecnico concreto.</p>
+            <div class="eyebrow">Partiamo da quello che hai in testa</div>
+            <h2>Che cosa vuoi creare? <span class="grad">Possiamo partire completamente da zero.</span></h2>
+            <p>Sito web, e-commerce, portale, web app, software, automazione, bot, AI oppure un’idea che non rientra in nessuna categoria: descrivimi il risultato che vuoi ottenere e valuto come costruirlo.</p>
 
             <div class="contact-options">
               <div class="contact-option primary">
@@ -3349,20 +3445,93 @@ body::before{
               <label>Nome<input id="name" type="text" required placeholder="Il tuo nome"></label>
               <label>Email<input id="email" type="email" required placeholder="nome@email.it"></label>
             </div>
-            <label>Cosa vuoi realizzare?
-              <select id="type">
-                <option>Voglio creare un sito web da zero</option>
-                <option>Voglio rifare / migliorare un sito esistente</option>
-                <option>Mi serve una web app / piattaforma / gestionale</option>
-                <option>Voglio creare un ecosistema con più sistemi collegati</option>
-                <option>Voglio automatizzare un processo</option>
-                <option>Voglio collegare strumenti / API / database</option>
-                <option>Voglio integrare l'AI</option>
-                <option>Mi serve Pine Script / MQL5</option>
-                <option>Ho un'idea ma non so ancora come realizzarla</option>
+            <label>Cosa vuoi creare o realizzare?
+              <select id="type" required>
+                <option value="" disabled selected>Seleziona il tipo di progetto</option>
+
+                <optgroup label="CREAZIONE DA ZERO">
+                  <option value="Sito web completo da zero">Sito web completo da zero</option>
+                  <option value="Sito vetrina / aziendale / professionale">Sito vetrina / aziendale / professionale</option>
+                  <option value="Landing page / pagina vendita">Landing page / pagina vendita</option>
+                  <option value="Portfolio / sito personale">Portfolio / sito personale</option>
+                  <option value="E-commerce / negozio online">E-commerce / negozio online</option>
+                  <option value="Catalogo prodotti / servizi">Catalogo prodotti / servizi</option>
+                  <option value="Portale / piattaforma web">Portale / piattaforma web</option>
+                  <option value="Web app / software su misura">Web app / software su misura</option>
+                  <option value="Progetto digitale completamente personalizzato">Progetto digitale completamente personalizzato</option>
+                </optgroup>
+
+                <optgroup label="FUNZIONI E SISTEMI">
+                  <option value="Area riservata / area clienti">Area riservata / area clienti</option>
+                  <option value="Prenotazioni / calendario online">Prenotazioni / calendario online</option>
+                  <option value="Pagamenti online / checkout">Pagamenti online / checkout</option>
+                  <option value="Dashboard / pannello di controllo">Dashboard / pannello di controllo</option>
+                  <option value="Gestionale / CRM / strumento interno">Gestionale / CRM / strumento interno</option>
+                  <option value="Database / raccolta dati">Database / raccolta dati</option>
+                  <option value="Login / registrazione / ruoli utenti">Login / registrazione / ruoli utenti</option>
+                </optgroup>
+
+                <optgroup label="AUTOMAZIONI E INTEGRAZIONI">
+                  <option value="Automazione di un processo">Automazione di un processo</option>
+                  <option value="Bot Telegram / bot personalizzato">Bot Telegram / bot personalizzato</option>
+                  <option value="Collegamento API / webhook / servizi esterni">Collegamento API / webhook / servizi esterni</option>
+                  <option value="Email / notifiche automatiche">Email / notifiche automatiche</option>
+                  <option value="Integrazione AI in un progetto">Integrazione AI in un progetto</option>
+                </optgroup>
+
+                <optgroup label="MODIFICA DI QUALCOSA CHE ESISTE GIÀ">
+                  <option value="Redesign completo di un sito esistente">Redesign completo di un sito esistente</option>
+                  <option value="Nuove funzioni per un sito / software esistente">Nuove funzioni per un sito / software esistente</option>
+                  <option value="Correzione / ottimizzazione di un progetto">Correzione / ottimizzazione di un progetto</option>
+                </optgroup>
+
+                <optgroup label="SVILUPPO TECNICO">
+                  <option value="Pine Script / TradingView">Pine Script / TradingView</option>
+                  <option value="MQL5 / MetaTrader 5">MQL5 / MetaTrader 5</option>
+                </optgroup>
+
+                <optgroup label="NON TROVI LA TUA IDEA?">
+                  <option value="Ho un'idea nuova da progettare da zero">Ho un'idea nuova da progettare da zero</option>
+                  <option value="Progetto digitale non presente in elenco">Altro progetto digitale — spiegamelo tu</option>
+                </optgroup>
               </select>
             </label>
-            <label>Descrivimi cosa vuoi ottenere<textarea id="message" rows="6" required placeholder="Esempio: voglio un sito con area clienti, calendario, pagamenti e un pannello admin; oppure: oggi faccio questo processo a mano e vorrei automatizzarlo..."></textarea></label>
+
+            <label>A che punto sei?
+              <select id="stage" required>
+                <option value="" disabled selected>Seleziona da dove partiamo</option>
+                <option>Ho solo l'idea: voglio partire completamente da zero</option>
+                <option>Ho esempi / riferimenti ma non ho ancora un progetto</option>
+                <option>Ho già grafica, testi o materiali</option>
+                <option>Ho già un sito / progetto e voglio rifarlo</option>
+                <option>Ho un progetto iniziato e voglio completarlo</option>
+                <option>Non lo so ancora: voglio una valutazione</option>
+              </select>
+            </label>
+
+            <div class="project-features">
+              <div class="project-features-head">
+                <span>Funzioni che potrebbero servirti</span>
+                <small>Facoltativo — puoi selezionarne più di una</small>
+              </div>
+              <div class="project-feature-grid">
+                <label class="feature-chip"><input type="checkbox" value="Design personalizzato"><span>Design personalizzato</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Responsive smartphone"><span>Responsive smartphone</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Area riservata / login"><span>Area riservata / login</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Prenotazioni / calendario"><span>Prenotazioni / calendario</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Pagamenti online"><span>Pagamenti online</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Database"><span>Database</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Bot / automazioni"><span>Bot / automazioni</span></label>
+                <label class="feature-chip"><input type="checkbox" value="API / servizi esterni"><span>API / servizi esterni</span></label>
+                <label class="feature-chip"><input type="checkbox" value="AI"><span>AI</span></label>
+                <label class="feature-chip"><input type="checkbox" value="Non lo so ancora"><span>Non lo so ancora</span></label>
+              </div>
+            </div>
+            <label>Raccontami la tua idea<textarea id="message" rows="7" required placeholder="Scrivimi liberamente cosa hai in testa. Anche se non sai come realizzarlo: spiegami cosa deve vedere o poter fare l’utente, qual è l’obiettivo e qualsiasi dettaglio ti sembri importante."></textarea></label>
+            <div class="custom-idea-note">
+              <b>Non trovi la tua idea nell'elenco?</b>
+              Seleziona <strong>“Altro progetto digitale”</strong> e descrivimela: il form non limita il tipo di progetto che possiamo valutare.
+            </div>
             <div class="form-actions">
               <button class="btn" type="submit">Prepara il brief</button>
               <span class="form-note">Il brief viene strutturato sul dispositivo e copiato negli appunti. I canali diretti verranno collegati quando inseriremo i recapiti definitivi.</span>
@@ -3859,14 +4028,21 @@ setDiagnosis('site',false);
 /* briefing */
 $('#briefForm').addEventListener('submit',async e=>{
   e.preventDefault();
+
+  const features=[...document.querySelectorAll('.feature-chip input:checked')]
+    .map(x=>x.value);
+
   const text=`RICHIESTA PROGETTO — LUKA TECH LAB
 
 Nome: ${$('#name').value}
 Email: ${$('#email').value}
-Tipo di progetto: ${$('#type').value}
+Progetto: ${$('#type').value}
+Punto di partenza: ${$('#stage').value}
+Funzioni / interessi: ${features.length ? features.join(', ') : 'Da definire insieme'}
 
-Problema / obiettivo:
+IDEA / OBIETTIVO:
 ${$('#message').value}`;
+
   try{await navigator.clipboard.writeText(text)}catch(_){}
   $('#successBox').style.display='block';
 });
@@ -4055,7 +4231,7 @@ const serviceCatalogV8={
     core:'WEBSITE',
     state:'DESIGN → BUILD → ONLINE',
     note:'Puoi arrivare con un logo, una reference, un sito vecchio oppure solo con l’idea. La prima fase serve a trasformare ciò che hai in una struttura realizzabile.',
-    form:'Voglio creare un sito web da zero',
+    form:'Sito web completo da zero',
     accent:'82,236,255',accent2:'111,124,255'
   },
   platform:{
@@ -4068,7 +4244,7 @@ const serviceCatalogV8={
     core:'WEB APP',
     state:'FULL SYSTEM BLUEPRINT',
     note:'Partiamo dalle funzioni indispensabili, poi costruiamo un MVP o il sistema completo. L’architettura viene definita prima di scrivere le parti critiche.',
-    form:'Mi serve una web app / piattaforma / gestionale',
+    form:'Web app / software su misura',
     accent:'94,207,255',accent2:'111,124,255'
   },
   ecosystem:{
@@ -4081,7 +4257,7 @@ const serviceCatalogV8={
     core:'ECOSYSTEM',
     state:'CONNECTED ARCHITECTURE',
     note:'Questa è la soluzione quando il progetto non è “un sito”, ma un insieme di strumenti che devono comportarsi come un solo prodotto.',
-    form:'Voglio creare un ecosistema con più sistemi collegati',
+    form:'Progetto digitale completamente personalizzato',
     accent:'82,236,255',accent2:'183,92,255'
   },
   automation:{
@@ -4094,7 +4270,7 @@ const serviceCatalogV8={
     core:'WORKFLOW',
     state:'AUTOMATION ENGINE READY',
     note:'L’automazione viene progettata partendo dalle eccezioni, non solo dal caso ideale: cosa succede se un dato manca, un servizio non risponde o un utente cambia percorso.',
-    form:'Voglio automatizzare un processo',
+    form:'Automazione di un processo',
     accent:'90,239,213',accent2:'82,185,255'
   },
   ai:{
@@ -4107,7 +4283,7 @@ const serviceCatalogV8={
     core:'AI LAYER',
     state:'AI WORKFLOW MAPPED',
     note:'Prima definiamo input, output, limiti e controlli. L’AI viene usata come componente di un sistema, non come sostituto indiscriminato del processo.',
-    form:"Voglio integrare l'AI",
+    form:"Integrazione AI in un progetto",
     accent:'117,230,255',accent2:'183,92,255'
   },
   trading:{
@@ -4120,7 +4296,7 @@ const serviceCatalogV8={
     core:'TRADING DEV',
     state:'SPEC → CODE → TEST',
     note:'Questa attività riguarda esclusivamente sviluppo software tecnico su specifiche. Non include consulenza finanziaria, segnali o raccomandazioni operative.',
-    form:'Mi serve Pine Script / MQL5',
+    form:'Pine Script / TradingView',
     accent:'82,236,255',accent2:'183,92,255'
   }
 };
