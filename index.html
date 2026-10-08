@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Luka Tech Lab analizza problemi digitali, ottimizza siti, automatizza processi e sviluppa software, web app, integrazioni AI, Pine Script e MQL5 su misura.">
+<meta name="description" content="Luka Tech Lab progetta e sviluppa da zero siti web, web app, software su misura, ecosistemi digitali, automazioni, integrazioni AI, bot e sviluppo Pine Script / MQL5.">
 <meta name="theme-color" content="#03070d">
-<title>Luka Tech Lab — Analisi, automazioni e software su misura</title>
+<title>Luka Tech Lab — Siti, software e sistemi digitali su misura</title>
 <style>
 :root{
   --bg:#03070d;
@@ -2145,10 +2145,670 @@ body::before{
   .diag-visual *{animation:none!important}
 }
 
+
+/* =========================================================
+   V7 — MOBILE VISUAL PARITY
+   Same cinematic language as desktop, recomposed for touch.
+   ========================================================= */
+.mobile-fixed-world{display:none}
+
+/* Better touch behavior without changing desktop interactions */
+.problem-card,.builder-option,.btn,.menu-toggle,.mobile-menu a{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+@media(max-width:680px){
+
+  /* ---------------------------------------------------------
+     ONE FIXED WORLD ON MOBILE
+     --------------------------------------------------------- */
+  body{
+    background:#02060b !important;
+    background-image:none !important;
+  }
+  .mobile-fixed-world{
+    display:block;
+    position:fixed;
+    inset:-2px;
+    z-index:-10;
+    pointer-events:none;
+    background:
+      linear-gradient(180deg,rgba(2,6,11,.58) 0%,rgba(2,6,11,.34) 35%,rgba(2,6,11,.48) 70%,rgba(2,6,11,.72) 100%),
+      linear-gradient(90deg,rgba(2,6,11,.72),rgba(2,6,11,.28) 54%,rgba(2,6,11,.48)),
+      url('assets/luka-tech-lab-futuristic-bg.png');
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:62% center;
+    filter:saturate(1.18) contrast(1.08) brightness(.78);
+    transform:translateZ(0);
+  }
+  .ambient-aurora{
+    z-index:-9;
+    opacity:.30;
+    filter:blur(30px);
+  }
+  body::before{z-index:-8 !important;opacity:.82}
+  body::after{z-index:-7 !important;opacity:.66}
+  #globalCircuit{
+    z-index:-5;
+    opacity:.58 !important;
+    mix-blend-mode:screen;
+  }
+  .scanlines{opacity:.075 !important}
+
+  /* ---------------------------------------------------------
+     TYPOGRAPHY / SPACING — same hierarchy, mobile proportions
+     --------------------------------------------------------- */
+  .container{width:calc(100% - 24px) !important}
+  .section{padding:88px 0 !important}
+  .section-head{
+    gap:18px !important;
+    margin-bottom:30px !important;
+  }
+  h1{
+    font-size:clamp(43px,12.4vw,57px) !important;
+    line-height:.98 !important;
+    letter-spacing:-.058em !important;
+  }
+  h2{
+    font-size:clamp(35px,9.5vw,46px) !important;
+    line-height:1.01 !important;
+  }
+  .section-head p{font-size:13px !important}
+  .eyebrow{font-size:9px !important}
+  .btn{min-height:46px}
+  .hero-actions .btn{
+    flex:1 1 100%;
+    width:100%;
+  }
+
+  /* ---------------------------------------------------------
+     HERO — keep the desktop visual system instead of stripping it
+     --------------------------------------------------------- */
+  .hero{
+    min-height:auto !important;
+    padding:112px 0 76px !important;
+    overflow:hidden;
+  }
+  .hero-grid{
+    grid-template-columns:1fr !important;
+    gap:28px !important;
+  }
+  .hero-copy p{
+    font-size:15px !important;
+    line-height:1.58;
+    margin-bottom:25px !important;
+  }
+  .hero-meta{
+    gap:10px 14px !important;
+    margin-top:22px !important;
+  }
+  .hero-meta span{font-size:9px}
+  .hero-trust{
+    gap:6px !important;
+    margin-top:15px !important;
+  }
+  .hero-trust span{font-size:7px !important;padding:6px 7px !important}
+  .hero-stage{
+    min-height:505px !important;
+    margin-top:2px !important;
+  }
+  .tech-room{
+    inset:0 0 28px !important;
+    border-radius:25px !important;
+    background:
+      linear-gradient(180deg,rgba(7,14,23,.46),rgba(4,9,15,.70)),
+      radial-gradient(circle at 72% 28%,rgba(82,236,255,.13),transparent 24%),
+      linear-gradient(135deg,rgba(89,124,255,.09),transparent 42%) !important;
+  }
+  .room-top{
+    height:47px !important;
+    padding:0 12px !important;
+    font-size:7px !important;
+    letter-spacing:.10em !important;
+  }
+  #heroSystem{
+    top:47px !important;
+    height:calc(100% - 47px) !important;
+  }
+
+  /* Restore the elements that the old responsive rules removed */
+  .hero-panel{
+    display:block !important;
+    width:96px !important;
+    padding:8px 9px !important;
+    border-radius:10px !important;
+    font-size:7px !important;
+    line-height:1.3;
+    opacity:.82;
+    backdrop-filter:blur(9px);
+  }
+  .hero-panel b{
+    font-size:8px !important;
+    margin-bottom:2px !important;
+  }
+  .hp1{left:3% !important;top:14% !important}
+  .hp2{right:3% !important;top:12% !important}
+  .hp3{left:4% !important;bottom:28% !important}
+  .hp4{right:3% !important;bottom:27% !important}
+
+  .future-depth,
+  .holo-cloud,
+  .holo-ai,
+  .future-data-stack{
+    display:block !important;
+  }
+  .future-depth{opacity:.40 !important}
+  .holo-cloud{opacity:.48 !important;transform:scale(.72)}
+  .holo-ai{opacity:.60 !important;transform:scale(.72)}
+  .future-data-stack{opacity:.46 !important;transform:scale(.80);transform-origin:right center}
+
+  .future-dock{
+    left:3.5% !important;
+    right:3.5% !important;
+    bottom:3.5% !important;
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:5px !important;
+  }
+  .future-module{
+    min-height:50px !important;
+    padding:7px 8px !important;
+    border-radius:10px !important;
+    background:linear-gradient(160deg,rgba(5,14,24,.70),rgba(7,15,26,.43)) !important;
+  }
+  .future-module b{font-size:7px !important;margin-bottom:2px !important}
+  .future-module span{font-size:6px !important;line-height:1.25}
+  .energy-network{opacity:.58 !important}
+  .scroll-cue{bottom:12px;font-size:7px}
+
+  /* ---------------------------------------------------------
+     PROOF / SERVICE CARDS
+     --------------------------------------------------------- */
+  .proof-grid{grid-template-columns:1fr 1fr !important}
+  .proof-item{padding:18px 13px !important}
+  .proof-item strong{font-size:11px}
+  .proof-item span{font-size:8px}
+
+  .bento{grid-template-columns:1fr !important}
+  .service-card{
+    min-height:320px !important;
+    padding:22px !important;
+  }
+  .service-card h3{font-size:25px !important}
+  .service-card p{
+    max-width:72%;
+    font-size:11px !important;
+  }
+  .card-graphic{
+    width:145px !important;
+    height:105px !important;
+    right:10px !important;
+    bottom:12px !important;
+    opacity:.88 !important;
+    transform:translateZ(18px) scale(.92) !important;
+  }
+
+  /* ---------------------------------------------------------
+     CINEMATIC SECTION FX — restore, but recompose behind content
+     --------------------------------------------------------- */
+  .section.fx-section{
+    min-height:auto !important;
+    background:
+      radial-gradient(520px 390px at 88% 22%,rgba(43,188,255,.060),transparent 64%),
+      linear-gradient(180deg,rgba(3,8,15,.48),rgba(3,8,15,.62)) !important;
+  }
+  .fx-scene::after{
+    background:
+      linear-gradient(180deg,rgba(3,8,15,.47),rgba(3,8,15,.28) 40%,rgba(3,8,15,.60)) !important;
+  }
+  .fx-grid{opacity:.20 !important}
+  .fx-rail,.fx-vrail{opacity:.62 !important}
+
+  .fx-hud{
+    display:block !important;
+    width:122px !important;
+    min-height:72px !important;
+    padding:9px 10px !important;
+    border-radius:11px !important;
+    opacity:.33 !important;
+    backdrop-filter:blur(4px);
+  }
+  .fx-hud.h1{
+    right:-3% !important;
+    top:10% !important;
+  }
+  .fx-hud.h2{
+    right:4% !important;
+    bottom:9% !important;
+    width:108px !important;
+    min-height:62px !important;
+  }
+  .fx-hud .hud-kicker{font-size:5px !important}
+  .fx-hud b{font-size:8px !important;margin:4px 0 2px !important}
+  .fx-hud span{font-size:5px !important}
+  .fx-hud i{margin-top:6px !important;height:2px !important}
+
+  .fx-radar,
+  .fx-orbit,
+  .fx-core,
+  .fx-stream,
+  .fx-wave,
+  .fx-converge{
+    display:block !important;
+  }
+  .fx-bars{display:flex !important}
+
+  .fx-radar{
+    right:-8% !important;
+    top:28% !important;
+    scale:.54 !important;
+    opacity:.32 !important;
+  }
+  .fx-orbit{
+    right:-21% !important;
+    top:18% !important;
+    scale:.52 !important;
+    opacity:.32 !important;
+  }
+  .fx-core{
+    right:-4% !important;
+    top:30% !important;
+    scale:.48 !important;
+    opacity:.34 !important;
+  }
+  .fx-bars{
+    right:-4% !important;
+    bottom:11% !important;
+    width:160px !important;
+    height:84px !important;
+    gap:5px !important;
+    opacity:.30 !important;
+  }
+  .fx-stream{
+    right:1% !important;
+    width:78px !important;
+    opacity:.20 !important;
+  }
+  .fx-wave{
+    right:-14% !important;
+    top:38% !important;
+    width:280px !important;
+    height:90px !important;
+    opacity:.25 !important;
+  }
+  .fx-converge{
+    right:-16% !important;
+    top:22% !important;
+    scale:.55 !important;
+    opacity:.28 !important;
+  }
+
+  /* Main section art remains visible on phone */
+  .impact-art{
+    width:104vw !important;
+    height:104vw !important;
+    right:-46% !important;
+    top:4% !important;
+    opacity:.42 !important;
+    filter:drop-shadow(0 26px 45px rgba(0,0,0,.24)) !important;
+  }
+  .impact-art .ia-hud,
+  .impact-art .ia-node{
+    display:block !important;
+  }
+  .impact-art .ia-node{
+    scale:.72;
+    opacity:.60;
+    font-size:7px !important;
+  }
+
+  /* ---------------------------------------------------------
+     DIAGNOSIS V6 — preserve the 3D feature on mobile
+     --------------------------------------------------------- */
+  .diagnosis-wrap{
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+  }
+  .problem-grid{
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+  }
+  .problem-card{
+    min-height:152px !important;
+    padding:13px !important;
+    border-radius:15px !important;
+  }
+  .problem-card small{
+    font-size:7px !important;
+    margin-bottom:7px !important;
+  }
+  .problem-card strong{
+    font-size:12px !important;
+    line-height:1.20 !important;
+  }
+  .problem-card span{
+    font-size:8px !important;
+    line-height:1.35 !important;
+  }
+  .problem-card.active{
+    transform:translateY(-2px) !important;
+  }
+
+  .diagnosis-console{
+    min-height:auto !important;
+    padding:14px !important;
+    border-radius:21px !important;
+  }
+  .diag-head{
+    gap:8px !important;
+    padding-bottom:11px !important;
+  }
+  .diag-head span,.diag-head b{font-size:6px !important}
+  .diag-showcase{
+    grid-template-columns:1fr !important;
+    min-height:0 !important;
+    gap:15px !important;
+    padding-top:14px !important;
+  }
+  .diag-visual-wrap{
+    order:-1;
+    min-height:350px !important;
+    border-radius:18px !important;
+  }
+  .diag-visual-top b,
+  .diag-visual-foot span:last-child{
+    display:block !important;
+  }
+  .diag-visual-top span,
+  .diag-visual-top b,
+  .diag-visual-foot span{
+    font-size:5.5px !important;
+    letter-spacing:.08em !important;
+  }
+  .diag-copy h3{
+    font-size:30px !important;
+    margin:8px 0 10px !important;
+  }
+  .diag-copy > p{font-size:11px !important}
+  .diag-copy .diag-points div{font-size:9px !important}
+  .diag-actions{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+  }
+  .diag-actions .btn{width:100%}
+
+  /* keep the exploded scenes readable */
+  .site-browser{width:88% !important;height:68% !important}
+  .software-stack{width:90% !important;height:68% !important}
+  .tool-node{width:58px !important;height:34px !important;font-size:6px !important}
+  .task-card{width:69px !important;height:40px !important;font-size:5.5px !important}
+  .hub-core{width:88px !important;height:88px !important;font-size:8px !important}
+  .auto-core{width:76px !important;height:76px !important;font-size:7px !important}
+  .trade-chart{width:66% !important}
+  .code-panel{width:42% !important}
+
+  /* ---------------------------------------------------------
+     BUILDER / ARCHITECTURE / METHOD / CONTACT
+     --------------------------------------------------------- */
+  .builder-wrap,.vault-grid,.contact-grid{grid-template-columns:1fr !important}
+  .builder-stage{
+    min-height:425px !important;
+  }
+  .orbit{width:238px !important;height:238px !important}
+  .orbit.two{width:300px !important;height:300px !important}
+  .orbit-node{width:68px !important;font-size:7px !important}
+  .arch-flow,.process{grid-template-columns:1fr !important}
+  .contact-wrap{padding:24px 16px !important}
+  .form-grid{grid-template-columns:1fr !important}
+  .contact-options{grid-template-columns:1fr !important}
+
+  /* Mobile menu stays polished and consistent with the glass system */
+  .mobile-menu{
+    inset:72px 10px auto !important;
+    border-radius:16px !important;
+    background:rgba(4,12,20,.94) !important;
+    border-color:rgba(82,236,255,.16) !important;
+    box-shadow:0 26px 80px rgba(0,0,0,.48),0 0 30px rgba(82,236,255,.06) !important;
+  }
+}
+
+@media(max-width:390px){
+  h1{font-size:41px !important}
+  h2{font-size:34px !important}
+  .problem-card{min-height:145px !important;padding:11px !important}
+  .problem-card strong{font-size:11px !important}
+  .problem-card span{font-size:7.5px !important}
+  .diag-visual-wrap{min-height:326px !important}
+  .hero-panel{width:88px !important;padding:7px !important}
+  .future-module{min-height:47px !important}
+}
+
+/* Landscape phones: keep the cinematic view compact rather than removing it */
+@media(max-width:900px) and (orientation:landscape){
+  .hero-grid{grid-template-columns:.92fr 1.08fr !important;gap:24px !important}
+  .hero-stage{min-height:420px !important}
+  .hero-copy h1{font-size:42px !important}
+  .problem-grid{grid-template-columns:repeat(3,1fr) !important}
+  .diag-showcase{grid-template-columns:.84fr 1.16fr !important}
+  .diag-visual-wrap{order:0;min-height:360px !important}
+}
+
+
+/* =========================================================
+   V8 — POSITIONING + FULL-CAPABILITY SERVICE EXPERIENCE
+   ========================================================= */
+.capability-strip{
+  position:relative;
+  padding:38px 0 44px;
+  border-top:1px solid rgba(255,255,255,.055);
+  border-bottom:1px solid rgba(255,255,255,.055);
+  background:linear-gradient(180deg,rgba(5,14,23,.72),rgba(3,9,16,.50));
+  backdrop-filter:blur(15px);
+  overflow:hidden;
+}
+.capability-strip::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(700px 240px at 50% 0%,rgba(82,236,255,.065),transparent 70%);
+}
+.capability-intro{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr .8fr;gap:32px;align-items:end;margin-bottom:26px
+}
+.capability-intro strong{display:block;font-size:clamp(22px,2.3vw,34px);line-height:1.08;max-width:720px;margin-top:8px}
+.capability-intro p{margin:0;color:var(--muted);font-size:12px;max-width:520px}
+.capability-flow{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  gap:8px;align-items:center
+}
+.capability-flow > div{
+  min-height:86px;padding:13px 12px;border-radius:15px;
+  border:1px solid rgba(82,236,255,.11);
+  background:linear-gradient(145deg,rgba(9,23,36,.72),rgba(4,11,19,.58));
+  box-shadow:inset 0 1px rgba(255,255,255,.03)
+}
+.capability-flow small{display:block;color:var(--cyan);font-size:7px;letter-spacing:.14em}
+.capability-flow b{display:block;font-size:10px;margin:6px 0 3px}
+.capability-flow span{display:block;color:#718697;font-size:7px;line-height:1.35}
+.capability-flow > i{
+  width:20px;height:1px;position:relative;
+  background:linear-gradient(90deg,rgba(82,236,255,.18),rgba(82,236,255,.75),rgba(111,124,255,.22))
+}
+.capability-flow > i::after{
+  content:"";position:absolute;top:-2px;left:-8px;width:24px;height:5px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,var(--cyan),transparent);
+  box-shadow:0 0 13px rgba(82,236,255,.55);animation:capFlow 2.8s linear infinite
+}
+@keyframes capFlow{to{left:12px}}
+
+.service-detail-card{cursor:pointer}
+.service-detail-card:focus-visible{outline:1px solid var(--cyan);outline-offset:3px}
+.service-open{position:relative;z-index:5;border:0;background:transparent;padding:0;color:#bfefff;cursor:pointer;font:inherit}
+.service-detail-card:hover .service-open{color:#fff}
+.service-detail-card .service-list{max-width:70%}
+
+/* Modal */
+.service-modal-v8{
+  position:fixed;inset:0;z-index:160;
+  display:grid;place-items:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .25s ease
+}
+.service-modal-v8.open{opacity:1;pointer-events:auto}
+.service-modal-v8-backdrop{
+  position:absolute;inset:0;background:rgba(1,4,8,.82);backdrop-filter:blur(20px) saturate(1.18)
+}
+.service-modal-v8-shell{
+  --sm-accent:82,236,255;--sm-accent2:111,124,255;
+  position:relative;z-index:2;width:min(1180px,calc(100vw - 36px));
+  max-height:calc(100vh - 36px);overflow:auto;border-radius:30px;
+  border:1px solid rgba(var(--sm-accent),.22);
+  background:
+    radial-gradient(760px 430px at 20% 16%,rgba(var(--sm-accent),.08),transparent 65%),
+    linear-gradient(150deg,rgba(7,20,32,.99),rgba(3,9,16,.99));
+  box-shadow:0 50px 160px rgba(0,0,0,.68),0 0 80px rgba(var(--sm-accent),.07),inset 0 1px rgba(255,255,255,.05);
+  transform:translateY(20px) scale(.98);transition:transform .28s cubic-bezier(.2,.85,.2,1)
+}
+.service-modal-v8.open .service-modal-v8-shell{transform:none}
+.service-modal-v8-shell::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(var(--sm-accent),.8),#fff,rgba(var(--sm-accent2),.7),transparent);
+  box-shadow:0 0 24px rgba(var(--sm-accent),.5)
+}
+.service-modal-v8-close{
+  position:sticky;float:right;top:14px;right:14px;z-index:9;
+  width:44px;height:44px;margin:14px 14px 0 0;border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);background:rgba(4,12,20,.82);
+  color:#e8fbff;font-size:20px;cursor:pointer;backdrop-filter:blur(12px)
+}
+.service-modal-v8-grid{display:grid;grid-template-columns:.92fr 1.08fr;min-height:700px}
+.service-modal-v8-visual{
+  position:relative;overflow:hidden;padding:40px 34px 30px;
+  border-right:1px solid rgba(255,255,255,.055);
+  display:flex;flex-direction:column
+}
+.service-modal-v8-visual::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(var(--sm-accent),.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--sm-accent),.025) 1px,transparent 1px);
+  background-size:30px 30px;
+  mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent)
+}
+.service-modal-v8-kicker{
+  position:relative;z-index:3;color:rgba(var(--sm-accent),.95);font-size:9px;font-weight:850;letter-spacing:.16em;text-transform:uppercase
+}
+.service-modal-v8-visual h3{position:relative;z-index:3;font-size:clamp(38px,4.2vw,60px);margin:13px 0 14px;max-width:600px}
+.service-modal-v8-visual > p{position:relative;z-index:3;color:#97aabb;font-size:13px;max-width:560px}
+
+.service-system-map{
+  position:relative;z-index:3;min-height:340px;flex:1;margin-top:14px;transform-style:preserve-3d;perspective:900px
+}
+.ssm-core{
+  position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+  width:118px;height:118px;border-radius:34px;border:1px solid rgba(var(--sm-accent),.42);
+  background:radial-gradient(circle,rgba(255,255,255,.14),rgba(var(--sm-accent),.14) 35%,rgba(4,13,22,.90) 72%);
+  display:grid;place-items:center;color:#efffff;font-size:11px;font-weight:900;letter-spacing:.11em;
+  box-shadow:0 0 86px rgba(var(--sm-accent),.20),inset 0 0 30px rgba(var(--sm-accent),.06);
+  animation:ssmCore 4.4s ease-in-out infinite
+}
+@keyframes ssmCore{0%,100%{scale:.96}50%{scale:1.05}}
+.ssm-ring{
+  position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);border-radius:50%;
+  border:1px solid rgba(var(--sm-accent),.18);animation:ssmSpin 11s linear infinite
+}
+.ssm-ring.r1{width:205px;height:205px}
+.ssm-ring.r2{width:292px;height:292px;border-style:dashed;border-color:rgba(var(--sm-accent2),.18);animation-duration:18s;animation-direction:reverse}
+@keyframes ssmSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.ssm-node{
+  position:absolute;width:112px;height:58px;border-radius:15px;border:1px solid rgba(var(--sm-accent),.24);
+  background:rgba(5,15,25,.78);display:grid;place-items:center;color:#dffaff;font-size:9px;font-weight:850;letter-spacing:.08em;
+  box-shadow:0 15px 38px rgba(0,0,0,.26),0 0 24px rgba(var(--sm-accent),.06);animation:ssmFloat 5.8s ease-in-out infinite
+}
+.ssm-node.n1{left:3%;top:14%}.ssm-node.n2{right:3%;top:15%;animation-delay:-1.4s}
+.ssm-node.n3{left:5%;bottom:8%;animation-delay:-2.8s}.ssm-node.n4{right:4%;bottom:9%;animation-delay:-4.1s}
+@keyframes ssmFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.ssm-link{
+  position:absolute;left:50%;top:52%;height:1px;width:40%;transform-origin:left center;
+  background:linear-gradient(90deg,rgba(var(--sm-accent),.62),transparent);opacity:.72
+}
+.ssm-link.l1{transform:rotate(-145deg)}.ssm-link.l2{transform:rotate(-35deg)}.ssm-link.l3{transform:rotate(145deg)}.ssm-link.l4{transform:rotate(35deg)}
+.ssm-link::after{
+  content:"";position:absolute;left:-20%;top:-2px;width:64px;height:5px;border-radius:999px;
+  background:linear-gradient(90deg,transparent,#fff,rgba(var(--sm-accent),.9),transparent);
+  box-shadow:0 0 18px rgba(var(--sm-accent),.65);animation:ssmSignal 3.1s linear infinite
+}
+.ssm-link.l2::after{animation-delay:-.8s}.ssm-link.l3::after{animation-delay:-1.6s}.ssm-link.l4::after{animation-delay:-2.4s}
+@keyframes ssmSignal{to{left:115%}}
+.service-modal-v8-state{
+  position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-top:14px;border-top:1px solid rgba(255,255,255,.055)
+}
+.service-modal-v8-state span{color:#687f90;font-size:7px;letter-spacing:.14em}
+.service-modal-v8-state b{color:#dffaff;font-size:8px;letter-spacing:.11em}
+
+.service-modal-v8-detail{padding:42px 38px 34px}
+.service-detail-block{padding:19px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+.service-detail-block:first-child{padding-top:0}
+.service-detail-label{display:block;color:rgba(var(--sm-accent),.9);font-size:8px;font-weight:850;letter-spacing:.15em;text-transform:uppercase;margin-bottom:11px}
+.service-detail-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.service-detail-list div,.service-tech-grid div{
+  position:relative;padding:11px 12px 11px 30px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.055);background:rgba(255,255,255,.018);
+  color:#c6d6e1;font-size:10px
+}
+.service-detail-list div::before,.service-tech-grid div::before{
+  content:"✓";position:absolute;left:11px;top:10px;color:rgb(var(--sm-accent))
+}
+.service-delivery-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.service-delivery-flow div{
+  position:relative;padding:11px 8px;border-radius:12px;text-align:center;
+  border:1px solid rgba(var(--sm-accent),.12);background:rgba(var(--sm-accent),.024)
+}
+.service-delivery-flow div:not(:last-child)::after{
+  content:"→";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:rgba(var(--sm-accent),.52);z-index:2
+}
+.service-delivery-flow small{display:block;color:#687f90;font-size:7px}
+.service-delivery-flow b{display:block;font-size:9px;margin:4px 0 2px}
+.service-delivery-flow span{display:block;color:#718697;font-size:7px}
+.service-tech-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.service-detail-note p{margin:0;color:#93a8b8;font-size:11px}
+.service-modal-v8-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+@media(max-width:980px){
+  .capability-flow{grid-template-columns:repeat(3,1fr)}
+  .capability-flow > i{display:none}
+  .service-modal-v8-grid{grid-template-columns:1fr}
+  .service-modal-v8-visual{min-height:580px;border-right:0;border-bottom:1px solid rgba(255,255,255,.055)}
+}
+@media(max-width:680px){
+  .capability-strip{padding:31px 0 34px}
+  .capability-intro{grid-template-columns:1fr;gap:12px}
+  .capability-intro strong{font-size:25px}
+  .capability-flow{grid-template-columns:1fr 1fr;gap:7px}
+  .capability-flow > div{min-height:79px}
+  .service-detail-card .service-list{max-width:100%}
+  .service-detail-card p{max-width:100%!important}
+  .service-modal-v8{padding:8px}
+  .service-modal-v8-shell{width:calc(100vw - 16px);max-height:calc(100vh - 16px);border-radius:22px}
+  .service-modal-v8-visual{padding:28px 18px 20px;min-height:500px}
+  .service-modal-v8-visual h3{font-size:36px}
+  .service-system-map{min-height:260px}
+  .ssm-node{width:82px;height:44px;font-size:7px}
+  .ssm-core{width:88px;height:88px;font-size:8px;border-radius:26px}
+  .ssm-ring.r1{width:160px;height:160px}.ssm-ring.r2{width:224px;height:224px}
+  .service-modal-v8-detail{padding:24px 17px}
+  .service-detail-list,.service-tech-grid{grid-template-columns:1fr}
+  .service-delivery-flow{grid-template-columns:1fr 1fr}
+  .service-delivery-flow div:not(:last-child)::after{display:none}
+  .service-modal-v8-actions .btn{width:100%}
+}
+
 </style>
 </head>
 <body>
 <div class="ambient-aurora"></div>
+<div class="mobile-fixed-world" aria-hidden="true"></div>
 <canvas id="globalCircuit"></canvas>
 <div class="scanlines"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
@@ -2213,23 +2873,24 @@ body::before{
     <div class="container hero-grid">
       <div class="hero-copy reveal">
         <div class="promo-chip"><i></i> Prima analisi digitale gratuita</div>
-        <div class="eyebrow">Digital Systems Studio</div>
-        <h1>Trovo dove il tuo sistema digitale <span class="grad">si blocca.</span><br> Poi costruisco la soluzione.</h1>
+        <div class="eyebrow">Custom Digital Systems Studio</div>
+        <h1>Da un'idea a un <span class="grad">sistema digitale completo.</span></h1>
         <p>
-          Sito poco efficace, operazioni manuali, strumenti scollegati, software che manca o una logica tecnica da trasformare in codice:
-          parto dal problema, individuo il punto critico e progetto un intervento concreto.
+          Progetto e sviluppo da zero siti web, web app, software su misura, aree clienti, dashboard, ecosistemi con più servizi collegati,
+          automazioni, integrazioni AI, bot e strumenti tecnici. Se l'idea è tecnicamente fattibile, definiamo architettura, interfaccia,
+          logica e connessioni fino al rilascio.
         </p>
         <div class="hero-actions">
-          <a class="btn" href="#diagnosi">Fai il check-up gratuito</a>
-          <a class="btn secondary" href="#servizi">Vedi cosa posso risolvere</a>
+          <a class="btn" href="#contatti">Raccontami cosa vuoi costruire</a>
+          <a class="btn secondary" href="#servizi">Esplora cosa posso creare</a>
         </div>
         <div class="hero-meta">
-          <span><i class="status-dot"></i> Prima analisi senza impegno</span>
-          <span><i class="status-dot"></i> Progetto su misura</span>
-          <span><i class="status-dot"></i> Riservatezza operativa</span>
+          <span><i class="status-dot"></i> Progetti da zero o su sistemi esistenti</span>
+          <span><i class="status-dot"></i> Frontend + logica + integrazioni</span>
+          <span><i class="status-dot"></i> Supporto dopo il rilascio</span>
         </div>
         <div class="hero-trust">
-          <span>Web & UX</span><span>Automazioni</span><span>Software</span><span>AI</span><span>Pine / MQL5</span>
+          <span>Siti Web</span><span>Web App</span><span>Software</span><span>Multi-System</span><span>Automation</span><span>AI</span><span>Pine / MQL5</span>
         </div>
         <div class="hero-pulsebar"></div>
       </div>
@@ -2248,15 +2909,15 @@ body::before{
           <div class="future-data-stack" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
           <canvas id="heroSystem"></canvas>
-          <div class="hero-panel hp1"><b>WEB SYSTEM</b>frontend + area cliente</div>
-          <div class="hero-panel hp2"><b>AI LAYER</b>assistenti + analisi</div>
-          <div class="hero-panel hp3"><b>AUTOMATION</b>bot + workflow</div>
-          <div class="hero-panel hp4"><b>TRADING DEV</b>Pine + MQL5</div>
+          <div class="hero-panel hp1"><b>WEBSITE / WEB APP</b>design + frontend + funzioni</div>
+          <div class="hero-panel hp2"><b>SYSTEM LAYER</b>backend + database + API</div>
+          <div class="hero-panel hp3"><b>AUTOMATION / AI</b>bot + workflow + AI</div>
+          <div class="hero-panel hp4"><b>TECH DEV</b>Pine + MQL5 + custom tools</div>
           <div class="future-dock" aria-hidden="true">
-            <div class="future-module"><b>WEB SYSTEM</b><span>UX • dashboard • portali</span></div>
-            <div class="future-module"><b>AUTOMATION</b><span>API • bot • workflow</span></div>
-            <div class="future-module"><b>AI LAYER</b><span>assistenti • analisi</span></div>
-            <div class="future-module"><b>TRADING DEV</b><span>Pine • MQL5 • MT5</span></div>
+            <div class="future-module"><b>WEB / APP</b><span>siti • portali • dashboard</span></div>
+            <div class="future-module"><b>SYSTEMS</b><span>backend • DB • API</span></div>
+            <div class="future-module"><b>AUTOMATION / AI</b><span>bot • workflow • AI</span></div>
+            <div class="future-module"><b>TECH DEV</b><span>Pine • MQL5 • custom tools</span></div>
           </div>
         </div>
         <div class="hero-side-rail"><i></i><i></i><i></i><i></i></div>
@@ -2270,9 +2931,34 @@ body::before{
       <div class="offer-copy">
         <span class="offer-badge">Promo attiva</span>
         <strong>Primo check-up digitale gratuito</strong>
-        <span>Mi descrivi il problema, individuo le aree critiche e ti indico la strada più sensata prima di parlare di sviluppo.</span>
+        <span>Mi racconti cosa vuoi creare oppure cosa oggi non funziona: trasformiamo l’idea in requisiti, priorità e una direzione tecnica concreta prima di parlare di sviluppo.</span>
       </div>
       <a class="btn secondary small" href="#contatti">Richiedi il check-up</a>
+    </div>
+  </section>
+
+  <section class="capability-strip" aria-label="Sviluppo end-to-end">
+    <div class="container">
+      <div class="capability-intro reveal">
+        <div>
+          <span class="eyebrow">Dall'idea al rilascio</span>
+          <strong>Non solo una singola pagina: posso progettare l'intero sistema.</strong>
+        </div>
+        <p>Ogni progetto può includere tutti gli strati necessari, senza costringerti a cercare una soluzione diversa per ogni pezzo.</p>
+      </div>
+      <div class="capability-flow reveal">
+        <div><small>01</small><b>Idea & requisiti</b><span>obiettivo • utenti • funzioni</span></div>
+        <i></i>
+        <div><small>02</small><b>UX / UI</b><span>struttura • interfaccia • mobile</span></div>
+        <i></i>
+        <div><small>03</small><b>Frontend</b><span>web • dashboard • area cliente</span></div>
+        <i></i>
+        <div><small>04</small><b>Backend</b><span>logica • ruoli • database</span></div>
+        <i></i>
+        <div><small>05</small><b>Connessioni</b><span>API • bot • automazioni • AI</span></div>
+        <i></i>
+        <div><small>06</small><b>Rilascio</b><span>test • deploy • supporto</span></div>
+      </div>
     </div>
   </section>
 
@@ -2282,17 +2968,17 @@ body::before{
       <div class="section-head reveal">
         <div>
           <div class="eyebrow">Diagnosi digitale</div>
-          <h2>Dimmi cosa non funziona. <span class="grad">Ti mostro dove posso intervenire.</span></h2>
+          <h2>Hai un problema o solo un’idea? <span class="grad">Partiamo da lì.</span></h2>
         </div>
-        <p>Il cliente non deve sapere già quale tecnologia serve. Deve riconoscere il problema. Da lì costruiamo il percorso tecnico.</p>
+        <p>Puoi arrivare con un sistema da migliorare oppure con un progetto ancora da inventare. Non devi conoscere già stack, database o API: li definiamo in base a ciò che vuoi ottenere.</p>
       </div>
 
       <div class="diagnosis-wrap">
         <div class="problem-grid reveal">
           <button class="problem-card active" data-key="site">
             <small>01 • SITO WEB</small>
-            <strong>Il sito non convince o non porta richieste?</strong>
-            <span>Analizzo percorso utente, chiarezza, CTA, mobile, prestazioni e struttura.</span>
+            <strong>Vuoi creare un sito da zero o rifarne uno che non funziona?</strong>
+            <span>Progetto struttura, UX, grafica, mobile, funzioni e percorso di conversione.</span>
           </button>
           <button class="problem-card" data-key="manual">
             <small>02 • TEMPO PERSO</small>
@@ -2305,9 +2991,9 @@ body::before{
             <span>Collego sito, API, bot, database, calendario e servizi esterni.</span>
           </button>
           <button class="problem-card" data-key="custom">
-            <small>04 • SOFTWARE MANCANTE</small>
-            <strong>Ti serve una funzione che i software standard non hanno?</strong>
-            <span>Progetto una web app o uno strumento costruito sul tuo flusso reale.</span>
+            <small>04 • SOFTWARE / PIATTAFORMA</small>
+            <strong>Hai in testa uno strumento che oggi non esiste?</strong>
+            <span>Lo trasformo in web app, portale, gestionale, dashboard o piattaforma su misura.</span>
           </button>
           <button class="problem-card" data-key="ai">
             <small>05 • AI</small>
@@ -2367,59 +3053,72 @@ body::before{
     <div class="container">
       <div class="section-head reveal">
         <div>
-          <div class="eyebrow">Soluzioni concrete</div>
-          <h2>Non ti vendo “tecnologia”. <span class="grad">Intervengo su problemi reali.</span></h2>
+          <div class="eyebrow">Cosa posso costruire</div>
+          <h2>Dal sito singolo a un <span class="grad">ecosistema digitale completo.</span></h2>
         </div>
-        <p>Ogni servizio è presentato dal punto di vista del risultato: cosa non funziona oggi, cosa posso costruire e come può migliorare il processo.</p>
+        <p>Puoi affidarmi un singolo componente oppure un progetto completo: interfaccia, logica, dati, integrazioni, automazioni e rilascio vengono progettati come parti dello stesso sistema.</p>
       </div>
 
       <div class="bento">
-        <article class="service-card large reveal tilt-card">
+        <article class="service-card large reveal tilt-card service-detail-card" data-service="website" tabindex="0" role="button" aria-label="Apri dettagli Siti web da zero">
           <div class="card-circuit"></div>
-          <div class="num">01 • WEBSITE RESCUE</div>
-          <h3>Il tuo sito è bello, ma non lavora davvero?</h3>
-          <div class="impact">Analisi + riprogettazione mirata</div>
-          <p>Individuo i punti deboli di struttura, UX, mobile, velocità, contenuti e percorso di contatto. Poi intervengo solo dove serve, senza rifare tutto alla cieca.</p>
-          <div class="service-list"><span class="chip">UX</span><span class="chip">CTA</span><span class="chip">Mobile</span><span class="chip">Performance</span></div>
-          <a class="service-cta" href="#contatti">Analizza il mio sito</a>
+          <div class="num">01 • WEBSITE DESIGN & DEVELOPMENT</div>
+          <h3>Siti web da zero, non solo correzioni.</h3>
+          <div class="impact">Brand + UX + sviluppo + funzioni</div>
+          <p>Landing page, siti aziendali, cataloghi, portali e siti avanzati progettati da zero attorno al tuo obiettivo. Posso partire da un'idea, un logo, un riferimento visivo o anche da un foglio bianco.</p>
+          <div class="service-list"><span class="chip">UX/UI</span><span class="chip">Responsive</span><span class="chip">Form</span><span class="chip">SEO tecnico</span><span class="chip">Deploy</span></div>
+          <button class="service-cta service-open" type="button">Apri la scheda completa</button>
           <div class="card-graphic"><div class="mini-window"></div><div class="mini-lines"><i></i><i></i><i></i></div></div>
         </article>
 
-        <article class="service-card medium reveal tilt-card">
+        <article class="service-card medium reveal tilt-card service-detail-card" data-service="platform" tabindex="0" role="button" aria-label="Apri dettagli Web app e software">
           <div class="card-circuit"></div>
-          <div class="num">02 • AUTOMATION</div>
-          <h3>Stai ancora facendo a mano ciò che può fare un sistema?</h3>
-          <div class="impact">Riduzione di passaggi ripetitivi</div>
-          <p>Prenotazioni, notifiche, email, Telegram, raccolta dati, aggiornamenti e procedure interne possono essere trasformati in flussi automatici e controllabili.</p>
-          <div class="service-list"><span class="chip">Bot</span><span class="chip">Webhook</span><span class="chip">API</span><span class="chip">Workflow</span></div>
-          <a class="service-cta" href="#contatti">Scopri cosa posso automatizzare</a>
+          <div class="num">02 • WEB APP & CUSTOM SOFTWARE</div>
+          <h3>Hai un'idea? Possiamo trasformarla in un prodotto digitale.</h3>
+          <div class="impact">Frontend + backend + database</div>
+          <p>Dashboard, gestionali, aree clienti, pannelli admin, calendari, ruoli, login, librerie contenuti e strumenti operativi costruiti sul tuo flusso.</p>
+          <div class="service-list"><span class="chip">Dashboard</span><span class="chip">Admin</span><span class="chip">Auth</span><span class="chip">Database</span></div>
+          <button class="service-cta service-open" type="button">Apri la scheda completa</button>
         </article>
 
-        <article class="service-card third reveal tilt-card">
+        <article class="service-card third reveal tilt-card service-detail-card" data-service="ecosystem" tabindex="0" role="button" aria-label="Apri dettagli Ecosistemi digitali">
           <div class="card-circuit"></div>
-          <div class="num">03 • CUSTOM SOFTWARE</div>
-          <h3>Ti serve uno strumento che non esiste?</h3>
-          <div class="impact">Software costruito sul tuo flusso</div>
-          <p>Dashboard, portali clienti, aree riservate, gestionali, calendari, ruoli e pannelli amministrativi progettati attorno al modo in cui lavori davvero.</p>
-          <a class="service-cta" href="#contatti">Raccontami l'idea</a>
+          <div class="num">03 • DIGITAL ECOSYSTEMS</div>
+          <h3>Più sistemi, un solo ecosistema.</h3>
+          <div class="impact">Sito + software + bot + API + dati</div>
+          <p>Progetto architetture dove più componenti lavorano insieme: sito pubblico, area cliente, admin, database, bot, calendario, notifiche, pagamenti e servizi esterni.</p>
+          <div class="service-list"><span class="chip">API</span><span class="chip">Webhooks</span><span class="chip">Database</span><span class="chip">Multi-system</span></div>
+          <button class="service-cta service-open" type="button">Apri la scheda completa</button>
         </article>
 
-        <article class="service-card third reveal tilt-card">
+        <article class="service-card third reveal tilt-card service-detail-card" data-service="automation" tabindex="0" role="button" aria-label="Apri dettagli Automazioni">
           <div class="card-circuit"></div>
-          <div class="num">04 • AI INTEGRATION</div>
-          <h3>Vuoi integrare l'AI senza aggiungere un altro giocattolo?</h3>
-          <div class="impact">AI dentro un processo reale</div>
-          <p>Assistenti, analisi documentale, classificazione, generazione e automazioni AI inserite dove migliorano davvero il lavoro.</p>
-          <a class="service-cta" href="#contatti">Valutiamo l'integrazione</a>
+          <div class="num">04 • AUTOMATION & BOTS</div>
+          <h3>Riduci passaggi manuali e ripetitivi.</h3>
+          <div class="impact">Workflow automatici controllabili</div>
+          <p>Prenotazioni, email, Telegram, notifiche, raccolta dati, sincronizzazioni e procedure interne trasformate in flussi automatici con controlli ed error handling.</p>
+          <div class="service-list"><span class="chip">Bot</span><span class="chip">Workflow</span><span class="chip">Webhook</span><span class="chip">Notifications</span></div>
+          <button class="service-cta service-open" type="button">Apri la scheda completa</button>
         </article>
 
-        <article class="service-card third reveal tilt-card">
+        <article class="service-card third reveal tilt-card service-detail-card" data-service="ai" tabindex="0" role="button" aria-label="Apri dettagli Integrazioni AI">
           <div class="card-circuit"></div>
-          <div class="num">05 • TRADING DEVELOPMENT</div>
-          <h3>Hai una logica TradingView o MT5 da trasformare in codice?</h3>
-          <div class="impact">Pine Script / MQL5 su specifiche</div>
-          <p>Indicatori, alert, pannelli, utility ed Expert Advisor sviluppati a partire da regole definite con te o con il tuo professionista di riferimento.</p>
-          <a class="service-cta" href="#contatti">Parliamo della logica</a>
+          <div class="num">05 • AI INTEGRATION</div>
+          <h3>AI dentro il sistema, dove serve davvero.</h3>
+          <div class="impact">AI + dati + automazione</div>
+          <p>Assistenti, analisi documentale, classificazione, estrazione dati, generazione e workflow AI collegati a database, interfacce e processi reali.</p>
+          <div class="service-list"><span class="chip">Assistants</span><span class="chip">Documents</span><span class="chip">Data</span><span class="chip">Workflow AI</span></div>
+          <button class="service-cta service-open" type="button">Apri la scheda completa</button>
+        </article>
+
+        <article class="service-card third reveal tilt-card service-detail-card" data-service="trading" tabindex="0" role="button" aria-label="Apri dettagli Trading Development">
+          <div class="card-circuit"></div>
+          <div class="num">06 • TRADING DEVELOPMENT</div>
+          <h3>Pine Script, MQL5 e strumenti tecnici custom.</h3>
+          <div class="impact">Logica definita → software tecnico</div>
+          <p>Indicatori, alert, pannelli, utility ed Expert Advisor sviluppati a partire da regole e specifiche tecniche concordate.</p>
+          <div class="service-list"><span class="chip">Pine Script</span><span class="chip">MQL5</span><span class="chip">MT5</span><span class="chip">Alert</span></div>
+          <button class="service-cta service-open" type="button">Apri la scheda completa</button>
         </article>
       </div>
       <p class="micro-note reveal">Trading Development = sviluppo software tecnico. Non comprende consulenza finanziaria né indicazioni operative di investimento.</p>
@@ -2433,12 +3132,12 @@ body::before{
         <div class="offer-grid">
           <div>
             <div class="promo-chip"><i></i> Primo intervento: analisi gratuita</div>
-            <h2>Prima di spendere nello sviluppo, <span class="grad">capisci cosa vale la pena sistemare.</span></h2>
-            <p>Mi descrivi il problema e facciamo una prima diagnosi: cosa sta bloccando il processo, quali interventi hanno priorità e quale strada tecnica ha più senso.</p>
+            <h2>Prima di sviluppare, <span class="grad">definiamo bene cosa deve esistere.</span></h2>
+            <p>Mi descrivi l’idea, il sistema attuale o il risultato che vuoi ottenere. La prima analisi serve a chiarire funzioni, priorità, fattibilità e strada tecnica.</p>
             <div class="offer-list">
               <div><b>✓</b> Primo confronto senza impegno</div>
-              <div><b>✓</b> Individuazione delle criticità principali</div>
-              <div><b>✓</b> Indicazione dei prossimi passi</div>
+              <div><b>✓</b> Definizione delle funzioni o delle criticità principali</div>
+              <div><b>✓</b> Architettura iniziale e prossimi passi</div>
               <div><b>✓</b> Preventivo solo dopo aver definito il perimetro</div>
             </div>
           </div>
@@ -2459,17 +3158,19 @@ body::before{
       <div class="section-head reveal">
         <div>
           <div class="eyebrow">System Builder</div>
-          <h2>Il problema può sembrare semplice. <span class="grad">La soluzione deve essere progettata bene.</span></h2>
+          <h2>Ogni idea può diventare un sistema. <span class="grad">Prima ne disegniamo l’architettura.</span></h2>
         </div>
-        <p>Seleziona un modulo: vedi come può entrare in un sistema completo senza creare nuovi passaggi inutili.</p>
+        <p>Seleziona ciò che vuoi costruire: ogni modulo può vivere da solo oppure diventare parte di un ecosistema più ampio.</p>
       </div>
 
       <div class="builder-wrap">
         <div class="builder-controls reveal">
-          <button class="builder-option active" data-title="Web App" data-desc="Interfaccia, autenticazione, ruoli e area cliente." data-core="WEB APP"><strong>Web App</strong><span>Portale, dashboard, area cliente.</span></button>
-          <button class="builder-option" data-title="Automazione" data-desc="Workflow, bot, webhook e notifiche riducono il lavoro manuale." data-core="AUTOMATION"><strong>Automazione</strong><span>Bot, API, workflow e notifiche.</span></button>
-          <button class="builder-option" data-title="AI Integration" data-desc="L'AI viene inserita nel processo reale, non aggiunta come etichetta." data-core="AI LAYER"><strong>AI Integration</strong><span>Assistenti, documenti, analisi.</span></button>
-          <button class="builder-option" data-title="Trading Dev" data-desc="Pine Script e MQL5 come moduli tecnici dedicati." data-core="TRADING DEV"><strong>Trading Development</strong><span>Pine Script, MQL5, MT5.</span></button>
+          <button class="builder-option active" data-title="Sito Web" data-desc="Brand, UX, interfaccia responsive, contenuti e funzioni necessarie." data-core="WEBSITE"><strong>Sito Web</strong><span>Da zero o redesign completo.</span></button>
+          <button class="builder-option" data-title="Web App / Software" data-desc="Frontend, autenticazione, ruoli, backend e database per uno strumento operativo." data-core="WEB APP"><strong>Web App / Software</strong><span>Dashboard, portali, gestionali.</span></button>
+          <button class="builder-option" data-title="Ecosistema digitale" data-desc="Più componenti collegati in un’unica architettura: sito, admin, bot, database, API e servizi esterni." data-core="ECOSYSTEM"><strong>Ecosistema digitale</strong><span>Multi-system connessi tra loro.</span></button>
+          <button class="builder-option" data-title="Automazione" data-desc="Workflow, bot, webhook, notifiche e sincronizzazioni riducono il lavoro manuale." data-core="AUTOMATION"><strong>Automazione</strong><span>Bot, API, workflow e notifiche.</span></button>
+          <button class="builder-option" data-title="AI Integration" data-desc="L'AI viene inserita nel processo reale e collegata a dati, interfacce e automazioni." data-core="AI LAYER"><strong>AI Integration</strong><span>Assistenti, documenti, analisi.</span></button>
+          <button class="builder-option" data-title="Trading Development" data-desc="Pine Script e MQL5 come moduli tecnici dedicati costruiti su specifiche." data-core="TRADING DEV"><strong>Trading Development</strong><span>Pine Script, MQL5, MT5.</span></button>
         </div>
 
         <div class="builder-stage reveal">
@@ -2569,17 +3270,17 @@ body::before{
       <div class="section-head reveal">
         <div>
           <div class="eyebrow">Percorso cliente</div>
-          <h2>Da “ho un problema” a <span class="grad">“questa è la soluzione”.</span></h2>
+          <h2>Da “ho un’idea” a <span class="grad">“è online e funziona”.</span></h2>
         </div>
-        <p>Il cliente deve sapere sempre cosa stiamo facendo, perché lo stiamo facendo e quale risultato stiamo cercando.</p>
+        <p>Il percorso vale sia per un nuovo progetto sia per un sistema già esistente: requisiti chiari, sviluppo verificabile, test e rilascio controllato.</p>
       </div>
 
       <div class="process">
-        <div class="process-card reveal"><small>01</small><h3>Contatto</h3><p>Mi racconti il problema, anche senza conoscere la soluzione tecnica.</p></div>
-        <div class="process-card reveal"><small>02</small><h3>Check-up gratuito</h3><p>Identifico criticità, priorità e fattibilità dell'intervento.</p></div>
-        <div class="process-card reveal"><small>03</small><h3>Roadmap</h3><p>Definiamo soluzione, perimetro, tempi e preventivo.</p></div>
+        <div class="process-card reveal"><small>01</small><h3>Idea / problema</h3><p>Mi racconti ciò che vuoi creare o ciò che oggi non funziona, anche senza un brief tecnico.</p></div>
+        <div class="process-card reveal"><small>02</small><h3>Analisi</h3><p>Definiamo utenti, funzioni, fattibilità, priorità e componenti necessari.</p></div>
+        <div class="process-card reveal"><small>03</small><h3>Architettura</h3><p>Definiamo interfaccia, logica, dati, integrazioni, perimetro e preventivo.</p></div>
         <div class="process-card reveal"><small>04</small><h3>Sviluppo</h3><p>Costruzione, test, demo e correzioni su obiettivi concordati.</p></div>
-        <div class="process-card reveal"><small>05</small><h3>Consegna</h3><p>Rilascio, controllo finale e supporto concordato.</p></div>
+        <div class="process-card reveal"><small>05</small><h3>Rilascio & supporto</h3><p>Deploy, controllo finale, passaggio operativo e supporto concordato.</p></div>
       </div>
     </div>
   </section>
@@ -2595,13 +3296,16 @@ body::before{
         <p>Il progetto cambia, il metodo no: perimetro, obiettivi e responsabilità devono essere comprensibili prima di partire.</p>
       </div>
       <div class="faq reveal">
-        <details><summary>La prima analisi è davvero gratuita?</summary><p>Sì: il primo check-up serve a capire il problema, le priorità e se ha senso procedere. Lo sviluppo viene eventualmente quotato dopo aver definito il perimetro.</p></details>
-        <details><summary>Devo sapere già cosa mi serve?</summary><p>No. Puoi partire dal problema: un sito che non funziona come vorresti, attività manuali, strumenti scollegati o una funzione che manca.</p></details>
-        <details><summary>Puoi intervenire su un sito già esistente?</summary><p>Sì. L'intervento può partire da analisi, correzione di punti critici, ottimizzazione del percorso utente o sviluppo di nuove funzioni senza necessariamente rifare tutto.</p></details>
-        <details><summary>Puoi automatizzare processi già esistenti?</summary><p>Sì. Prima ricostruisco il flusso attuale, poi valuto cosa può essere automatizzato in modo affidabile tramite API, webhook, bot, database o integrazioni.</p></details>
-        <details><summary>Posso richiedere Pine Script o MQL5?</summary><p>Sì, come sviluppo software tecnico su specifiche definite. Non comprende consulenza finanziaria, segnali o indicazioni operative.</p></details>
-        <details><summary>Posso vedere lavori precedenti?</summary><p>Il materiale riservato non viene pubblicato. Quando possibile, dopo il primo contatto possono essere mostrate demo, prototipi o case study anonimizzati.</p></details>
-      </div>
+        <details open><summary>Puoi creare un sito completamente da zero?</summary><p>Sì. Posso partire da un’idea, un’identità visiva, un logo o anche da zero: struttura, UX/UI, responsive, funzioni, moduli, integrazioni e pubblicazione vengono definiti in base all’obiettivo.</p></details>
+        <details><summary>Puoi creare anche piattaforme, web app o gestionali?</summary><p>Sì. Il progetto può includere login, ruoli, dashboard, area cliente, pannello admin, database, calendari, librerie contenuti, notifiche e logiche operative personalizzate.</p></details>
+        <details><summary>Puoi costruire un sistema con più servizi collegati?</summary><p>Sì. Posso progettare ecosistemi in cui sito, backend, database, bot, API, calendario, email, pagamenti, servizi esterni e automazioni comunicano tra loro in modo coordinato.</p></details>
+        <details><summary>Devo sapere già quale tecnologia mi serve?</summary><p>No. Puoi descrivermi solo l’idea, il problema o il risultato che vuoi ottenere. La scelta dell’architettura tecnica viene dopo l’analisi dei requisiti.</p></details>
+        <details><summary>Puoi intervenire anche su un progetto già esistente?</summary><p>Sì. Posso analizzare, correggere, estendere o riprogettare parti di un sistema esistente senza necessariamente ricostruire tutto da zero.</p></details>
+        <details><summary>Puoi automatizzare processi e collegare strumenti?</summary><p>Sì. API, webhook, bot, database, email, calendari e servizi esterni possono essere integrati in workflow automatici con controlli, notifiche ed error handling.</p></details>
+        <details><summary>Puoi integrare l’AI in un software o in un processo?</summary><p>Sì, quando esiste un caso d’uso concreto: assistenza, classificazione, analisi documentale, estrazione dati, generazione o automazioni collegate a un flusso reale.</p></details>
+        <details><summary>Posso richiedere Pine Script o MQL5?</summary><p>Sì, come sviluppo software tecnico su specifiche definite. Non comprende consulenza finanziaria, segnali o indicazioni operative di investimento.</p></details>
+        <details><summary>Come gestisci progetti riservati?</summary><p>Il materiale riservato non viene pubblicato. Quando serve posso lavorare con accessi separati, ambienti di test, dati minimizzati e una documentazione concordata con il cliente.</p></details>
+      </div></div>
     </div>
   </section>
 
@@ -2612,9 +3316,9 @@ body::before{
         <div class="contact-grid">
           <div class="contact-copy">
             <div class="promo-chip"><i></i> Prima analisi gratuita</div>
-            <div class="eyebrow">Iniziamo dal problema</div>
-            <h2>Raccontami cosa ti sta facendo <span class="grad">perdere tempo, clienti o controllo.</span></h2>
-            <p>Non serve un brief tecnico perfetto. Mi basta capire cosa succede oggi e cosa vorresti ottenere. Da lì posso dirti se ha senso intervenire e in quale direzione.</p>
+            <div class="eyebrow">Iniziamo dall’idea o dal problema</div>
+            <h2>Raccontami cosa vuoi <span class="grad">creare, collegare o migliorare.</span></h2>
+            <p>Non serve conoscere già tecnologia o stack. Puoi arrivare con un’idea, uno screenshot, un processo da automatizzare o un sistema da rifare: trasformiamo insieme il risultato desiderato in un progetto tecnico concreto.</p>
 
             <div class="contact-options">
               <div class="contact-option primary">
@@ -2645,34 +3349,103 @@ body::before{
               <label>Nome<input id="name" type="text" required placeholder="Il tuo nome"></label>
               <label>Email<input id="email" type="email" required placeholder="nome@email.it"></label>
             </div>
-            <label>Qual è il problema principale?
+            <label>Cosa vuoi realizzare?
               <select id="type">
-                <option>Il mio sito non è efficace</option>
+                <option>Voglio creare un sito web da zero</option>
+                <option>Voglio rifare / migliorare un sito esistente</option>
+                <option>Mi serve una web app / piattaforma / gestionale</option>
+                <option>Voglio creare un ecosistema con più sistemi collegati</option>
                 <option>Voglio automatizzare un processo</option>
-                <option>Mi serve un software / web app su misura</option>
-                <option>Voglio collegare strumenti diversi</option>
+                <option>Voglio collegare strumenti / API / database</option>
                 <option>Voglio integrare l'AI</option>
                 <option>Mi serve Pine Script / MQL5</option>
-                <option>Non lo so ancora: voglio una valutazione</option>
+                <option>Ho un'idea ma non so ancora come realizzarla</option>
               </select>
             </label>
-            <label>Descrivimi cosa succede oggi<textarea id="message" rows="6" required placeholder="Esempio: riceviamo richieste dal sito, poi copiamo tutto a mano su WhatsApp e calendario..."></textarea></label>
+            <label>Descrivimi cosa vuoi ottenere<textarea id="message" rows="6" required placeholder="Esempio: voglio un sito con area clienti, calendario, pagamenti e un pannello admin; oppure: oggi faccio questo processo a mano e vorrei automatizzarlo..."></textarea></label>
             <div class="form-actions">
-              <button class="btn" type="submit">Prepara la richiesta</button>
-              <span class="form-note">La richiesta viene preparata sul dispositivo; collegheremo calendario, WhatsApp ed email nel prossimo passaggio.</span>
+              <button class="btn" type="submit">Prepara il brief</button>
+              <span class="form-note">Il brief viene strutturato sul dispositivo e copiato negli appunti. I canali diretti verranno collegati quando inseriremo i recapiti definitivi.</span>
             </div>
-            <div class="success-box" id="successBox">Richiesta preparata e copiata negli appunti. Nel prossimo passaggio collegheremo l'invio diretto.</div>
+            <div class="success-box" id="successBox">Brief preparato e copiato negli appunti. Ora hai una richiesta strutturata pronta da inviare.</div>
           </form>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="service-modal-v8" id="serviceModalV8" aria-hidden="true">
+    <div class="service-modal-v8-backdrop" data-service-close></div>
+    <div class="service-modal-v8-shell" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+      <button class="service-modal-v8-close" type="button" aria-label="Chiudi scheda" data-service-close>×</button>
+      <div class="service-modal-v8-grid">
+        <div class="service-modal-v8-visual">
+          <div class="service-modal-v8-kicker" id="serviceModalKicker">CAPABILITY</div>
+          <h3 id="serviceModalTitle">Dettaglio</h3>
+          <p id="serviceModalLead"></p>
+
+          <div class="service-system-map" id="serviceSystemMap" aria-hidden="true">
+            <div class="ssm-ring r1"></div>
+            <div class="ssm-ring r2"></div>
+            <div class="ssm-link l1"></div>
+            <div class="ssm-link l2"></div>
+            <div class="ssm-link l3"></div>
+            <div class="ssm-link l4"></div>
+            <div class="ssm-core" id="serviceSystemCore">CORE</div>
+            <div class="ssm-node n1" id="serviceNode1">UX</div>
+            <div class="ssm-node n2" id="serviceNode2">UI</div>
+            <div class="ssm-node n3" id="serviceNode3">DATA</div>
+            <div class="ssm-node n4" id="serviceNode4">DEPLOY</div>
+          </div>
+
+          <div class="service-modal-v8-state">
+            <span>PROJECT BLUEPRINT</span>
+            <b id="serviceModalState">READY</b>
+          </div>
+        </div>
+
+        <div class="service-modal-v8-detail">
+          <div class="service-detail-block">
+            <span class="service-detail-label">Cosa posso costruire</span>
+            <div class="service-detail-list" id="serviceBuildList"></div>
+          </div>
+
+          <div class="service-detail-block">
+            <span class="service-detail-label">Come lo realizzo</span>
+            <div class="service-delivery-flow">
+              <div><small>01</small><b>Requisiti</b><span>obiettivi e funzioni</span></div>
+              <div><small>02</small><b>Architettura</b><span>UX, dati e logica</span></div>
+              <div><small>03</small><b>Sviluppo</b><span>frontend + backend</span></div>
+              <div><small>04</small><b>Test</b><span>funzioni e mobile</span></div>
+              <div><small>05</small><b>Rilascio</b><span>deploy + supporto</span></div>
+            </div>
+          </div>
+
+          <div class="service-detail-block">
+            <span class="service-detail-label">Il progetto può includere</span>
+            <div class="service-tech-grid" id="serviceTechGrid"></div>
+          </div>
+
+          <div class="service-detail-block service-detail-note">
+            <span class="service-detail-label">Da dove si parte</span>
+            <p id="serviceModalNote"></p>
+          </div>
+
+          <div class="service-modal-v8-actions">
+            <button class="btn" type="button" id="serviceModalCTA">Parliamo del progetto</button>
+            <button class="btn secondary" type="button" data-service-close>Chiudi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <footer>
   <div class="container footer">
-    <div><strong>LUKA TECH LAB</strong> — Analisi, automazioni & software su misura</div>
-    <div>Soluzioni digitali su misura • Italia / remoto</div>
+    <div><strong>LUKA TECH LAB</strong> — Siti, software, automazioni & sistemi digitali su misura</div>
+    <div>Siti • Web App • Software • Ecosistemi • Automation • AI • Italia / remoto</div>
     <div>© 2026 Luka Tech Lab</div>
   </div>
 </footer>
@@ -2783,14 +3556,14 @@ function buildCircuits(){
     }
     circuits.push(...segs);
   }
-  pulses=Array.from({length:Math.min(34,Math.max(18,Math.floor(gw/70)))},()=>({
+  pulses=Array.from({length:innerWidth<=680?12:Math.min(34,Math.max(18,Math.floor(gw/70)))},()=>({
     path:Math.floor(rnd()*circuits.length),
     t:rnd(),speed:.0012+rnd()*.0022,
     size:1.4+rnd()*2.2,hue:rnd()>.78?'violet':'cyan'
   }));
 }
 function resizeGlobal(){
-  gDpr=Math.min(devicePixelRatio||1,2);
+  gDpr=Math.min(devicePixelRatio||1,innerWidth<=680?1.35:2);
   gw=innerWidth;gh=innerHeight;
   gc.width=gw*gDpr;gc.height=gh*gDpr;
   gc.style.width=gw+'px';gc.style.height=gh+'px';
@@ -2855,7 +3628,7 @@ const nodes3D=[
 const edgePairs=[[0,1],[0,2],[0,4],[1,3],[1,4],[2,3],[2,5],[3,5],[4,5]];
 let heroPulses=edgePairs.map((e,i)=>({edge:i,t:(i*.17)%1,speed:.0035+(i%3)*.0006}));
 function resizeHero(){
-  hDpr=Math.min(devicePixelRatio||1,2);
+  hDpr=Math.min(devicePixelRatio||1,innerWidth<=680?1.35:2);
   const r=hs.getBoundingClientRect();hw=r.width;hh=r.height;
   hs.width=hw*hDpr;hs.height=hh*hDpr;hctx.setTransform(hDpr,0,0,hDpr,0,0);
 }
@@ -2921,7 +3694,7 @@ resizeHero();drawHero();addEventListener('resize',resizeHero);
 const diagnosisData={
   site:{
     label:'Sito web / UX / conversione',
-    title:'Troviamo il punto critico del tuo sito.',
+    title:'Progettiamo un sito da zero oppure troviamo cosa limita quello esistente.',
     text:"Analizzo struttura, messaggio, percorso dell'utente, call to action, mobile e punti di attrito. L'obiettivo è capire cosa sta limitando il sito prima di rifarlo.",
     points:['Individuazione delle criticità principali','Priorità degli interventi','Proposta tecnica coerente con l’obiettivo'],
     visualLabel:'LIVE VISUAL / WEBSITE',
@@ -2948,8 +3721,8 @@ const diagnosisData={
   },
   custom:{
     label:'Software su misura',
-    title:'Costruiamo la funzione che oggi ti manca.',
-    text:'Se i software standard non seguono il tuo processo, progetto uno strumento dedicato: web app, dashboard, portale, area riservata o gestionale.',
+    title:'Trasformiamo l’idea in una piattaforma o in un software su misura.',
+    text:'Posso partire da un’idea e progettare web app, dashboard, portali, aree riservate, gestionali o sistemi con più moduli collegati.',
     points:['Funzioni necessarie e priorità','Ruoli, dati e flussi','Prototipo, sviluppo e test'],
     visualLabel:'LIVE VISUAL / CUSTOM SOFTWARE',
     visualStatus:'ASSEMBLAGGIO MODULARE',
@@ -3266,6 +4039,148 @@ addEventListener('pointermove',requestImpact,{passive:true});
 addEventListener('scroll',requestImpact,{passive:true});
 addEventListener('resize',requestImpact,{passive:true});
 requestImpact();
+
+
+/* =========================================================
+   V8 — SERVICE CAPABILITY MODAL
+   ========================================================= */
+const serviceCatalogV8={
+  website:{
+    kicker:'01 / WEBSITE DESIGN & DEVELOPMENT',
+    title:'Siti web progettati da zero attorno al tuo obiettivo.',
+    lead:'Non parto da un template da riempire. Definiamo struttura, percezione del brand, percorso utente, contenuti, responsive e funzioni necessarie.',
+    build:['Landing page ad alta conversione','Siti aziendali e professionali','Cataloghi e vetrine prodotto','Portali con sezioni dinamiche','Aree riservate collegate al sito','Redesign completo di siti esistenti'],
+    tech:['UX / UI','HTML / CSS / JS','CMS o sviluppo custom','Form e lead flow','SEO tecnico','Analytics / tracking'],
+    nodes:['UX / UI','MOBILE','FUNCTIONS','DEPLOY'],
+    core:'WEBSITE',
+    state:'DESIGN → BUILD → ONLINE',
+    note:'Puoi arrivare con un logo, una reference, un sito vecchio oppure solo con l’idea. La prima fase serve a trasformare ciò che hai in una struttura realizzabile.',
+    form:'Voglio creare un sito web da zero',
+    accent:'82,236,255',accent2:'111,124,255'
+  },
+  platform:{
+    kicker:'02 / WEB APP & CUSTOM SOFTWARE',
+    title:'Software costruito intorno al tuo modo di lavorare.',
+    lead:'Quando un sito non basta, posso progettare un vero strumento operativo con utenti, ruoli, dati, dashboard, workflow e pannello amministrativo.',
+    build:['Web app e piattaforme operative','Dashboard e gestionali','Area cliente / area riservata','Pannelli admin personalizzati','Login, ruoli e permessi','Calendari e librerie contenuti'],
+    tech:['Frontend','Backend','Database','Auth / ruoli','Admin panel','Deploy / hosting'],
+    nodes:['FRONTEND','BACKEND','DATABASE','ADMIN'],
+    core:'WEB APP',
+    state:'FULL SYSTEM BLUEPRINT',
+    note:'Partiamo dalle funzioni indispensabili, poi costruiamo un MVP o il sistema completo. L’architettura viene definita prima di scrivere le parti critiche.',
+    form:'Mi serve una web app / piattaforma / gestionale',
+    accent:'94,207,255',accent2:'111,124,255'
+  },
+  ecosystem:{
+    kicker:'03 / DIGITAL ECOSYSTEMS',
+    title:'Più componenti coordinati come un unico sistema.',
+    lead:'Posso progettare un ecosistema completo in cui sito pubblico, area cliente, pannello admin, database, bot, API e servizi esterni condividono logica e dati.',
+    build:['Sito + area cliente + admin','Database centrale e ruoli','Bot e notifiche collegate','Calendari e prenotazioni','Pagamenti e servizi esterni','API / webhook tra sistemi'],
+    tech:['API','Webhooks','Database','Bots','Payments','External services'],
+    nodes:['WEB','API / BOT','DATABASE','SERVICES'],
+    core:'ECOSYSTEM',
+    state:'CONNECTED ARCHITECTURE',
+    note:'Questa è la soluzione quando il progetto non è “un sito”, ma un insieme di strumenti che devono comportarsi come un solo prodotto.',
+    form:'Voglio creare un ecosistema con più sistemi collegati',
+    accent:'82,236,255',accent2:'183,92,255'
+  },
+  automation:{
+    kicker:'04 / AUTOMATION & BOTS',
+    title:'Il sistema esegue i passaggi ripetitivi al posto tuo.',
+    lead:'Ricostruisco il flusso reale e automatizzo solo ciò che può essere reso affidabile, controllabile e verificabile.',
+    build:['Bot Telegram e notifiche','Automazioni email','Workflow tra servizi','Sincronizzazione dati','Prenotazioni e reminder','Procedure operative automatiche'],
+    tech:['Webhook','API','Bots','Schedulers','Error handling','Logs / alerts'],
+    nodes:['INPUT','RULES','AUTOMATION','OUTPUT'],
+    core:'WORKFLOW',
+    state:'AUTOMATION ENGINE READY',
+    note:'L’automazione viene progettata partendo dalle eccezioni, non solo dal caso ideale: cosa succede se un dato manca, un servizio non risponde o un utente cambia percorso.',
+    form:'Voglio automatizzare un processo',
+    accent:'90,239,213',accent2:'82,185,255'
+  },
+  ai:{
+    kicker:'05 / AI INTEGRATION',
+    title:'AI collegata a dati e processi, non isolata in una chat.',
+    lead:'Integro modelli AI quando possono analizzare, classificare, estrarre, generare o assistere un processo concreto.',
+    build:['Assistenti custom','Analisi documentale','Classificazione richieste','Estrazione dati strutturati','Generazione controllata','Workflow AI con azioni'],
+    tech:['LLM / AI API','Documents','Database','Guardrails','Automation','Human review'],
+    nodes:['INPUT','AI','RULES','ACTION'],
+    core:'AI LAYER',
+    state:'AI WORKFLOW MAPPED',
+    note:'Prima definiamo input, output, limiti e controlli. L’AI viene usata come componente di un sistema, non come sostituto indiscriminato del processo.',
+    form:"Voglio integrare l'AI",
+    accent:'117,230,255',accent2:'183,92,255'
+  },
+  trading:{
+    kicker:'06 / TRADING DEVELOPMENT',
+    title:'Regole tecniche trasformate in strumenti Pine Script o MQL5.',
+    lead:'Sviluppo software tecnico per TradingView e MetaTrader 5 partendo da specifiche verificabili.',
+    build:['Indicatori Pine Script','Alert personalizzati','Dashboard TradingView','Expert Advisor MQL5','Utility MT5','Debug e test tecnico'],
+    tech:['Pine Script','MQL5','TradingView','MetaTrader 5','Alerts','Technical testing'],
+    nodes:['RULES','CODE','TEST','OUTPUT'],
+    core:'TRADING DEV',
+    state:'SPEC → CODE → TEST',
+    note:'Questa attività riguarda esclusivamente sviluppo software tecnico su specifiche. Non include consulenza finanziaria, segnali o raccomandazioni operative.',
+    form:'Mi serve Pine Script / MQL5',
+    accent:'82,236,255',accent2:'183,92,255'
+  }
+};
+
+const serviceModalV8=$('#serviceModalV8');
+const serviceModalShellV8=serviceModalV8?.querySelector('.service-modal-v8-shell');
+let activeServiceV8='website';
+
+function openServiceV8(key){
+  const d=serviceCatalogV8[key];
+  if(!d||!serviceModalV8)return;
+  activeServiceV8=key;
+  serviceModalShellV8.style.setProperty('--sm-accent',d.accent);
+  serviceModalShellV8.style.setProperty('--sm-accent2',d.accent2);
+  $('#serviceModalKicker').textContent=d.kicker;
+  $('#serviceModalTitle').textContent=d.title;
+  $('#serviceModalLead').textContent=d.lead;
+  $('#serviceBuildList').innerHTML=d.build.map(x=>`<div>${x}</div>`).join('');
+  $('#serviceTechGrid').innerHTML=d.tech.map(x=>`<div>${x}</div>`).join('');
+  d.nodes.forEach((x,i)=>$('#serviceNode'+(i+1)).textContent=x);
+  $('#serviceSystemCore').textContent=d.core;
+  $('#serviceModalState').textContent=d.state;
+  $('#serviceModalNote').textContent=d.note;
+  serviceModalV8.classList.add('open');
+  serviceModalV8.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>serviceModalV8.querySelector('.service-modal-v8-close')?.focus(),80);
+}
+function closeServiceV8(){
+  if(!serviceModalV8)return;
+  serviceModalV8.classList.remove('open');
+  serviceModalV8.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+$$('[data-service-close]').forEach(el=>el.addEventListener('click',closeServiceV8));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&serviceModalV8?.classList.contains('open'))closeServiceV8()});
+
+$$('.service-detail-card').forEach(card=>{
+  card.addEventListener('click',e=>{
+    if(e.target.closest('a'))return;
+    openServiceV8(card.dataset.service);
+  });
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();openServiceV8(card.dataset.service)}
+  });
+});
+
+$('#serviceModalCTA')?.addEventListener('click',()=>{
+  const d=serviceCatalogV8[activeServiceV8];
+  const select=$('#type');
+  if(select){
+    const option=[...select.options].find(o=>o.textContent.trim()===d.form);
+    if(option)select.value=option.value;
+  }
+  closeServiceV8();
+  setTimeout(()=>{
+    $('#contatti')?.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>$('#message')?.focus(),650);
+  },80);
+});
 
 </script>
 </body>
