@@ -366,6 +366,10 @@ footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.055);color:#788a99;
 .contact-option.primary{border-color:rgba(107,241,185,.22);background:rgba(107,241,185,.035)}
 .contact-option small{display:block;font-size:8px;letter-spacing:.12em;color:#6f8395;text-transform:uppercase;margin-bottom:5px}.contact-option strong{display:block;font-size:12px}.contact-option span{display:block;font-size:9px;color:#8395a5;margin-top:4px}
 .contact-placeholder{display:inline-flex;margin-top:9px;padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.07);color:#8395a5;font-size:8px}
+a.contact-placeholder{color:#b8f8ff;border-color:rgba(82,236,255,.3);transition:border-color .2s,color .2s}
+a.contact-placeholder:hover,a.contact-placeholder:focus-visible{color:#fff;border-color:var(--cyan)}
+.success-box.error{background:rgba(255,130,130,.07);border-color:rgba(255,130,130,.25);color:#ffd0d0}
+#briefSubmitButton:disabled{opacity:.62;cursor:wait}
 .contact-offer{margin-top:18px;padding:14px;border-radius:14px;border:1px solid rgba(107,241,185,.15);background:rgba(107,241,185,.04);font-size:10px;color:#b9d8c8}.contact-offer b{color:#caffdf}
 .micro-note{font-size:9px;color:#738697;margin-top:10px}
 @media(max-width:1040px){.diagnosis-wrap,.offer-grid{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}}
@@ -3476,14 +3480,15 @@ section[id]{scroll-margin-top:86px}
                 <small>Contatto formale</small>
                 <strong>Email</strong>
                 <span>Per brief, documenti e richieste strutturate.</span>
-                <span class="contact-placeholder">Email da collegare</span>
+                <a class="contact-placeholder" href="mailto:lukatechlab@outlook.com?subject=Richiesta%20dal%20sito%20Luka%20Tech%20Lab" aria-label="Scrivi a lukatechlab@outlook.com">Scrivi via email ↗</a>
               </div>
             </div>
 
             <div class="contact-offer"><b>Promo attiva:</b> il primo check-up digitale è gratuito e senza impegno. Prima capiamo se posso realmente aiutarti; poi, se ha senso, definiamo il progetto.</div>
           </div>
 
-          <form class="contact-card" id="briefForm">
+          <form class="contact-card" id="briefForm" method="POST">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
             <div class="form-grid">
               <label>Nome<input id="name" type="text" required placeholder="Il tuo nome"></label>
               <label>Email<input id="email" type="email" required placeholder="nome@email.it"></label>
@@ -3576,10 +3581,11 @@ section[id]{scroll-margin-top:86px}
               Seleziona <strong>“Altro progetto digitale”</strong> e descrivimela: il form non limita il tipo di progetto che possiamo valutare.
             </div>
             <div class="form-actions">
-              <button class="btn" type="submit">Prepara il brief</button>
-              <span class="form-note">Il brief viene strutturato sul dispositivo e copiato negli appunti. I canali diretti verranno collegati quando inseriremo i recapiti definitivi.</span>
+              <button class="btn" type="submit" id="briefSubmitButton">Invia richiesta</button>
+              <span class="form-note">La richiesta viene inviata direttamente alla nostra casella email, senza uscire dal sito.</span>
             </div>
-            <div class="success-box" id="successBox">Brief preparato e copiato negli appunti. Ora hai una richiesta strutturata pronta da inviare.</div>
+            <p class="micro-note">I dati inseriti servono per rispondere alla tua richiesta e vengono inoltrati tramite Web3Forms. Non inviare password o dati sensibili.</p>
+            <div class="success-box" id="successBox" role="status" aria-live="polite"></div>
           </form>
         </div>
       </div>
@@ -4121,26 +4127,60 @@ diagVisualWrap?.addEventListener('pointerleave',()=>{
 
 setDiagnosis('site',false);
 
-/* briefing */
-$('#briefForm').addEventListener('submit',async e=>{
+/* briefing — invio diretto Web3Forms */
+const LUKA_WEB3FORMS_ACCESS_KEY = '5ff0e4f6-91ec-48a7-ae2e-ba5c8b2ff522';
+const briefForm=$('#briefForm');
+const briefSubmitButton=$('#briefSubmitButton');
+const briefStatus=$('#successBox');
+function showBriefStatus(message,isError=false){
+  briefStatus.textContent=message;
+  briefStatus.classList.toggle('error',isError);
+  briefStatus.style.display='block';
+}
+briefForm.addEventListener('submit',async e=>{
   e.preventDefault();
-
-  const features=[...document.querySelectorAll('.feature-chip input:checked')]
-    .map(x=>x.value);
-
-  const text=`RICHIESTA PROGETTO — LUKA TECH LAB
-
-Nome: ${$('#name').value}
-Email: ${$('#email').value}
-Progetto: ${$('#type').value}
-Punto di partenza: ${$('#stage').value}
-Funzioni / interessi: ${features.length ? features.join(', ') : 'Da definire insieme'}
-
-IDEA / OBIETTIVO:
-${$('#message').value}`;
-
-  try{await navigator.clipboard.writeText(text)}catch(_){}
-  $('#successBox').style.display='block';
+  if(!briefForm.reportValidity())return;
+  if(briefForm.querySelector('[name="botcheck"]').checked)return;
+  const features=[...document.querySelectorAll('.feature-chip input:checked')].map(x=>x.value);
+  const name=$('#name').value.trim();
+  const email=$('#email').value.trim();
+  const project=$('#type').value;
+  const stage=$('#stage').value;
+  const message=$('#message').value.trim();
+  if(!name||!email||!project||!stage||!message){
+    showBriefStatus('Compila tutti i campi obbligatori prima di inviare.',true);
+    return;
+  }
+  briefSubmitButton.disabled=true;
+  briefSubmitButton.textContent='Invio in corso…';
+  briefStatus.style.display='none';
+  try{
+    const response=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        access_key:LUKA_WEB3FORMS_ACCESS_KEY,
+        subject:'Nuova richiesta progetto — Luka Tech Lab',
+        from_name:'Luka Tech Lab — Sito',
+        name,
+        email,
+        project,
+        stage,
+        features:features.length ? features.join(', ') : 'Da definire insieme',
+        message
+      })
+    });
+    const result=await response.json();
+    if(!response.ok||!result.success)throw new Error('Submission not confirmed');
+    showBriefStatus('Richiesta inviata correttamente. Ti risponderemo all’indirizzo email indicato.');
+    briefForm.reset();
+  }catch(error){
+    console.error('Invio richiesta non confermato:',error);
+    showBriefStatus('Non possiamo confermare l’invio. Riprova più tardi oppure usa il pulsante “Scrivi via email”.',true);
+  }finally{
+    briefSubmitButton.disabled=false;
+    briefSubmitButton.textContent='Invia richiesta';
+  }
 });
 /* =========================================================
    MULTI-SCENE CINEMATIC CONTROLLER
